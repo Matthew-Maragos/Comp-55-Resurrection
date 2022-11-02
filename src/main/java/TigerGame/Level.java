@@ -3,6 +3,7 @@ import acm.graphics.*;
 import acm.program.*;
 import acm.util.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 //
@@ -13,8 +14,15 @@ public class Level
 {
 //	extends GraphicsProgram 
 	GImage background = new GImage("robot.png");
-
+	
 //	Timer levelTimer
+	
+	int gameSpeed = 100;
+	
+	ArrayList<String> Obstacles = new ArrayList<String>();
+	ArrayList<String> PowerUps = new ArrayList<String>();
+	ArrayList<String> BackgroundItems = new ArrayList<String>();
+	
 	
 	void addElement()
 	{
@@ -37,14 +45,14 @@ public class Level
 //		add(background, 290, 1);
 	}
 	
-	void obstacleEncountered() 
+	boolean obstacleEncountered() 
 	{
-		boolean obstacleEnc = false;
 		
-		
-		if(obstacleEnc == true)
+		if(true)
 		{
-			//end game
+			return true;
 		}
+		
+		return false;
 	}
 }
