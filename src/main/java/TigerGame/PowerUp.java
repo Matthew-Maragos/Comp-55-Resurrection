@@ -22,7 +22,9 @@ public class PowerUp {
 	}
 	
 	//getters and setters for posX/Y and powerHeight/Width
+	
 	//need an activate PowerUp class
+	
 	//move() function move to level function this will also get rid of timer
 	
 	
