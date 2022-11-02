@@ -1,7 +1,9 @@
 package TigerGame;
+import acm.graphics.*;
+import acm.program.*;
+import acm.util.*;
+import java.awt.*;
 
-import java.util.Timer;
-import acm.graphics.GImage;
 
 //
 //DO NOT PUSH SETTINGS, ONLY ADDED/MODIFIED
@@ -9,33 +11,40 @@ import acm.graphics.GImage;
 
 public class Level 
 {
+//	extends GraphicsProgram 
 	GImage background = new GImage("robot.png");
-//	add(background, 290, 1);
 
 //	Timer levelTimer
 	
 	void addElement()
 	{
-		
+//		add(background, 290, 1);	
 	}
 	
 	void addObstacle()
 	{
-		
+//		add(background, 290, 1);
+
 	}
 	
 	void addPowerUp()
 	{
-		
+//		add(background, 290, 1);
 	}
 	
 	void endGame()//(checkCollided())
 	{
-		
+//		add(background, 290, 1);
 	}
 	
 	void obstacleEncountered() 
 	{
+		boolean obstacleEnc = false;
 		
+		
+		if(obstacleEnc == true)
+		{
+			//end game
+		}
 	}
 }
