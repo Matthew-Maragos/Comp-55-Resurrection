@@ -1,5 +1,4 @@
 package TigerGame;
-
 import java.util.Timer;
 import acm.graphics.*;
 
