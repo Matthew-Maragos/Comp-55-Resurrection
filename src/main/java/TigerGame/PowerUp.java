@@ -31,14 +31,6 @@ public class PowerUp {
 	
 	
 	//boolean checkCollided() needs posX and posY as parameters  
-	public boolean checkCollied () {
-		if () {
-			
-		}
-		else {
-		return false;
-		}
-		
-	}
+	
 
 }
