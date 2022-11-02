@@ -34,5 +34,8 @@ public class MapElement {
 	public void setMapEleType(MapElementType mapEleType) {
 		this.mapEleType = mapEleType;
 	}
+	public void move(int distance) {
+		elementImage.move(-distance, 0);
+	}
 
 }
