@@ -19,17 +19,37 @@ public class Obstacle extends GraphicsProgram {
 	
 	
 	public Obstacle(ObstacleType type, double posX, double posY, double moveSpeed, GImage obstacleImage) {
+		obstacleType = type;
+		this.posX = posX;
+		this.posY = posY;
+		this.moveSpeed = moveSpeed;
+		this.obstacleImage = obstacleImage;
 		
 	}
 
-	
-	public void run() {
-		addMouseListeners();
+	public ObstacleType getObstacleType() {
+		return obstacleType;
 	}
 	
+	public double getX() {
+		return posX;
+	}
 	
+	public double getY() {
+		return posY;
+	}
 	
+	public double getWidth() {
+		return obstacleWidth;
+	}
 	
+	public double getHeight() {
+		return obstacleHeight;
+	}
+	
+	public void run() {
+		
+	}
 	
 	
 }
