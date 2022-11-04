@@ -19,18 +19,20 @@ public class Level
 	
 	int gameSpeed = 100;
 	
-	ArrayList<String> Obstacles = new ArrayList<String>();
-	ArrayList<String> PowerUps = new ArrayList<String>();
-	ArrayList<String> BackgroundItems = new ArrayList<String>();
+	ArrayList<GImage> Obstacles = new ArrayList<GImage>();
+	ArrayList<GImage> PowerUps = new ArrayList<GImage>();
+	ArrayList<GImage> BackgroundItems = new ArrayList<GImage>();
 	
 	
 	void addElement()
 	{
+	
 //		add(background, 290, 1);	
 	}
 	
 	void addObstacle()
 	{
+	
 //		add(background, 290, 1);
 
 	}
