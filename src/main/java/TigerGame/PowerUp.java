@@ -83,8 +83,6 @@ public class PowerUp {
 		//Timer.start();
 	 //}
 	
-	
-	
 	//boolean checkCollided() needs posX and posY as parameters  
 	
 
