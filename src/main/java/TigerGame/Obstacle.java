@@ -15,7 +15,7 @@ public class Obstacle extends GraphicsProgram {
 	private GImage obstacleImage;
 	private double obstacleWidth;
 	private double obstacleHeight;
-	private Timer t;
+	//private Timer t;
 	
 	
 	public Obstacle(ObstacleType type, double posX, double posY, double moveSpeed, GImage obstacleImage) {
@@ -45,6 +45,10 @@ public class Obstacle extends GraphicsProgram {
 	
 	public double getHeight() {
 		return obstacleHeight;
+	}
+	
+	public void move() {
+		
 	}
 	
 	public void run() {

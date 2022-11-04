@@ -9,17 +9,22 @@ public class MenuPane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	private GButton rect;
+	private GButton rect2;
 
 	public MenuPane(MainApplication app) {
 		super();
 		program = app;
 		rect = new GButton("Next", 200, 200, 200, 200);
 		rect.setFillColor(Color.RED);
+		rect2 = new GButton("Test", 0, 0 ,500, 500);
+		rect2.setFillColor(Color.blue);
+		
 	}
 
 	@Override
 	public void showContents() {
 		program.add(rect);
+		//program.add(rect2);
 	}
 
 	@Override
