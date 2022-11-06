@@ -5,6 +5,8 @@ import java.awt.event.MouseEvent;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import edu.pacific.comp55.starter.MainApplication;
+import acm.graphics.GRect;
+import acm.graphics.GImage;
 
 public class StartMenu 
 {
