@@ -13,4 +13,11 @@ public class Player {
 	GImage tigerJumpImage;
 	GImage tigerLandImage;
 	
+	public double getPosX() {
+		return posX;
+	}
+	public void setPosX(double posX) {
+		this.posX = posX;
+	}
+	
 }
