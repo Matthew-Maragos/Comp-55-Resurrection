@@ -25,6 +25,12 @@ public class Player {
 	public void setPosY(double posY) {
 		this.posY = posY;
 	}
+	public double getTigerHeight() {
+		return tigerHeight;
+	}
+	public void setTigerHeight(double tigerHeight) {
+		this.tigerHeight = tigerHeight;
+	}
 	
 	
 }
