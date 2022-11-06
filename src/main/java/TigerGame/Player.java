@@ -31,6 +31,12 @@ public class Player {
 	public void setTigerHeight(double tigerHeight) {
 		this.tigerHeight = tigerHeight;
 	}
+	public double getTigerWidth() {
+		return tigerWidth;
+	}
+	public void setTigerWidth(double tigerWidth) {
+		this.tigerWidth = tigerWidth;
+	}
 	
 	
 }
