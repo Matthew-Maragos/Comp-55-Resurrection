@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class MultiPlayerMode 
 {
-//	Player PlayerOne;
-//  Player PlayerTwo; 
+	Player PlayerOne;
+	Player PlayerTwo; 
 
-//	Level gameLevelOne;
-//	Level gameLevelOne; 
+	Level gameLevelOne;
+	Level gameLevelTwo; 
 	ArrayList<String> Player = new ArrayList<String>();
 	
 //	Player.add("Vesena");
