@@ -10,11 +10,14 @@ public class PlayerManual {
 	GImage manualImage;
 	GImage arrowImage;
 	
-	// Adding from the Diagram, but needs more work
+/**/	// Adding from the Diagram, but needs more work
 	
 	public void mouseClicked(MouseEvent e) {
 		
 	}
 	
+	double getArrowWidth() {
+		return 0;
+	}
 
 }
