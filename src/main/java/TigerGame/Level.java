@@ -16,9 +16,10 @@ import java.util.ArrayList;
 public class Level extends GraphicsApplication
 {
 //	extends GraphicsProgram 
-	public static final int PROGRAM_WIDTH = 500;
-	public static final int PROGRAM_HEIGHT = 800;
+	public static final int PROGRAM_WIDTH = 800;
+	public static final int PROGRAM_HEIGHT = 600;
 	GImage background = new GImage("robot head.jpg");
+	GRect sky;
 	
 //	Timer levelTimer
 	
@@ -28,12 +29,24 @@ public class Level extends GraphicsApplication
 	ArrayList<GImage> PowerUps = new ArrayList<GImage>();
 	ArrayList<GImage> BackgroundItems = new ArrayList<GImage>();
 	
+	
+	public void init() {
+		setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
+	}
+	
 	public void run() {
-		
+		addBackground();
+	}
+	
+	void addBackground() {
+		sky = new GRect(0, 0 , PROGRAM_WIDTH, PROGRAM_HEIGHT);
+		sky.setFilled(true);
+		sky.setFillColor(Color.yellow);
+		add(sky);
 	}
 	
 	void addElement() {
-		add(background, 290, 1);	
+		
 	}
 	
 	void addObstacle()
