@@ -2,6 +2,9 @@ package TigerGame;
 import acm.graphics.*;
 import acm.program.*;
 import acm.util.*;
+import edu.pacific.comp55.starter.GraphicsApplication;
+import edu.pacific.comp55.starter.MainApplication;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -10,10 +13,12 @@ import java.util.ArrayList;
 //DO NOT PUSH SETTINGS, ONLY ADDED/MODIFIED
 //
 
-public class Level 
+public class Level extends GraphicsApplication
 {
 //	extends GraphicsProgram 
-	GImage background = new GImage("robot.png");
+	public static final int PROGRAM_WIDTH = 500;
+	public static final int PROGRAM_HEIGHT = 800;
+	GImage background = new GImage("robot head.jpg");
 	
 //	Timer levelTimer
 	
@@ -23,11 +28,12 @@ public class Level
 	ArrayList<GImage> PowerUps = new ArrayList<GImage>();
 	ArrayList<GImage> BackgroundItems = new ArrayList<GImage>();
 	
+	public void run() {
+		
+	}
 	
-	void addElement()
-	{
-	
-//		add(background, 290, 1);	
+	void addElement() {
+		add(background, 290, 1);	
 	}
 	
 	void addObstacle()
@@ -57,4 +63,9 @@ public class Level
 		
 		return false;
 	}
+	
+	public static void main(String[] args) {
+		new Level().start();
+	}
+	
 }

@@ -11,7 +11,7 @@ public class SinglePlayerMode
 	Level gameLevelTwo; 
 //	ArrayList<GImage> Player = new ArrayList<GImage>();
 	
-//	Player.add("Vesena");
+//	Player.add("Veasna");
 		
 	void startGame()
 	{
