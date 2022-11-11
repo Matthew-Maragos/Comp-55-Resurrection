@@ -11,7 +11,8 @@ public class MainApplication extends GraphicsApplication
 	
 	
 	private startMenuPane mainMenu;
-	private int count;
+	private PlayerManualPane manualMenu;
+	
 	
 
 	public void init() {
@@ -22,18 +23,30 @@ public class MainApplication extends GraphicsApplication
 	public void run() {
 		System.out.println("StartMenu.java run() !");
 		mainMenu = new startMenuPane(this);
+		manualMenu = new PlayerManualPane(this);
 		setupInteractions();
 		switchToMainMenu();
 	}
 	
 	public void switchToMainMenu() {
-		count++;
 		switchToScreen(mainMenu);
 	}
 
-	public void switchToSome() {
+	public void switchToManual() {
+		switchToScreen(manualMenu);
 	}
 	
+	
+	@Override
+	public void mousePressed(MouseEvent e) {
+		GObject img = getElementAt(e.getX(), e.getY());
+		if (curScreen == mainMenu) { 
+			mainMenu.clickedAt(img);
+		}
+		
+		
+		
+	}
 	
 	/*@Override
 	public void mousePressed(MouseEvent e) {
