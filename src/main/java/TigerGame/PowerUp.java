@@ -4,7 +4,7 @@ import acm.graphics.*;
 
 public class PowerUp {
 	private PowerUpType powerType;
-	//private GImage PowerImage;
+	private GImage PowerImage;
 	private double posX;
 	private double posY;
 	private int moveSpeed;
@@ -20,7 +20,7 @@ public class PowerUp {
 		this.posX = posX;
 		this.posY = posY;
 		this.setMoveSpeed((int) moveSpeed);
-		//this.PowerImage = PowerImage;
+		this.PowerImage = PowerImage;
 		
 	}
 	
@@ -84,6 +84,12 @@ public class PowerUp {
 	 //}
 	
 	//boolean checkCollided() needs posX and posY as parameters  
-	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+			
 
 }
