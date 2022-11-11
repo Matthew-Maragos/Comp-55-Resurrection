@@ -10,9 +10,9 @@ public class startMenuPane extends GraphicsPane {
 	
 	GImage background = new GImage("sounds/main_menu.png");
 	GImage manualPage = new GImage("sounds/manualPage.png");
-	GRect obj = new GRect(184,90,234,70);
-	GRect obj2 = new GRect(184,190,234,70);
-	GRect obj3 = new GRect(184,290,234,70);
+	public GRect obj = new GRect(184,90,234,70);
+	public GRect obj2 = new GRect(184,190,234,70);
+	public GRect obj3 = new GRect(184,290,234,70);
 	
 	public startMenuPane(MainApplication app) {
 		super();
@@ -20,6 +20,14 @@ public class startMenuPane extends GraphicsPane {
 		obj.setLineWidth(0);
 		obj2.setLineWidth(0);
 		obj3.setLineWidth(0);
+	}
+	
+	public void clickedAt(GObject objIn) {
+		if (objIn == obj) {
+			// program.SwitchtoSinglePlayer
+		} else if(objIn == obj3) {
+			program.switchToManual();
+		}
 	}
 	
 	@Override
