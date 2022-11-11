@@ -13,7 +13,7 @@ import acm.graphics.GObject;
 
 public class MultiPlayerMode 
 {
-	private StartMenu SM;
+	private MainApplication SM;
 	Player PlayerOne;
 	Player PlayerTwo; 
 

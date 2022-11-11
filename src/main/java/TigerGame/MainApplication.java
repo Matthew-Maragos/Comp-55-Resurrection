@@ -4,55 +4,44 @@ import java.awt.event.MouseEvent;
 import acm.graphics.*;
 import acm.program.*;		
 
-public class StartMenu extends GraphicsProgram
+public class MainApplication extends GraphicsApplication
 {
-	private double ImageWidth;
-	private double ImageHeight;
-	
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
 	
 	
-// you will use program to get access to all of the GraphicsProgram calls
-	private SinglePlayerMode Single; 
-	private MultiPlayerMode Multi; 
+	private startMenuPane mainMenu;
+	private int count;
+	
 
-	
-	// each button is going to be a png, click on it to perform action
-	GImage background = new GImage("sounds/main_menu.png");
-	GImage manualPage = new GImage("sounds/manualPage.png");
-	GRect obj = new GRect(184,90,234,70);
-	GRect obj2 = new GRect(184,190,234,70);
-	GRect obj3 = new GRect(184,290,234,70);
-	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		this.requestFocus();
-
+		//this.requestFocus();
 	}
 	
 	public void run() {
-		this.addMouseListeners();
-		add(background);
-		obj.setLineWidth(0);
-		obj2.setLineWidth(0);
-		obj3.setLineWidth(0);
-		add(obj);
-		add(obj2);
-		add(obj3);
-		System.out.println("Hello, RAMIZZIK!");
-		
+		System.out.println("StartMenu.java run() !");
+		mainMenu = new startMenuPane(this);
+		setupInteractions();
+		switchToMainMenu();
+	}
+	
+	public void switchToMainMenu() {
+		count++;
+		switchToScreen(mainMenu);
+	}
 
-		
+	public void switchToSome() {
 	}
 	
 	
-	@Override
+	/*@Override
 	public void mousePressed(MouseEvent e) {
 		//GImage obj = StartMenu.getElementAt(e.getX(), e.getY());
 		GObject ob = getElementAt(e.getX(), e.getY());
 		if (ob == obj) {
 			System.out.println("Testing The Single Player Button");
+			Single = new SinglePlayerMode();
 		}else if(ob == obj2){
 			System.out.println("Testing The Multi Player Button");
 		}else if(ob == obj3) {
@@ -61,11 +50,11 @@ public class StartMenu extends GraphicsProgram
 			add(manualPage);
 		}
 	
-	}
+	}*/
 	
 	
 	public static void main(String[] args) {
-		new StartMenu().start();
+		new MainApplication().start();
 	}
 	
 	
