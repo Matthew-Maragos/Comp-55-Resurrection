@@ -27,9 +27,9 @@ public class StartMenu extends GraphicsProgram
 	
 	// each button is going to be a png, click on it to perform action
 	GImage background = new GImage("sounds/main_menu.png");
-	//GImage singleButton = new GImage("robot.png");
-	//AGImage multiButton = new GImage("robot.png");
-	//GImage titleImage = new GImage("robot.png");
+	GImage singleButton = new GImage("sounds/singleButton.png");
+	GImage multiButton = new GImage("sounds/multiButton.png");
+	GImage menuImage = new GImage("sounds/manualButton.png");
 	
 	
 	public void init() {
@@ -41,7 +41,18 @@ public class StartMenu extends GraphicsProgram
 	public void run() {
 		this.addMouseListeners();
 		add(background);
+		add(singleButton);
+		singleButton.setSize(234, 70);
+		singleButton.move(183, 90);
+		add(multiButton);
+		multiButton.setSize(234,70);
+		multiButton.move(183, 190);
+		add(menuImage);
+		menuImage.setSize(234,70);
+		menuImage.move(183,291);
 		System.out.println("Hello, RAAAamis!");
+		
+		
 	}
 	
 	

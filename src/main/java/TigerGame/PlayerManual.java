@@ -3,7 +3,7 @@ package TigerGame;
 
 import java.awt.event.MouseEvent;
 import acm.graphics.GImage;
-
+ 
 public class PlayerManual {
 
 	GImage titleImage;
