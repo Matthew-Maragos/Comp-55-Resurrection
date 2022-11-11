@@ -85,9 +85,14 @@ public class PowerUp {
 	
 	//boolean checkCollided() needs posX and posY as parameters  
 	/*
+	 * 	boolean checkCOllided () {
+	 * 		if () {
 	 * 
-	 * 
-	 * 
+	 *	 	}
+	 * 		else {
+	 * 		
+	 * 		}
+	 * } 
 	 * 
 	 */
 			
