@@ -1,15 +1,8 @@
 package TigerGame;
 
 import java.awt.event.MouseEvent;
-
-import acm.graphics.GImage;
-import acm.graphics.GObject;
-import edu.pacific.comp55.starter.GraphicsApplication;
-import edu.pacific.comp55.starter.MainApplication;
-import edu.pacific.comp55.starter.MenuPane;
-import edu.pacific.comp55.starter.SomePane;
 import acm.graphics.*;
-import acm.program.GraphicsProgram;		
+import acm.program.*;		
 
 public class StartMenu extends GraphicsProgram
 {
@@ -27,10 +20,10 @@ public class StartMenu extends GraphicsProgram
 	
 	// each button is going to be a png, click on it to perform action
 	GImage background = new GImage("sounds/main_menu.png");
-	GImage singleButton = new GImage("sounds/singleButton.png");
-	GImage multiButton = new GImage("sounds/multiButton.png");
-	GImage menuImage = new GImage("sounds/manualButton.png");
-	
+	GImage manualPage = new GImage("sounds/manualPage.png");
+	GRect obj = new GRect(184,90,234,70);
+	GRect obj2 = new GRect(184,190,234,70);
+	GRect obj3 = new GRect(184,290,234,70);
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -41,31 +34,35 @@ public class StartMenu extends GraphicsProgram
 	public void run() {
 		this.addMouseListeners();
 		add(background);
-		add(singleButton);
-		singleButton.setSize(234, 70);
-		singleButton.move(183, 90);
-		add(multiButton);
-		multiButton.setSize(234,70);
-		multiButton.move(183, 190);
-		add(menuImage);
-		menuImage.setSize(234,70);
-		menuImage.move(183,291);
-		System.out.println("Hello, RAAAamis!");
+		obj.setLineWidth(0);
+		obj2.setLineWidth(0);
+		obj3.setLineWidth(0);
+		add(obj);
+		add(obj2);
+		add(obj3);
+		System.out.println("Hello, RAMIZZIK!");
 		
+
 		
 	}
 	
 	
+	@Override
+	public void mousePressed(MouseEvent e) {
+		//GImage obj = StartMenu.getElementAt(e.getX(), e.getY());
+		GObject ob = getElementAt(e.getX(), e.getY());
+		if (ob == obj) {
+			System.out.println("Testing The Single Player Button");
+		}else if(ob == obj2){
+			System.out.println("Testing The Multi Player Button");
+		}else if(ob == obj3) {
+			System.out.println("Testing The Manual Button");
+			remove(background);
+			add(manualPage);
+		}
 	
-	double getImageWidth()
-	{
-		return ImageWidth;	
 	}
 	
-	double getImageHeight()
-	{
-		return ImageHeight;	
-	}
 	
 	public static void main(String[] args) {
 		new StartMenu().start();
@@ -97,7 +94,7 @@ public class StartMenu extends GraphicsProgram
 /////////////////////////////////////////////////////////////
 
 //	@Override
-	public void mousePressed(MouseEvent e) {
+//	public void mousePressed(MouseEvent e) {
 		
 //		GObject obj = StartMenu.getElementAt(e.getX(), e.getY());
 //		if (obj == singleButton) 
@@ -114,5 +111,5 @@ public class StartMenu extends GraphicsProgram
 //				{
 //						//move panes to manual
 //				}
-	}
+//	}
 }
