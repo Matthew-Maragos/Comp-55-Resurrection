@@ -17,18 +17,13 @@ public class StartMenu extends GraphicsProgram
 	private double ImageHeight;
 	
 	public static final int WINDOW_WIDTH = 600;
-	public static final int WINDOW_HEIGHT = 400;
-	
-	private int count;
-	
-//	private SinglePlayerMode program; 
+	public static final int WINDOW_HEIGHT = 436;
 	
 	
 // you will use program to get access to all of the GraphicsProgram calls
 	private SinglePlayerMode Single; 
 	private MultiPlayerMode Multi; 
 
-	
 	
 	// each button is going to be a png, click on it to perform action
 	GImage background = new GImage("sounds/main_menu.png");
@@ -39,16 +34,16 @@ public class StartMenu extends GraphicsProgram
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		this.requestFocus();
 
 	}
 	
 	public void run() {
+		this.addMouseListeners();
 		add(background);
-		background.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		System.out.println("Hello, RAAAamis!");
-		//somePane = new SomePane(this);
-		//menu = new MenuPane(this);
 	}
+	
 	
 	
 	double getImageWidth()
