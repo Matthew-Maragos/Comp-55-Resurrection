@@ -1,47 +1,39 @@
 package TigerGame;
 
 
-import java.awt.event.MouseEvent;
-import acm.graphics.GImage;
+import acm.graphics.*;
  
 public class PlayerManualPane extends GraphicsPane {
 
-	private MainApplication program;
-	GImage manualPage = new GImage("sounds/manualPage.png");
-	
-	
-	public PlayerManualPane(MainApplication app) {
-		super();
-		program = app;
-		
-	}
-	
-	@Override
-	public void showContents() {
-		program.add(manualPage);
+    private MainApplication program;
+    GImage manualPage = new GImage("sounds/manual_menu.png");
+    public GRect backButton = new GRect(25,22,86,34);
 
+    public PlayerManualPane(MainApplication app) {
+        super();
+        program = app;
+        backButton.setLineWidth(0);
+    }
+
+    public void clickedAt(GObject objIn) {
+        if (objIn == backButton) {
+        	program.switchToMainMenu();
+        }
+    }
+    
+    
+    @Override
+    public void showContents() {
+        program.add(manualPage);
+        program.add(backButton);
+
+    }
+
+    @Override
+    public void hideContents() {
+        program.remove(manualPage);
+        program.remove(backButton);
+    }
+
+			
 	}
-	
-	@Override
-	public void hideContents() {
-		program.remove(manualPage);
-	}
-	
-	
-	
-	
-/*	// Adding from the Diagram, but needs more work
-	
-	public void mouseClicked(MouseEvent e) {
-		
-	}
-	
-	double getArrowWidth() {
-		return 0;
-	}
-	
-	double getArrowHeight() {
-		return 0;
-	}
-*/
-}

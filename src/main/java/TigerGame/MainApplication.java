@@ -1,8 +1,7 @@
 package TigerGame;
 
 import java.awt.event.MouseEvent;
-import acm.graphics.*;
-import acm.program.*;		
+import acm.graphics.*;	
 
 public class MainApplication extends GraphicsApplication
 {
@@ -12,6 +11,7 @@ public class MainApplication extends GraphicsApplication
 	
 	private startMenuPane mainMenu;
 	private PlayerManualPane manualMenu;
+	private SinglePlayerModePane singleMenu;
 	
 	
 
@@ -21,7 +21,6 @@ public class MainApplication extends GraphicsApplication
 	}
 	
 	public void run() {
-		System.out.println("StartMenu.java run() !");
 		mainMenu = new startMenuPane(this);
 		manualMenu = new PlayerManualPane(this);
 		setupInteractions();
@@ -36,34 +35,21 @@ public class MainApplication extends GraphicsApplication
 		switchToScreen(manualMenu);
 	}
 	
+	public void switchToSinglePlayer() {
+		switchToScreen(singleMenu);
+	}
+	
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		GObject img = getElementAt(e.getX(), e.getY());
+		GObject button = getElementAt(e.getX(), e.getY());
 		if (curScreen == mainMenu) { 
-			mainMenu.clickedAt(img);
+			mainMenu.clickedAt(button);
+		} else if (curScreen == manualMenu) {
+			manualMenu.clickedAt(button);
 		}
-		
-		
 		
 	}
-	
-	/*@Override
-	public void mousePressed(MouseEvent e) {
-		//GImage obj = StartMenu.getElementAt(e.getX(), e.getY());
-		GObject ob = getElementAt(e.getX(), e.getY());
-		if (ob == obj) {
-			System.out.println("Testing The Single Player Button");
-			Single = new SinglePlayerMode();
-		}else if(ob == obj2){
-			System.out.println("Testing The Multi Player Button");
-		}else if(ob == obj3) {
-			System.out.println("Testing The Manual Button");
-			remove(background);
-			add(manualPage);
-		}
-	
-	}*/
 	
 	
 	public static void main(String[] args) {
@@ -71,47 +57,5 @@ public class MainApplication extends GraphicsApplication
 	}
 	
 	
-	
-	
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////				Under Construction			////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Might use functions or use functions through mousepressed
-//	void startSingleMode()
-//	{
-//		
-//	}
-//	
-//	void startMultiMode()
-//	{
-//		
-//	}
-//	void startManual()
-//	{
-//		
-//	}
-	
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-
-//	@Override
-//	public void mousePressed(MouseEvent e) {
-		
-//		GObject obj = StartMenu.getElementAt(e.getX(), e.getY());
-//		if (obj == singleButton) 
-//		{
-//			Single.startGame();
-//		}
-//			
-//			if (obj == multiButton) 
-//			{
-//				Multi.startGame();
-//			}
-//				
-//				if (obj == manButton) 
-//				{
-//						//move panes to manual
-//				}
-//	}
 }

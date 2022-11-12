@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import acm.graphics.*;
 import acm.program.*;
 
-public class SinglePlayerMode extends GraphicsProgram
+public class SinglePlayerModePane extends GraphicsPane
 {
 	Player PlayerOne;
 	Player PlayerTwo; 
@@ -18,7 +18,8 @@ public class SinglePlayerMode extends GraphicsProgram
 	
 //	Player.add("Veasna");
 	
-	public SinglePlayerMode() {
+	/*
+	public SinglePlayerModePane() {
 		this.start();
 	}
 	
@@ -34,7 +35,7 @@ public class SinglePlayerMode extends GraphicsProgram
 		
 
 		
-	}
+	}*/
 	
 	void startGame()
 	{
@@ -43,6 +44,18 @@ public class SinglePlayerMode extends GraphicsProgram
 	
 	void endGame()
 	{
+		
+	}
+
+	@Override
+	public void showContents() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void hideContents() {
+		// TODO Auto-generated method stub
 		
 	}
 }
