@@ -14,6 +14,8 @@ public class Level
 	public Level(MainApplication app, Player playerIn) {
 		player = playerIn;
 		program = app;
+		program.add(backgroundImg);
+		program.add(player.tigerRunImage);
 	}
 	
 	

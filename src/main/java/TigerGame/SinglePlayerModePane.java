@@ -12,12 +12,13 @@ public class SinglePlayerModePane extends GraphicsPane
 
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
-	GImage backgroundImg = new GImage("sounds/game_background.png");
 
 
 	public SinglePlayerModePane(MainApplication app) {
 		super();
 		program = app;
+		PlayerOne = new Player(app);
+		LevelOne = new Level(app, PlayerOne);
 	}
 	
 	public void jump(GObject playerIn) {
@@ -27,16 +28,11 @@ public class SinglePlayerModePane extends GraphicsPane
 	@Override
 	public void showContents() {
 		// TODO Auto-generated method stub
-		program.add(backgroundImg);
-		PlayerOne = new Player(program);
-		LevelOne = new Level(program, PlayerOne);
-		
 	}
 
 	@Override
 	public void hideContents() {
 		// TODO Auto-generated method stub
-		program.add(backgroundImg);
 		
 	}
 }

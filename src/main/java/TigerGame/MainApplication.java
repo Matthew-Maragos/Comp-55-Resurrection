@@ -13,6 +13,8 @@ public class MainApplication extends GraphicsApplication
 	private PlayerManualPane manualMenu;
 	private SinglePlayerModePane singleMenu;
 	
+	public GObject player;
+	
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
