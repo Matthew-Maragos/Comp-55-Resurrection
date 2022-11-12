@@ -1,13 +1,7 @@
 package TigerGame;
-import java.awt.event.KeyEvent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 
 
-import java.util.ArrayList;
 import acm.graphics.*;
-import acm.program.*;
 
 public class SinglePlayerModePane extends GraphicsPane
 {
@@ -19,8 +13,6 @@ public class SinglePlayerModePane extends GraphicsPane
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
 	GImage backgroundImg = new GImage("sounds/game_background.png");
-	
-	
 
 
 	public SinglePlayerModePane(MainApplication app) {
@@ -28,7 +20,6 @@ public class SinglePlayerModePane extends GraphicsPane
 		program = app;
 	}
 	
-
 	public void jump(GObject playerIn) {
 		LevelOne.jump(playerIn);
 	}

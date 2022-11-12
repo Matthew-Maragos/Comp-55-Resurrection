@@ -9,13 +9,11 @@ public class MainApplication extends GraphicsApplication
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
 	
-	
 	private startMenuPane mainMenu;
 	private PlayerManualPane manualMenu;
 	private SinglePlayerModePane singleMenu;
 	
 	
-
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		//this.requestFocus();
@@ -50,14 +48,12 @@ public class MainApplication extends GraphicsApplication
 		} else if (curScreen == manualMenu) {
 			manualMenu.clickedAt(button);
 		}
-		
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		GObject player = getElementAt(singleMenu.PlayerOne.getPosX(), singleMenu.PlayerOne.getPosY());
 		if (e.getKeyCode() == 38) {
-			System.out.print("Test Jump Pressed\n");
 			singleMenu.jump(player);
 		}
 	}
@@ -65,7 +61,6 @@ public class MainApplication extends GraphicsApplication
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == 38) {
-			System.out.print("Test Jump Released\n");
 		}
 	}
 	
@@ -74,6 +69,4 @@ public class MainApplication extends GraphicsApplication
 		new MainApplication().start();
 	}
 	
-	
-
 }

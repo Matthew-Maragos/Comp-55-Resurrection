@@ -2,7 +2,6 @@ package TigerGame;
 
 import acm.graphics.*;	
 
-import java.awt.event.KeyEvent;
 
 public class Player {
 	
@@ -32,7 +31,6 @@ public class Player {
 	
 	
 	public void jump(GObject playerIn) {
-		GObject playerObj = playerIn;
 		posX = playerIn.getX();
 		posY = playerIn.getY() - jumpPower;
 		playerIn.move(0, -20);
@@ -63,6 +61,5 @@ public class Player {
 	public void setTigerWidth(double tigerWidth) {
 		this.tigerWidth = tigerWidth;
 	}
-	
 	
 }
