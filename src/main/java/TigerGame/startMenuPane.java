@@ -1,8 +1,4 @@
 package TigerGame;
-
-import java.awt.Color;
-import java.awt.event.MouseEvent;
-
 import acm.graphics.*;
 
 public class startMenuPane extends GraphicsPane {
@@ -24,9 +20,11 @@ public class startMenuPane extends GraphicsPane {
 
     public void clickedAt(GObject objIn) {
         if (objIn == obj) {
-            // program.SwitchtoSinglePlayer
+            program.switchToSinglePlayer();
         } else if(objIn == obj3) {
             program.switchToManual();
+        } else if (objIn == obj2) {
+        	// program.switchToMultiPlayer();
         }
     }
 

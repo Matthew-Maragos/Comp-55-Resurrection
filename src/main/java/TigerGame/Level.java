@@ -1,11 +1,7 @@
 package TigerGame;
 import acm.graphics.*;
-import acm.program.*;
-import acm.util.*;
-import edu.pacific.comp55.starter.GraphicsApplication;
-import edu.pacific.comp55.starter.MainApplication;
 
-import java.awt.*;
+
 import java.util.ArrayList;
 
 
@@ -13,13 +9,14 @@ import java.util.ArrayList;
 //DO NOT PUSH SETTINGS, ONLY ADDED/MODIFIED
 //
 
-public class Level extends GraphicsApplication
+public class Level
 {
-//	extends GraphicsProgram 
-	public static final int PROGRAM_WIDTH = 800;
-	public static final int PROGRAM_HEIGHT = 600;
-	GImage background = new GImage("robot head.jpg");
-	GRect sky;
+	private MainApplication program;
+	Player player;
+	public static final int WINDOW_WIDTH = 600;
+	public static final int WINDOW_HEIGHT = 436;
+	GImage backgroundImg = new GImage("sounds/game_background.png");
+	
 	
 //	Timer levelTimer
 	
@@ -30,19 +27,9 @@ public class Level extends GraphicsApplication
 	ArrayList<GImage> BackgroundItems = new ArrayList<GImage>();
 	
 	
-	public void init() {
-		setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
-	}
-	
-	public void run() {
-		addBackground();
-	}
-	
-	void addBackground() {
-		sky = new GRect(0, 0 , PROGRAM_WIDTH, PROGRAM_HEIGHT);
-		sky.setFilled(true);
-		sky.setFillColor(Color.yellow);
-		add(sky);
+	public Level(MainApplication app, Player playerIn) {
+		player = playerIn;
+		program = app;
 	}
 	
 	void addElement() {
@@ -76,9 +63,6 @@ public class Level extends GraphicsApplication
 		
 		return false;
 	}
-	
-	public static void main(String[] args) {
-		new Level().start();
-	}
+
 	
 }

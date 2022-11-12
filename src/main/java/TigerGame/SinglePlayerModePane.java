@@ -6,56 +6,37 @@ import acm.program.*;
 
 public class SinglePlayerModePane extends GraphicsPane
 {
+	private MainApplication program;
+	
 	Player PlayerOne;
-	Player PlayerTwo; 
+	Level LevelOne;
 
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
+	GImage backgroundImg = new GImage("sounds/game_background.png");
 	
-	Level gameLevelOne;
-	Level gameLevelTwo; 
-//	ArrayList<GImage> Player = new ArrayList<GImage>();
-	
-//	Player.add("Veasna");
-	
-	/*
-	public SinglePlayerModePane() {
-		this.start();
-	}
-	
-	public void init() {
-		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		this.requestFocus();
 
-	}
-	public void run() {
-		GLabel label = new GLabel("Hi Hi Hi");
-		add(label);
-		System.out.println("Single Player Start");
-		
 
-		
-	}*/
-	
-	void startGame()
-	{
+	public SinglePlayerModePane(MainApplication app) {
+		super();
+		program = app;
+		PlayerOne = new Player(program);
+		LevelOne = new Level(program, PlayerOne);
 		
 	}
 	
-	void endGame()
-	{
-		
-	}
-
 	@Override
 	public void showContents() {
 		// TODO Auto-generated method stub
+		program.add(backgroundImg);
+		PlayerOne = new Player(program);
 		
 	}
 
 	@Override
 	public void hideContents() {
 		// TODO Auto-generated method stub
+		program.add(backgroundImg);
 		
 	}
 }

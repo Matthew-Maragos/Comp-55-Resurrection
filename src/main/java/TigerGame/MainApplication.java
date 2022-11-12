@@ -23,6 +23,7 @@ public class MainApplication extends GraphicsApplication
 	public void run() {
 		mainMenu = new startMenuPane(this);
 		manualMenu = new PlayerManualPane(this);
+		singleMenu = new SinglePlayerModePane(this);
 		setupInteractions();
 		switchToMainMenu();
 	}

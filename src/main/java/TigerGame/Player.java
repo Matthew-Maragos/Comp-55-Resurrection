@@ -3,6 +3,9 @@ package TigerGame;
 import acm.graphics.GImage;
 
 public class Player {
+	
+	private MainApplication program;
+	
 	private double moveSpeed;
 	private double posX;
 	private double posY;
@@ -12,6 +15,16 @@ public class Player {
 	GImage tigerRunImage;
 	GImage tigerJumpImage;
 	GImage tigerLandImage;
+	
+	public Player(MainApplication app) {
+		tigerRunImage = new GImage("sounds/tiger_orange.png");
+		program = app;
+		program.add(tigerRunImage);
+		tigerRunImage.setSize(90,70);
+		tigerRunImage.move(20,300);
+		posX = 20;
+		posY = 300;
+	}
 	
 	public double getPosX() {
 		return posX;
