@@ -17,8 +17,8 @@ public class SinglePlayerModePane extends GraphicsPane
 	public SinglePlayerModePane(MainApplication app) {
 		super();
 		program = app;
-		PlayerOne = new Player(app);
-		LevelOne = new Level(app, PlayerOne);
+		PlayerOne = new Player(program);
+		LevelOne = new Level(program, PlayerOne);
 	}
 	
 	public void jump(GObject playerIn) {
