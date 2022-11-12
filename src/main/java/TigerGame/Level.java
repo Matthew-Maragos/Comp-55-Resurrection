@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Level
 {
 	private MainApplication program;
-	Player player;
+	public Player player;
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
 	GImage backgroundImg = new GImage("sounds/game_background.png");
@@ -30,6 +30,12 @@ public class Level
 	public Level(MainApplication app, Player playerIn) {
 		player = playerIn;
 		program = app;
+	}
+	
+	
+	public void jump(GObject playerIn) {
+		player.jump(playerIn);
+		System.out.print("Test jump in Level - Remove tiger\n");
 	}
 	
 	void addElement() {

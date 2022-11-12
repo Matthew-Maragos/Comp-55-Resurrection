@@ -1,12 +1,15 @@
 package TigerGame;
 
-import acm.graphics.GImage;
+import acm.graphics.*;	
+
+import java.awt.event.KeyEvent;
 
 public class Player {
 	
 	private MainApplication program;
 	
 	private double moveSpeed;
+	private double jumpPower;
 	private double posX;
 	private double posY;
 	private double tigerWidth;
@@ -22,10 +25,20 @@ public class Player {
 		program.add(tigerRunImage);
 		tigerRunImage.setSize(90,70);
 		tigerRunImage.move(20,300);
+		jumpPower = 20;
 		posX = 20;
 		posY = 300;
 	}
 	
+	
+	public void jump(GObject playerIn) {
+		GObject playerObj = playerIn;
+		posX = playerIn.getX();
+		posY = playerIn.getY() - jumpPower;
+		playerIn.move(0, -20);
+	}
+	
+
 	public double getPosX() {
 		return posX;
 	}

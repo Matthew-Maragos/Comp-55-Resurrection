@@ -1,5 +1,6 @@
 package TigerGame;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import acm.graphics.*;	
 
@@ -50,6 +51,22 @@ public class MainApplication extends GraphicsApplication
 			manualMenu.clickedAt(button);
 		}
 		
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		GObject player = getElementAt(singleMenu.PlayerOne.getPosX(), singleMenu.PlayerOne.getPosY());
+		if (e.getKeyCode() == 38) {
+			System.out.print("Test Jump Pressed\n");
+			singleMenu.jump(player);
+		}
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == 38) {
+			System.out.print("Test Jump Released\n");
+		}
 	}
 	
 	
