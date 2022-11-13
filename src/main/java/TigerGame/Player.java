@@ -1,6 +1,6 @@
 package TigerGame;
 
-import acm.graphics.*;	
+import acm.graphics.*;
 
 
 public class Player {
@@ -29,11 +29,18 @@ public class Player {
 		posY = 300;
 	}
 	
+
+	
 	
 	public void jump(GObject playerIn) {
-		posX = playerIn.getX();
-		posY = playerIn.getY() - jumpPower;
+		posY = posY - jumpPower;
 		playerIn.move(0, -20);
+	}
+	
+	public void gravity(GObject playerIn) {
+		posY = posY + 5;
+		playerIn.move(0, 5);
+
 	}
 	
 

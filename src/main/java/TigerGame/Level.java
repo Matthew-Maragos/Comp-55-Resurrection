@@ -23,4 +23,8 @@ public class Level
 		player.jump(playerIn);
 	}
 	
+	public void gravity(GObject playerIn) {
+		player.gravity(playerIn);
+	}
+	
 }

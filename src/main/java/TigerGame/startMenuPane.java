@@ -1,7 +1,9 @@
 package TigerGame;
 import acm.graphics.*;
 
-public class startMenuPane extends GraphicsPane {
+
+public class startMenuPane extends GraphicsPane
+{
     private MainApplication program;
 
     GImage background = new GImage("sounds/start_menu.png");
@@ -10,12 +12,14 @@ public class startMenuPane extends GraphicsPane {
     public GRect obj2 = new GRect(172,209,255,53);
     public GRect obj3 = new GRect(172,282,255,53);
 
+
     public startMenuPane(MainApplication app) {
         super();
         program = app;
         obj.setLineWidth(0);
         obj2.setLineWidth(0);
         obj3.setLineWidth(0);
+        
     }
 
     public void clickedAt(GObject objIn) {
