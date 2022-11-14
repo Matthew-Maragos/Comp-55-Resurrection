@@ -32,8 +32,8 @@ public class Player implements ActionListener  {
 	public Player(MainApplication app) {
 		program = app;
 		playerScore = 0;
-		jumpPower = 30;
-		gravity = 15;
+		jumpPower = 150;
+		gravity = 20;
 		
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
