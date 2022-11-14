@@ -4,30 +4,32 @@ import acm.graphics.*;
 
 public class startMenuPane extends GraphicsPane
 {
+	//TODO clickedAt clicked at multiplayer add. RH
+	
     private MainApplication program;
 
     GImage background = new GImage("sounds/start_menu.png");
     GImage manualPage = new GImage("sounds/manual_menu.png");
-    public GRect obj = new GRect(172,136,255,53);
-    public GRect obj2 = new GRect(172,209,255,53);
-    public GRect obj3 = new GRect(172,282,255,53);
+    public GRect but1 = new GRect(172,136,255,53);
+    public GRect but2 = new GRect(172,209,255,53);
+    public GRect but3 = new GRect(172,282,255,53);
 
 
     public startMenuPane(MainApplication app) {
         super();
         program = app;
-        obj.setLineWidth(0);
-        obj2.setLineWidth(0);
-        obj3.setLineWidth(0);
+        but1.setLineWidth(0);
+        but2.setLineWidth(0);
+        but3.setLineWidth(0);
         
     }
 
     public void clickedAt(GObject objIn) {
-        if (objIn == obj) {
+        if (objIn == but1) {
             program.switchToSinglePlayer();
-        } else if(objIn == obj3) {
+        } else if(objIn == but3) {
             program.switchToManual();
-        } else if (objIn == obj2) {
+        } else if (objIn == but2) {
         	// program.switchToMultiPlayer();
         }
     }
@@ -35,17 +37,17 @@ public class startMenuPane extends GraphicsPane
     @Override
     public void showContents() {
         program.add(background);
-        program.add(obj);
-        program.add(obj2);
-        program.add(obj3);
+        program.add(but1);
+        program.add(but2);
+        program.add(but3);
     }
 
     @Override
     public void hideContents() {
         program.remove(background);
-        program.remove(obj);
-        program.remove(obj2);
-        program.remove(obj3);
+        program.remove(but1);
+        program.remove(but2);
+        program.remove(but3);
     }
 
 }

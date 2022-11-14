@@ -4,6 +4,8 @@ import acm.graphics.*;
 
 
 public class SinglePlayerModePane extends GraphicsPane {
+	//TODO showContents(), hideContents()
+	
 	private MainApplication program;
 	
 	public Player PlayerOne;
@@ -28,6 +30,8 @@ public class SinglePlayerModePane extends GraphicsPane {
 	public void gravity(GObject playerIn) {
 		LevelOne.gravity(playerIn);
 	}
+	
+	
 	
 	@Override
 	public void showContents() {

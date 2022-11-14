@@ -4,16 +4,22 @@ import acm.graphics.*;
 
 
 public class Player {
+
+	
+	public static final int TIGER_WIDTH = 90;
+	public static final int TIGER_HEIGHT = 70;
+	public static final int START_X = 20;
+	public static final int START_Y = 300;
+	public static final int GROUND_Y = 300;
 	
 	private MainApplication program;
 	
-	private double moveSpeed;
-	private double jumpPower;
+	private int jumpPower;
+	private int gravity;
 	private double posX;
 	private double posY;
-	private double tigerWidth;
-	private double tigerHeight;
 	private double playerScore;
+	
 	GImage tigerRunImage;
 	GImage tigerJumpImage;
 	GImage tigerLandImage;
@@ -21,52 +27,36 @@ public class Player {
 	public Player(MainApplication app) {
 		tigerRunImage = new GImage("sounds/tiger_orange.png");
 		program = app;
+		playerScore = 0;
+		jumpPower = 30;
+		gravity = 15;
+		posX = START_X;
+		posY = START_Y;
 		program.add(tigerRunImage);
-		tigerRunImage.setSize(90,70);
-		tigerRunImage.move(20,300);
-		jumpPower = 20;
-		posX = 20;
-		posY = 300;
+		tigerRunImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
+		tigerRunImage.move(posX,posY);
 	}
-	
-
-	
+		
 	
 	public void jump(GObject playerIn) {
 		posY = posY - jumpPower;
-		playerIn.move(0, -20);
+		playerIn.move(0, -jumpPower);
 	}
 	
 	public void gravity(GObject playerIn) {
-		posY = posY + 5;
-		playerIn.move(0, 5);
-
+		if (posY < GROUND_Y) {
+			posY = posY + gravity;
+			playerIn.move(0, gravity);
+		}
 	}
 	
-
 	public double getPosX() {
 		return posX;
 	}
-	public void setPosX(double posX) {
-		this.posX = posX;
-	}
+
 	public double getPosY() {
 		return posY;
 	}
-	public void setPosY(double posY) {
-		this.posY = posY;
-	}
-	public double getTigerHeight() {
-		return tigerHeight;
-	}
-	public void setTigerHeight(double tigerHeight) {
-		this.tigerHeight = tigerHeight;
-	}
-	public double getTigerWidth() {
-		return tigerWidth;
-	}
-	public void setTigerWidth(double tigerWidth) {
-		this.tigerWidth = tigerWidth;
-	}
+	
 	
 }

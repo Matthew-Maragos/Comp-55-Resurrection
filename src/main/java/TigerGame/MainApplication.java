@@ -10,8 +10,11 @@ import acm.graphics.*;
 
 public class MainApplication extends GraphicsApplication implements ActionListener
 {
+	//TODO is obstacle should be controller from here ? RH
+	
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
+	public static final int GRAVITY_TIMER_MS = 200;
 	
 	private startMenuPane mainMenu;
 	private PlayerManualPane manualMenu;
@@ -29,10 +32,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void run() {
 		mainMenu = new startMenuPane(this);
 		manualMenu = new PlayerManualPane(this);
-		singleMenu = new SinglePlayerModePane(this);
 		setupInteractions();
 		switchToMainMenu();
-		gravity = new Timer(400,this);
 	}
 	
 	public void switchToMainMenu() {
@@ -44,13 +45,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToSinglePlayer() {
+		singleMenu = new SinglePlayerModePane(this);
 		switchToScreen(singleMenu);
+		gravity = new Timer(GRAVITY_TIMER_MS,this);
 		gravity.start();
 	}
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		//LevelOne.jump(PlayerOne);
 		GObject player2 = getElementAt(singleMenu.LevelOne.player.getPosX(), singleMenu.LevelOne.player.getPosY());
 		singleMenu.gravity(player2);
 	}

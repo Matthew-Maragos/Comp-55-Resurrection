@@ -1,32 +1,49 @@
 package TigerGame;
 import acm.graphics.*;
-import acm.program.*;
-import acm.program.GraphicsProgram;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class Obstacle extends GraphicsProgram {
+
+
+public class Obstacle implements ActionListener {
+	// TODO add obstacle movement. add limits of a screen
+	// TODO random obstacletype when created in constructor
+	
+	public static final int OBSTACLE_WIDTH = 50;
+	public static final int OBSTACLE_HEIGHT = 100;
+	public static final int START_X = 500;
+	public static final int START_Y = 240;
+	//public static final int BORDER_X;
+	
+	private MainApplication program;
+	
 	private ObstacleType obstacleType;
 	private double posX;
 	private double posY;
 	private double moveSpeed;
-	private GImage obstacleImage;
-	private double obstacleWidth;
-	private double obstacleHeight;
-	//private Timer t;
+	private GImage obsImage;
+	private Timer obsMoveTimer;
 	
 	
-	public Obstacle(ObstacleType type, double posX, double posY, double moveSpeed, GImage obstacleImage) {
-		obstacleType = type;
-		this.posX = posX;
-		this.posY = posY;
-		this.moveSpeed = moveSpeed;
-		this.obstacleImage = obstacleImage;
-		
+	public Obstacle(MainApplication app) {
+		obsImage = new GImage("sounds/icons8-bottle-of-water-48.png");
+		program = app;
+		moveSpeed = 20;
+		posX = START_X;
+		posY = START_Y;
+		program.add(obsImage);
+		obsImage.setSize(OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
+		obsImage.move(posX, posY);
+		obsMoveTimer = new Timer(500, this);
+		obsMoveTimer.start();
 	}
 
+	
+	public void actionPerformed(ActionEvent e) {
+	}
+	
 	public ObstacleType getObstacleType() {
 		return obstacleType;
 	}
@@ -39,21 +56,7 @@ public class Obstacle extends GraphicsProgram {
 		return posY;
 	}
 	
-	public double getWidth() {
-		return obstacleWidth;
-	}
 	
-	public double getHeight() {
-		return obstacleHeight;
-	}
-	
-	public void move() {
-		
-	}
-	
-	public void run() {
-		
-	}
 	
 	
 }
