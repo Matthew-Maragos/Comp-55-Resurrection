@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //import java.util.Timer;
 import acm.graphics.GImage;
+import acm.util.RandomGenerator;
+
 import javax.swing.*;
 
 public class MapElement implements ActionListener {
@@ -18,6 +20,7 @@ public class MapElement implements ActionListener {
 	private int moveSpeed;
 	GImage elementImage;
 	private Timer obsMoveTimer;
+	private RandomGenerator rgen;
 	
 	public MapElement(MainApplication app) {
 
@@ -26,8 +29,10 @@ public class MapElement implements ActionListener {
 		moveSpeed = 20;
 		posX = START_X;
 		posY = START_Y;
+		rgen = RandomGenerator.getInstance();
+		
 		elementImage.scale(0.3);
-		elementImage.setLocation(START_X, START_Y);
+		elementImage.setLocation(rgen.nextInt(0, START_X), START_Y);
 		program.add(elementImage);
 		obsMoveTimer = new Timer(100, this);
 		obsMoveTimer.start();
@@ -37,7 +42,10 @@ public class MapElement implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		elementImage.move(-moveSpeed, 0);
-	
+		// loop the bushes if it goes out of bound
+		if(elementImage.getX() + elementImage.getWidth() < 0) {
+			elementImage.setLocation(START_X + elementImage.getWidth(), START_Y);
+		}
 	}
 	
 	public double getPosX() {
