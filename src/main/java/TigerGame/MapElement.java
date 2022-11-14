@@ -1,9 +1,12 @@
 package TigerGame;
 
-import java.util.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+//import java.util.Timer;
 import acm.graphics.GImage;
+import javax.swing.*;
 
-public class MapElement {
+public class MapElement implements ActionListener {
 		
 	public static final int START_X = 320;
 	public static final int START_Y = 185;
@@ -14,9 +17,10 @@ public class MapElement {
 	private double posY;
 	private int moveSpeed;
 	GImage elementImage;
+	private Timer obsMoveTimer;
 	
 	public MapElement(MainApplication app) {
-	
+
 		elementImage = new GImage("sounds/bush.png");
 		program = app;
 		moveSpeed = 20;
@@ -25,7 +29,14 @@ public class MapElement {
 		elementImage.scale(0.3);
 		elementImage.setLocation(START_X, START_Y);
 		program.add(elementImage);
+		obsMoveTimer = new Timer(100, this);
+		obsMoveTimer.start();
 		//elementImage.move(posX, posY);
+	
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		elementImage.move(-moveSpeed, 0);
 	
 	}
 	
