@@ -34,7 +34,6 @@ public class Level implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		Obstacle obstacle = new Obstacle(program);
-		MapElement bush = new MapElement(program);
 		//obstacle.move(-20);
 		//bush.move(-20);
 	}
