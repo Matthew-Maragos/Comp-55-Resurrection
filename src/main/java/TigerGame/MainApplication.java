@@ -1,14 +1,13 @@
 package TigerGame;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
+
 
 import acm.graphics.*;	
 
-public class MainApplication extends GraphicsApplication implements ActionListener
+public class MainApplication extends GraphicsApplication
 {
 	//TODO is obstacle should be controller from here ? RH
 	
