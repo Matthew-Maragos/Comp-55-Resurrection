@@ -16,20 +16,17 @@ public class Level implements ActionListener {
 	private MainApplication program;
 	public Player player;
 	private Timer NewObstacleTimer;
-	private Obstacle obstacleList[];
 	// TODO do we need bushes, clounds as separate objects at all?
 	//      or should we just draw the objects on a background as it was before?
 	
-	private MapElement bush;
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
 	
 	
 	public Level(MainApplication app) {
 		
 		program = app;
-		player = new Player(program);
 		program.add(backgroundImg);
-		program.add(player.tigerImage);
+		player = new Player(program);
 		NewObstacleTimer = new Timer(5000, this);
 		NewObstacleTimer.start();
 	}
