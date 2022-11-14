@@ -54,25 +54,32 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	
 	@Override
-	public void mousePressed(MouseEvent e) {
-		GObject button = getElementAt(e.getX(), e.getY());
-		if (curScreen == mainMenu) { 
-			mainMenu.clickedAt(button);
-		} else if (curScreen == manualMenu) {
+	public void mousePressed(MouseEvent e) 
+	{
+		GObject button = getElementAt(e.getX(), e.getY());		//Where the mouse cursor is when clicked
+		if (curScreen == mainMenu) 
+		{ 
+			mainMenu.clickedAt(button);		//uses clickedAt function in startMenuPane.java line 27
+		} 
+		else if (curScreen == manualMenu) 
+		{
 			manualMenu.clickedAt(button);
 		}
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == 38) {
-			singleMenu.LevelOne.player.jump();
+		if (e.getKeyCode() == 38) 	//keyCode 38 == up arrow
+		{
+			singleMenu.LevelOne.player.jump();		//jump function from player from level one
 		}
 	}
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == 38) {
+		if (e.getKeyCode() == 38) //keyCode 38 == up arrow
+		{
+			//foobar
 		}
 	}
 	
