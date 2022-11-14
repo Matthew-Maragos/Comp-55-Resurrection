@@ -1,13 +1,14 @@
 package TigerGame;
 
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-
+import javax.swing.*;
 
 import acm.graphics.*;	
 
-public class MainApplication extends GraphicsApplication
+public class MainApplication extends GraphicsApplication implements ActionListener
 {
 	//TODO is obstacle should be controller from here ? RH
 	
@@ -25,22 +26,27 @@ public class MainApplication extends GraphicsApplication
 		//this.requestFocus();
 	}
 	
-	public void run() {		//run is called when green button
-		mainMenu = new startMenuPane(this);		//main menu initialized / start menu pane.java reference functions below
-		manualMenu = new PlayerManualPane(this);	//loads player manual pane
+	public void run() //function called when MainApplication/Whole program is ran
+	{		
+		mainMenu = new startMenuPane(this);		//loads main menu pane | uses startMenuPane.java function  | used in switchToManual line 38
+		manualMenu = new PlayerManualPane(this);	//loads player manual pane | used in switchToManual line 38
 		setupInteractions();		//allows for clicking
-		switchToMainMenu();
+		switchToMainMenu();			//switches to main menu screen | reference functions below
+
 	}
 	
-	public void switchToMainMenu() {
+	public void switchToMainMenu() //Switches to main menu screen, called when player returns from PlayerManual
+	{
 		switchToScreen(mainMenu);
 	}
 
-	public void switchToManual() {
+	public void switchToManual() //Switches to PlayerManual	
+	{
 		switchToScreen(manualMenu);
 	}
 	
-	public void switchToSinglePlayer() {
+	public void switchToSinglePlayer()  //Switches to SinglePlayerGameMode
+	{
 		singleMenu = new SinglePlayerModePane(this);
 		switchToScreen(singleMenu);
 	}
