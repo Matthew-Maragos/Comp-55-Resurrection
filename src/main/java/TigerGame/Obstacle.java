@@ -30,7 +30,7 @@ public class Obstacle implements ActionListener {
 	public Obstacle(MainApplication app) {
 		obsImage = new GImage("sounds/icons8-bottle-of-water-48.png");
 		program = app;
-		moveSpeed = 20;
+		moveSpeed = 200;
 		posX = START_X;
 		posY = START_Y;
 		program.add(obsImage);
