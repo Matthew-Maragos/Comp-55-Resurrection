@@ -8,7 +8,6 @@ public class SinglePlayerModePane extends GraphicsPane {
 	
 	private MainApplication program;
 	
-	public Player PlayerOne;
 	public Level LevelOne;
 
 
@@ -19,17 +18,10 @@ public class SinglePlayerModePane extends GraphicsPane {
 	public SinglePlayerModePane(MainApplication app) {
 		super();
 		program = app;
-		PlayerOne = new Player(program);
-		LevelOne = new Level(program, PlayerOne);
+		LevelOne = new Level(program);
 	}
 	
-	public void jump(GObject playerIn) {
-		LevelOne.jump(playerIn);
-	}
 	
-	public void gravity(GObject playerIn) {
-		LevelOne.gravity(playerIn);
-	}
 	
 	
 	

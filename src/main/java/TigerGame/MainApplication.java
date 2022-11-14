@@ -19,9 +19,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private startMenuPane mainMenu;
 	private PlayerManualPane manualMenu;
 	private SinglePlayerModePane singleMenu;
-	private Timer gravity;
-	
-	public GObject player;
 	
 	
 	public void init() {
@@ -29,10 +26,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//this.requestFocus();
 	}
 	
-	public void run() {
-		mainMenu = new startMenuPane(this);
-		manualMenu = new PlayerManualPane(this);
-		setupInteractions();
+	public void run() {		//run is called when green button
+		mainMenu = new startMenuPane(this);		//main menu initialized / start menu pane.java reference functions below
+		manualMenu = new PlayerManualPane(this);	//loads player manual pane
+		setupInteractions();		//allows for clicking
 		switchToMainMenu();
 	}
 	
@@ -47,15 +44,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void switchToSinglePlayer() {
 		singleMenu = new SinglePlayerModePane(this);
 		switchToScreen(singleMenu);
-		gravity = new Timer(GRAVITY_TIMER_MS,this);
-		gravity.start();
 	}
 	
 	
-	public void actionPerformed(ActionEvent e) {
-		GObject player2 = getElementAt(singleMenu.LevelOne.player.getPosX(), singleMenu.LevelOne.player.getPosY());
-		singleMenu.gravity(player2);
-	}
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -69,9 +60,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		GObject player = getElementAt(singleMenu.PlayerOne.getPosX(), singleMenu.PlayerOne.getPosY());
 		if (e.getKeyCode() == 38) {
-			singleMenu.jump(player);
+			singleMenu.LevelOne.player.jump();
 		}
 	}
 	
