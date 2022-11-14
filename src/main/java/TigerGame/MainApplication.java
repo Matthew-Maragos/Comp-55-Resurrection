@@ -28,24 +28,31 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void run() //function called when MainApplication/Whole program is ran
 	{		
-		mainMenu = new startMenuPane(this);		//loads main menu pane | uses startMenuPane.java function  | used in switchToManual line 38
-		manualMenu = new PlayerManualPane(this);	//loads player manual pane | used in switchToManual line 38
-		setupInteractions();		//allows for clicking
-		switchToMainMenu();			//switches to main menu screen | reference functions below
+		mainMenu = new startMenuPane(this);		
+		//loads main menu pane | uses startMenuPane.java function  | used in switchToManual line 38
+		
+		manualMenu = new PlayerManualPane(this);	
+		//loads player manual pane | used in switchToManual line 38
+		
+		setupInteractions();		
+		//allows for clicking
+		
+		switchToMainMenu();			
+		//switches to main menu screen | reference functions below
 
 	}
 	
-	public void switchToMainMenu() //Switches to main menu screen, called when player returns from PlayerManual
+	public void switchToMainMenu() 
 	{
 		switchToScreen(mainMenu);
 	}
 
-	public void switchToManual() //Switches to PlayerManual	
+	public void switchToManual()
 	{
 		switchToScreen(manualMenu);
 	}
 	
-	public void switchToSinglePlayer()  //Switches to SinglePlayerGameMode
+	public void switchToSinglePlayer() 
 	{
 		singleMenu = new SinglePlayerModePane(this);
 		switchToScreen(singleMenu);
@@ -56,11 +63,15 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	@Override
 	public void mousePressed(MouseEvent e) 
 	{
-		GObject button = getElementAt(e.getX(), e.getY());		//Where the mouse cursor is when clicked
+		GObject button = getElementAt(e.getX(), e.getY());		
+		//Where the mouse cursor is when clicked
+		
 		if (curScreen == mainMenu) 
 		{ 
-			mainMenu.clickedAt(button);		//uses clickedAt function in startMenuPane.java line 27
+			mainMenu.clickedAt(button);		
+			//uses clickedAt function in startMenuPane.java line 27
 		} 
+		
 		else if (curScreen == manualMenu) 
 		{
 			manualMenu.clickedAt(button);
@@ -69,17 +80,18 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == 38) 	//keyCode 38 == up arrow
-		{
-			singleMenu.LevelOne.player.jump();		//jump function from player from level one
+		if (e.getKeyCode() == 38) 	
+		{	//keyCode 38 == up arrow		
+			singleMenu.LevelOne.player.jump();		
+			//jump function from player from level one from singlemenu
 		}
 	}
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == 38) //keyCode 38 == up arrow
-		{
-			//foobar
+		if (e.getKeyCode() == 38) 
+		{ //keyCode 38 == up arrow
+		
 		}
 	}
 	
@@ -88,4 +100,5 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		new MainApplication().start();
 	}
 	
+	//fixing pull error
 }
