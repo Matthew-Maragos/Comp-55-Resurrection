@@ -6,8 +6,8 @@ import acm.graphics.*;
 public class Player {
 
 	
-	public static final int TIGER_WIDTH = 90;
-	public static final int TIGER_HEIGHT = 70;
+	public static final int TIGER_WIDTH = 100;
+	public static final int TIGER_HEIGHT = 60;
 	public static final int START_X = 20;
 	public static final int START_Y = 300;
 	public static final int GROUND_Y = 300;

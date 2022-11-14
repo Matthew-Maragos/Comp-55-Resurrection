@@ -56,7 +56,9 @@ public class Obstacle implements ActionListener {
 		return posY;
 	}
 	
-	
+	public void move(int distance) {
+		obsImage.move(-distance, 0);
+	}
 	
 	
 }

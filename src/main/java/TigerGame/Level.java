@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class Level implements ActionListener
-{
+public class Level implements ActionListener {
 	// Obstacles are created here when NewObstacleTimer raises up
 	// The question is if we the Level should control the movement (like with jumping and gravity)
 	// or can the movement of obstacle be performed in itself
@@ -18,7 +17,8 @@ public class Level implements ActionListener
 	public Player player;
 	private Timer NewObstacleTimer;
 	private Obstacle obstacleList[];
-	GImage backgroundImg = new GImage("sounds/game_background.png");
+	private MapElement bush;
+	GImage backgroundImg = new GImage("sounds/blank_background.png");
 	
 	
 	public Level(MainApplication app, Player playerIn) {
@@ -26,13 +26,17 @@ public class Level implements ActionListener
 		program = app;
 		program.add(backgroundImg);
 		program.add(player.tigerRunImage);
-		NewObstacleTimer = new Timer(3000, this);
+		NewObstacleTimer = new Timer(300, this);
 		NewObstacleTimer.start();
+		
 	}
 	
 	
 	public void actionPerformed(ActionEvent e) {
 		Obstacle obstacle = new Obstacle(program);
+		MapElement bush = new MapElement(program);
+		obstacle.move(-20);
+		bush.move(-20);
 	}
 	
 	public void jump(GObject playerIn) {
