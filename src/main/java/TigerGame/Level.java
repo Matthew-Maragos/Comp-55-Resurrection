@@ -20,12 +20,11 @@ public class Level implements ActionListener {
 	
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
 	
-	
 	public Level(MainApplication app) {
 		
 		program = app;
 		program.add(backgroundImg);
-		bush = new MapElement(program);
+		bush = new MapElement(program, MapElementType.BUSH);
 		player = new Player(program);
 		NewObstacleTimer = new Timer(5000, this);
 		NewObstacleTimer.start();
@@ -34,8 +33,6 @@ public class Level implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		Obstacle obstacle = new Obstacle(program);
-
-		
 		
 	}
 	

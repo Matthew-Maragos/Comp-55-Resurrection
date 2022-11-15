@@ -8,8 +8,7 @@ import javax.swing.*;
 
 import acm.graphics.*;	
 
-public class MainApplication extends GraphicsApplication implements ActionListener
-{
+public class MainApplication extends GraphicsApplication implements ActionListener {
 	//TODO is obstacle should be controller from here ? RH
 	
 	public static final int WINDOW_WIDTH = 600;
@@ -41,38 +40,30 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	}
 	
-	public void switchToMainMenu() 
-	{
+	public void switchToMainMenu() {
 		switchToScreen(mainMenu);
 	}
 
-	public void switchToManual()
-	{
+	public void switchToManual() {
 		switchToScreen(manualMenu);
 	}
 	
-	public void switchToSinglePlayer() 
-	{
+	public void switchToSinglePlayer() {
 		singleMenu = new SinglePlayerModePane(this);
 		switchToScreen(singleMenu);
 	}
-	
-	
-	
+
 	@Override
-	public void mousePressed(MouseEvent e) 
-	{
+	public void mousePressed(MouseEvent e) {
 		GObject button = getElementAt(e.getX(), e.getY());		
 		//Where the mouse cursor is when clicked
 		
-		if (curScreen == mainMenu) 
-		{ 
+		if (curScreen == mainMenu) { 
 			mainMenu.clickedAt(button);		
 			//uses clickedAt function in startMenuPane.java line 27
 		} 
 		
-		else if (curScreen == manualMenu) 
-		{
+		else if (curScreen == manualMenu) {
 			manualMenu.clickedAt(button);
 		}
 	}

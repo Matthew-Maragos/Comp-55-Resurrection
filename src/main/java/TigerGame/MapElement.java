@@ -25,22 +25,31 @@ public class MapElement implements ActionListener {
 	private Timer obsMoveTimer;
 	private RandomGenerator rgen;
 	
-	public MapElement(MainApplication app) {
+	public MapElement(MainApplication app, MapElementType type) {
 
 		rgen = RandomGenerator.getInstance();
 		program = app;
 		moveSpeed = 20;
-		BUSH_START_X = 320;
-    	BUSH_START_Y = 182;
-		posX = BUSH_START_X;
-		posY = BUSH_START_Y;
 		
-		elementImage = new GImage("sounds/bush_1.png");
-		elementImage.scale(0.3);
-		elementImage.setLocation(rgen.nextInt(100, BUSH_START_X), BUSH_START_Y);
-		program.add(elementImage);
 		obsMoveTimer = new Timer(100, this);
 		obsMoveTimer.start();
+		
+		if(type == MapElementType.BUSH) {
+			BUSH_START_X = 320;
+	    	BUSH_START_Y = 182;
+			posX = BUSH_START_X;
+			posY = BUSH_START_Y;
+			
+			elementImage = new GImage("sounds/bush_1.png");
+			elementImage.scale(0.3);
+			elementImage.setLocation(rgen.nextInt(100, BUSH_START_X), BUSH_START_Y);
+			program.add(elementImage);
+		}
+		
+		if(type == MapElementType.CLOUD) {
+	
+		}
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
