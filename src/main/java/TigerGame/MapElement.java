@@ -5,13 +5,16 @@ import java.awt.event.ActionListener;
 //import java.util.Timer;
 import acm.graphics.GImage;
 import acm.util.RandomGenerator;
-
 import javax.swing.*;
 
 public class MapElement implements ActionListener {
-		
+	/*
 	public static final int START_X = 320;
-	public static final int START_Y = 183;
+	public static final int START_Y = 182;
+	*/
+	
+	private int bush_startX;
+	private int bush_startY;
 	
 	private MainApplication program;
 	private MapElementType mapEleType;
@@ -24,20 +27,20 @@ public class MapElement implements ActionListener {
 	
 	public MapElement(MainApplication app) {
 
-		elementImage = new GImage("sounds/bush_1.png");
-		//elementImage = randomElementImage();
 		program = app;
 		moveSpeed = 20;
-		posX = START_X;
-		posY = START_Y;
+		bush_startX = 320;
+		bush_startY = 182;
+		posX = bush_startX;
+		posY = bush_startY;
 		rgen = RandomGenerator.getInstance();
 		
+		elementImage = new GImage("sounds/bush_1.png");
 		elementImage.scale(0.3);
-		elementImage.setLocation(rgen.nextInt(0, START_X), START_Y);
+		elementImage.setLocation(rgen.nextInt(0, bush_startX), bush_startY);
 		program.add(elementImage);
 		obsMoveTimer = new Timer(100, this);
 		obsMoveTimer.start();
-		//elementImage.move(posX, posY);
 	
 	}
 	
@@ -45,25 +48,30 @@ public class MapElement implements ActionListener {
 		elementImage.move(-moveSpeed, 0);
 		// loop the bushes if it goes out of bound
 		if(elementImage.getX() + elementImage.getWidth() < 0) {
-			//elementImage = randomElementImage();
-			elementImage.setLocation(START_X + elementImage.getWidth(), START_Y);
+			randomizeBushImage(elementImage);
+			elementImage.setLocation(bush_startX + elementImage.getWidth(), bush_startY);
 		}
 	}
 	
 	// create random MapElement images
     
-    public GImage randomElementImage() {
+    public void randomizeBushImage(GImage image) {
         int randNum = rgen.nextInt(1,3);
         if(randNum == 1) {
-            elementImage = new GImage("sounds/bush.png");
+        	image.setImage("sounds/bush_1.png");
+        	bush_startX = 320;
+    		bush_startY = 182;
         }
         if(randNum == 2) {
-            elementImage = new GImage("sounds/bush_2.png");
+        	image.setImage("sounds/bush_2.png");
+        	bush_startX = 320;
+    		bush_startY = 182;
         }
         else {
-            elementImage = new GImage("sounds/tree.png");
+        	image.setImage("sounds/tree.png");
+        	bush_startX = 400;
+    		bush_startY = 120;
         }
-        return elementImage;
     }
     
 	public double getPosX() {
