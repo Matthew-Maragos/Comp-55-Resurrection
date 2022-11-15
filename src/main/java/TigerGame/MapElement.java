@@ -48,6 +48,25 @@ public class MapElement implements ActionListener {
 		}
 	}
 	
+	// create random MapElement images
+    
+    public GImage randomElementImage() {
+        int randNum = rgen.nextInt(1,3);
+
+        if(randNum == 1) {
+            elementImage = new GImage("sounds/bush.png");
+        }
+        if(randNum == 2) {
+            elementImage = new GImage("sounds/bush_2.png");
+        }
+        else {
+            elementImage = new GImage("sounds/tree.png");
+        }
+
+        return elementImage;
+    }
+    
+	
 	public double getPosX() {
 		return posX;
 	}
