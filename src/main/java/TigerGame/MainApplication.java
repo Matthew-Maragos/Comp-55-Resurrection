@@ -26,8 +26,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//this.requestFocus();
 	}
 	
-	public void run() //function called when MainApplication/Whole program is ran
-	{		
+	public void run() {		
 		mainMenu = new startMenuPane(this);		
 		//loads main menu pane | uses startMenuPane.java function  | used in switchToManual line 38
 		
@@ -80,8 +79,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == 38) 	
-		{	//keyCode 38 == up arrow		
+		if (e.getKeyCode() == 38) {		
 			singleMenu.LevelOne.player.jump();		
 			//jump function from player from level one from singlemenu
 		}
@@ -89,8 +87,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == 38) 
-		{ //keyCode 38 == up arrow
+		//keyCode 38 == up arrow
+		if (e.getKeyCode() == 38) { 
 		
 		}
 	}

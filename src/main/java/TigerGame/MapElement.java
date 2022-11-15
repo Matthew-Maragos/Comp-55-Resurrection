@@ -11,7 +11,7 @@ import javax.swing.*;
 public class MapElement implements ActionListener {
 		
 	public static final int START_X = 320;
-	public static final int START_Y = 185;
+	public static final int START_Y = 183;
 	
 	private MainApplication program;
 	private MapElementType mapEleType;
@@ -24,7 +24,8 @@ public class MapElement implements ActionListener {
 	
 	public MapElement(MainApplication app) {
 
-		elementImage = new GImage("sounds/bush.png");
+		elementImage = new GImage("sounds/bush_1.png");
+		//elementImage = randomElementImage();
 		program = app;
 		moveSpeed = 20;
 		posX = START_X;
@@ -44,6 +45,7 @@ public class MapElement implements ActionListener {
 		elementImage.move(-moveSpeed, 0);
 		// loop the bushes if it goes out of bound
 		if(elementImage.getX() + elementImage.getWidth() < 0) {
+			//elementImage = randomElementImage();
 			elementImage.setLocation(START_X + elementImage.getWidth(), START_Y);
 		}
 	}
@@ -52,7 +54,6 @@ public class MapElement implements ActionListener {
     
     public GImage randomElementImage() {
         int randNum = rgen.nextInt(1,3);
-
         if(randNum == 1) {
             elementImage = new GImage("sounds/bush.png");
         }
@@ -62,11 +63,9 @@ public class MapElement implements ActionListener {
         else {
             elementImage = new GImage("sounds/tree.png");
         }
-
         return elementImage;
     }
     
-	
 	public double getPosX() {
 		return posX;
 	}
