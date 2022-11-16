@@ -8,11 +8,6 @@ import javax.swing.*;
 
 public class MapElement implements ActionListener {
 	
-	/*
-	public static final int BUSH_START_X = 320;
-	public static final int BUSH_START_Y = 182;
-	*/
-	
 	private int BUSH_START_X;
  	private int BUSH_START_Y;
 
@@ -25,24 +20,24 @@ public class MapElement implements ActionListener {
 	private Timer obsMoveTimer;
 	private RandomGenerator rgen;
 	
-	public MapElement(MainApplication app, MapElementType type) {
+	public MapElement(MainApplication app, MapElementType type, int startX) {
 
 		rgen = RandomGenerator.getInstance();
 		program = app;
-		moveSpeed = 20;
+		moveSpeed = 5;
 		
-		obsMoveTimer = new Timer(100, this);
+		obsMoveTimer = new Timer(30, this);
 		obsMoveTimer.start();
 		
 		if(type == MapElementType.BUSH) {
-			BUSH_START_X = 320;
+			BUSH_START_X = startX;
 	    	BUSH_START_Y = 182;
 			posX = BUSH_START_X;
 			posY = BUSH_START_Y;
 			
-			elementImage = new GImage("sounds/bush_1.png");
+			elementImage = new GImage("sounds/bush_2.png");
 			elementImage.scale(0.3);
-			elementImage.setLocation(rgen.nextInt(100, BUSH_START_X), BUSH_START_Y);
+			elementImage.setLocation(startX, BUSH_START_Y);
 			program.add(elementImage);
 		}
 		
@@ -56,28 +51,28 @@ public class MapElement implements ActionListener {
 		elementImage.move(-moveSpeed, 0);
 		// loop the bushes if it goes out of bound
 		if(elementImage.getX() + elementImage.getWidth() < 0) {
-			randomizeBushImage(elementImage);
+			randomizeBushImage(elementImage, BUSH_START_X);
 			elementImage.setLocation(BUSH_START_X + elementImage.getWidth(), BUSH_START_Y);
 		}
 	}
 	
 	// create random MapElement images
     
-    public void randomizeBushImage(GImage image) {
+    public void randomizeBushImage(GImage image, int startX) {
         int randNum = rgen.nextInt(1,3);
         if(randNum == 1) {
         	image.setImage("sounds/bush_1.png");
-        	BUSH_START_X = 320;
+        	BUSH_START_X = startX;
         	BUSH_START_Y = 182;
         }
         if(randNum == 2) {
         	image.setImage("sounds/bush_2.png");
-        	BUSH_START_X = 320;
+        	BUSH_START_X = startX;
         	BUSH_START_Y = 182;
         }
         else {
         	image.setImage("sounds/tree.png");
-        	BUSH_START_X = 600;
+        	BUSH_START_X = 520;
     		BUSH_START_Y = 120;
         }
     }
