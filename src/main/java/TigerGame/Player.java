@@ -18,7 +18,7 @@ public class Player implements ActionListener {
 	public static final int START_X = 20;
 	public static final int START_Y = 300;
 	public static final int GROUND_Y = 300;
-	public static final int GRAVITY = 10;
+	public static final int GRAVITY = 15;
 	
 	private MainApplication program;
 	
@@ -53,7 +53,6 @@ public class Player implements ActionListener {
 //		g = new Graphics()
 //		paint();
 		
-		
 	}
 		
 	public void actionPerformed(ActionEvent e) {
@@ -69,6 +68,29 @@ public class Player implements ActionListener {
 		if (tigerImage.getY() < GROUND_Y) {
 			tigerImage.move(0, gravity);
 		}
+	}
+	
+	public boolean isCollided(Obstacle obstacle) {
+		double tx = tigerImage.getX();
+		double ty = tigerImage.getY();
+		double tw = TIGER_WIDTH;
+		double th = TIGER_HEIGHT;
+;		double x = obstacle.getX();
+		double y = obstacle.getY(); 
+		double w = obstacle.getWidth();
+		double h = obstacle.getHeight();
+		
+		// check collision in x
+		if((tx < x && (tx + tw > x) && (tx + tw < x + w)) || (tx > x && tx < x + w)) {
+			return true;
+		}
+		// check collision in y
+		if((ty < y && (ty + th > y) && (ty + th < (h + y)) || (ty > y && ty < y + h))) {
+			return true;
+		}
+		
+		return false;
+		
 	}
 	
 	public double getPosX() {

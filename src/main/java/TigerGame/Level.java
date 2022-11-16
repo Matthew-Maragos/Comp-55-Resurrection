@@ -43,12 +43,18 @@ public class Level implements ActionListener {
 		player = new Player(program);
 		NewObstacleTimer = new Timer(5000, this);
 		NewObstacleTimer.start();
+		
+		
 	}
 	
-	
+
 	public void actionPerformed(ActionEvent e) {
 		Obstacle obstacle = new Obstacle(program);
-		
+		if(player.isCollided(obstacle)) {
+			NewObstacleTimer.stop();
+			
+			System.out.println("Player has collided");
+		}
 	}
 	
 	public void jump(GObject playerIn) {
