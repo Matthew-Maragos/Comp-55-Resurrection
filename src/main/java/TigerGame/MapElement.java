@@ -46,9 +46,15 @@ public class MapElement implements ActionListener {
 		
 		if(type == MapElementType.CLOUD) {
 			CLOUD_START_X = startX;
-	    	CLOUD_START_Y = 182;
+	    	CLOUD_START_Y = 50;
 			posX = CLOUD_START_X;
 			posY = CLOUD_START_Y;
+			mapEleType = type;
+			
+			elementImage = new GImage("sounds/cloud.png");
+			elementImage.scale(0.2);
+			elementImage.setLocation(startX, CLOUD_START_Y);
+			program.add(elementImage);
 		}
 		
 	}
@@ -60,8 +66,13 @@ public class MapElement implements ActionListener {
 			// if type is BUSH
 			if(mapEleType == MapElementType.BUSH) {
 				randomizeBushImage(elementImage, BUSH_START_X);
+				elementImage.setLocation(600, BUSH_START_Y);
 			}
-			elementImage.setLocation(600, BUSH_START_Y);
+			// if type is CLOUD
+			if(mapEleType == MapElementType.CLOUD) {
+				elementImage.setLocation(50, BUSH_START_Y);
+			}
+			
 		}
 	}
 	
