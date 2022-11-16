@@ -1,31 +1,98 @@
 package TigerGame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 import acm.graphics.*;
 
 
-public class PowerUp {
+public class PowerUp implements ActionListener {
+
+	
+	
+	private MainApplication program;
+	
 	private PowerUpType powerType;
-	private GImage PowerImage;
+	private GImage powerImage;
 	private double posX;
 	private double posY;
 	private int moveSpeed;
-	//private Timer Timer; //this will keep track of how long it is activated 
-	private double powerWidth;
-	private double powerHeight;
+	private int Pwr_Start_X;
+	private int Pwr_Start_Y;
+	private Timer pwrTimer;
 	
-	
-	
-	
+	//default constructor
 	public PowerUp(PowerUpType type, double posX, double posY, double moveSpeed, GImage PowerImage) {
 		powerType = type;
 		this.posX = posX;
 		this.posY = posY;
 		this.setMoveSpeed((int) moveSpeed);
-		this.PowerImage = PowerImage;
+		this.powerImage = PowerImage;
 		
 	}
 	
 	public PowerUpType getPowerType (PowerUpType powerType) {
 		return this.powerType;
+	}
+	
+	
+	public PowerUp(MainApplication app, PowerUpType type, int startX) {
+		program = app;
+		moveSpeed = 5;
+		pwrTimer = new Timer (15,this);
+		pwrTimer.start();
+		
+		//four whole if statements b/c of the 4 Power Up Types
+		if (type == PowerUpType.ONEUP) {
+			Pwr_Start_X= startX;
+			//Pwr_Start_Y =
+			//not sure what value would belong here
+			posX=Pwr_Start_X;
+			posY=Pwr_Start_Y;
+			powerType = type;
+			
+			powerImage = new GImage("sounds/oneupe.png");
+			powerImage.scale(0.2); // will have .2 as a placeholder I don't want too much bigger then the obstacles
+			powerImage.setLocation(startX, Pwr_Start_Y);
+			program.add(powerImage);
+		}
+		if (type == PowerUpType.DOUBLEJUMP) {
+			Pwr_Start_X= startX;
+			//Pwr_Start_Y =
+			posX=Pwr_Start_X;
+			posY=Pwr_Start_Y;
+			powerType = type;
+			
+			powerImage = new GImage("sounds/doublejump.png");
+			powerImage.scale(0.2); 
+			powerImage.setLocation(startX, Pwr_Start_Y);
+			program.add(powerImage);
+		}
+		if (type == PowerUpType.INVINCIBILITY) {
+			Pwr_Start_X= startX;
+			//Pwr_Start_Y =
+			posX=Pwr_Start_X;
+			posY=Pwr_Start_Y;
+			powerType = type;
+			
+			powerImage = new GImage("sounds/invincibility.png");
+			powerImage.scale(0.2); 
+			powerImage.setLocation(startX, Pwr_Start_Y);
+			program.add(powerImage);
+		}
+		if (type == PowerUpType.JEOPARDY) {
+			Pwr_Start_X= startX;
+			//Pwr_Start_Y =
+			posX=Pwr_Start_X;
+			posY=Pwr_Start_Y;
+			powerType = type;
+			
+			powerImage = new GImage("sounds/jeopardy.png");
+			powerImage.scale(0.2); 
+			powerImage.setLocation(startX, Pwr_Start_Y);
+			program.add(powerImage);
+		}
+		
+		
 	}
 
 	//getters and setters for posX/Y and powerHeight/Width
@@ -46,23 +113,6 @@ public class PowerUp {
 		this.posY = posY;
 	}
 
-	public double getPowerWidth() {
-		return powerWidth;
-	}
-
-	public void setPowerWidth(double powerWidth) {
-		this.powerWidth = powerWidth;
-	}
-	
-	public double getPowerHeight() {
-		return powerHeight;
-	}
-
-	public void setPowerHeight(double powerHeight) {
-		this.powerHeight = powerHeight;
-	}
-	
-
 	public int getMoveSpeed() {
 		return moveSpeed;
 	}
@@ -72,29 +122,23 @@ public class PowerUp {
 		this.moveSpeed = moveSpeed;
 	}
 	
+	//none getters and setters
+	
+	public void move( int distance) {
+		powerImage.move(-distance, 0);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		powerImage.move(-moveSpeed, 0);	
+	}
+
+	
 	
 	//need an activate PowerUp class(or function i do not know)
+	//need a function that will pick a random image 
 	
-	//move() function move to level function this will also get rid of timer probably a boolean(?) 
-	// public void move() {
-		 //powerMove = new PowerImage();
-		//add(powerMove);
-		//Timer Timer = new Timer (,this); //i do not know how long this will call to run
-		//Timer.start();
-	 //}
-	
-	//boolean checkCollided() needs posX and posY as parameters  
-	/*
-	 * 	boolean checkCOllided () {
-	 * 		if () {
-	 * 
-	 *	 	}
-	 * 		else {
-	 * 		
-	 * 		}
-	 * } 
-	 * 
-	 */
+	 
 			
 
 }
