@@ -72,7 +72,6 @@ public class MapElement implements ActionListener {
 			if(mapEleType == MapElementType.CLOUD) {
 				elementImage.setLocation(600, rgen.nextInt(0, 100));
 			}
-			
 		}
 	}
 	
@@ -82,20 +81,16 @@ public class MapElement implements ActionListener {
         int randNum = rgen.nextInt(1,3);
         if(randNum == 1) {
         	image.setImage("sounds/bush_1.png");
-        	BUSH_START_X = startX;
         	BUSH_START_Y = 182;
         }
         if(randNum == 2) {
         	image.setImage("sounds/bush_2.png");
-        	BUSH_START_X = startX;
         	BUSH_START_Y = 182;
         }
         else {
-        	image.setImage("sounds/tree.png");
-        	BUSH_START_X = 520;
+        	image.setImage("sounds/bush_3.png");
     		BUSH_START_Y = 120;
         }
-        //System.out.println("Random number: " + randNum);
     }
     
 	public double getPosX() {
