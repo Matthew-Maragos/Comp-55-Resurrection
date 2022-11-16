@@ -10,6 +10,8 @@ public class MapElement implements ActionListener {
 	
 	private int BUSH_START_X;
  	private int BUSH_START_Y;
+ 	private int CLOUD_START_X;
+ 	private int CLOUD_START_Y;
 
 	private MainApplication program;
 	private MapElementType mapEleType;
@@ -34,6 +36,7 @@ public class MapElement implements ActionListener {
 	    	BUSH_START_Y = 182;
 			posX = BUSH_START_X;
 			posY = BUSH_START_Y;
+			mapEleType = type;
 			
 			elementImage = new GImage("sounds/bush_2.png");
 			elementImage.scale(0.3);
@@ -42,7 +45,10 @@ public class MapElement implements ActionListener {
 		}
 		
 		if(type == MapElementType.CLOUD) {
-	
+			CLOUD_START_X = startX;
+	    	CLOUD_START_Y = 182;
+			posX = CLOUD_START_X;
+			posY = CLOUD_START_Y;
 		}
 		
 	}
@@ -51,8 +57,11 @@ public class MapElement implements ActionListener {
 		elementImage.move(-moveSpeed, 0);
 		// loop the bushes if it goes out of bound
 		if(elementImage.getX() + elementImage.getWidth() < 0) {
-			randomizeBushImage(elementImage, BUSH_START_X);
-			elementImage.setLocation(BUSH_START_X + elementImage.getWidth(), BUSH_START_Y);
+			// if type is BUSH
+			if(mapEleType == MapElementType.BUSH) {
+				randomizeBushImage(elementImage, BUSH_START_X);
+			}
+			elementImage.setLocation(600, BUSH_START_Y);
 		}
 	}
 	
@@ -75,6 +84,7 @@ public class MapElement implements ActionListener {
         	BUSH_START_X = 520;
     		BUSH_START_Y = 120;
         }
+        //System.out.println("Random number: " + randNum);
     }
     
 	public double getPosX() {
