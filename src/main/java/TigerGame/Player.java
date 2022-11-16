@@ -32,7 +32,7 @@ public class Player implements ActionListener  {
 	public Player(MainApplication app) {
 		program = app;
 		playerScore = 0;
-		jumpPower = 150;
+		jumpPower = 200;
 		gravity = 20;
 		
 		tigerImage = new GImage("sounds/tiger_orange.png");

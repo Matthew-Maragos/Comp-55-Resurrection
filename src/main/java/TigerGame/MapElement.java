@@ -28,10 +28,10 @@ public class MapElement implements ActionListener {
 		program = app;
 		moveSpeed = 5;
 		
-		obsMoveTimer = new Timer(30, this);
+		obsMoveTimer = new Timer(15, this);
 		obsMoveTimer.start();
 		
-		if(type == MapElementType.BUSH) {
+ 		if(type == MapElementType.BUSH) {
 			BUSH_START_X = startX;
 	    	BUSH_START_Y = 182;
 			posX = BUSH_START_X;

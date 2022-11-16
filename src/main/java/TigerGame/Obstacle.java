@@ -12,9 +12,9 @@ public class Obstacle implements ActionListener  {
 	// TODO random obstacletype when created in constructor
 	
 	public static final int OBSTACLE_WIDTH = 50;
-	public static final int OBSTACLE_HEIGHT = 100;
-	public static final int START_X = 500;
-	public static final int START_Y = 300;
+	public static final int OBSTACLE_HEIGHT = 90;
+	public static final int START_X = 600;
+	public static final int START_Y = 280;
 	//public static final int BORDER_X;
 	
 	private MainApplication program;
@@ -29,15 +29,15 @@ public class Obstacle implements ActionListener  {
 	
 	
 	public Obstacle(MainApplication app) {
-		obsImage = new GImage("sounds/icons8-bottle-of-water-48.png");
+		obsImage = new GImage("sounds/trashcan.png");
 		program = app;
-		moveSpeed = 3;
+		moveSpeed = 5;
 		posX = START_X;
 		posY = START_Y;
 		obsImage.move(posX, posY);
 		program.add(obsImage);
 		obsImage.setSize(OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
-		obsMoveTimer = new Timer(100, this);
+		obsMoveTimer = new Timer(15, this);
 		obsMoveTimer.start();
 	}
 
