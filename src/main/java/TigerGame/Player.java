@@ -1,14 +1,16 @@
 package TigerGame;
 
-import java.awt.event.ActionListener;
-
-import acm.graphics.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+
+import javax.swing.Timer;
+
+import acm.graphics.GImage;
 
 
-public class Player implements ActionListener  {
+public class Player implements ActionListener {
 
 	
 	public static final int TIGER_WIDTH = 100;
@@ -26,10 +28,12 @@ public class Player implements ActionListener  {
 	private double posY;
 	private double playerScore;
 	private Timer gravityTimer;
+	private boolean continueGame;
 	
 	GImage tigerImage;
 
 	public Player(MainApplication app) {
+		continueGame = true;
 		program = app;
 		playerScore = 0;
 		jumpPower = 200;
@@ -41,6 +45,15 @@ public class Player implements ActionListener  {
 		program.add(tigerImage);
 		gravityTimer = new Timer(100, this);
 		gravityTimer.start();
+		
+		for (double i = 0; continueGame == false; i++) {
+			i++;
+			i = playerScore;
+		}
+//		g = new Graphics()
+//		paint();
+		
+		
 	}
 		
 	public void actionPerformed(ActionEvent e) {
@@ -70,5 +83,16 @@ public class Player implements ActionListener  {
 		program.remove(tigerImage);
 	}
 	
+	public void paint(Graphics g) {
+		
+	Graphics2D g2D = (Graphics2D) g;
+	g2D.drawString(Double.toString(playerScore), 300, 100);		
+//	super.paint(g);
+//	g.setFont(new Font("Courier New", Font.BOLD, 25));
+//	g.drawString(Integer.toString(score), getWidth()/2 - 5, 100);
+//	ground.create(g);
+//	dino.create(g);
+//	obstacles.create(g);
+}
 	
 }
