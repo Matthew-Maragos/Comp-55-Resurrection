@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-
-
 public class Obstacle implements ActionListener  {
 	// TODO add obstacle movement. add limits of a screen
 	// TODO random obstacletype when created in constructor
@@ -59,9 +57,18 @@ public class Obstacle implements ActionListener  {
 		return posY;
 	}
 	
+	public double getWidth() {
+		return obsImage.getWidth();
+	}
+	
+	public double getHeight() {
+		return obsImage.getHeight();
+	}
+	
 	public void move(int distance) {
 		obsImage.move(-distance, 0);
 	}
+	
 
 
 	
