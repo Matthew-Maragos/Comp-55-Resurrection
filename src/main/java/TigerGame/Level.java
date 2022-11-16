@@ -29,13 +29,17 @@ public class Level implements ActionListener {
 		program = app;
 		program.add(backgroundImg);
 		
-		bush1 = new MapElement(program, MapElementType.BUSH, 0);
-		bush2 = new MapElement(program, MapElementType.BUSH, 370);
+		// Add clouds
 		clouds = new ArrayList<MapElement>();
 		for(int i = 1; i <= 3; i++) {
 			clouds.add(new MapElement(program, MapElementType.CLOUD, i * 200));
 		}
 		
+		// Add bushes
+		bush1 = new MapElement(program, MapElementType.BUSH, 0);
+		bush2 = new MapElement(program, MapElementType.BUSH, 370);
+		
+		// Add player
 		player = new Player(program);
 		NewObstacleTimer = new Timer(5000, this);
 		NewObstacleTimer.start();
