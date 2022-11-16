@@ -2,6 +2,8 @@ package TigerGame;
 import acm.graphics.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 
@@ -18,7 +20,7 @@ public class Level implements ActionListener {
 	private Timer NewObstacleTimer;
 	private MapElement bush1;
 	private MapElement bush2;
-	private MapElement cloud1;
+	private ArrayList<MapElement> clouds;
 	
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
 	
@@ -26,9 +28,14 @@ public class Level implements ActionListener {
 		
 		program = app;
 		program.add(backgroundImg);
-		//bush1 = new MapElement(program, MapElementType.BUSH, 0);
-		//bush2 = new MapElement(program, MapElementType.BUSH, 370);
-		cloud1 = new MapElement(program, MapElementType.CLOUD, 370);
+		
+		bush1 = new MapElement(program, MapElementType.BUSH, 0);
+		bush2 = new MapElement(program, MapElementType.BUSH, 370);
+		clouds = new ArrayList<MapElement>();
+		for(int i = 1; i <= 3; i++) {
+			clouds.add(new MapElement(program, MapElementType.CLOUD, i * 200));
+		}
+		
 		player = new Player(program);
 		NewObstacleTimer = new Timer(5000, this);
 		NewObstacleTimer.start();

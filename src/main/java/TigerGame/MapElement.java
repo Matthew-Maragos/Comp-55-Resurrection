@@ -46,7 +46,7 @@ public class MapElement implements ActionListener {
 		
 		if(type == MapElementType.CLOUD) {
 			CLOUD_START_X = startX;
-	    	CLOUD_START_Y = 50;
+	    	CLOUD_START_Y = rgen.nextInt(0, 100);
 			posX = CLOUD_START_X;
 			posY = CLOUD_START_Y;
 			mapEleType = type;
@@ -70,7 +70,7 @@ public class MapElement implements ActionListener {
 			}
 			// if type is CLOUD
 			if(mapEleType == MapElementType.CLOUD) {
-				elementImage.setLocation(50, BUSH_START_Y);
+				elementImage.setLocation(600, rgen.nextInt(0, 100));
 			}
 			
 		}
