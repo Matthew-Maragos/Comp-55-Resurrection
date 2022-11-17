@@ -59,6 +59,7 @@ public class Player implements ActionListener {
 		program.add(scoreLabel);
 		scoreLabel.setLocation(200, 200);
 		
+		
 	}
 		
 	public void actionPerformed(ActionEvent e) {
