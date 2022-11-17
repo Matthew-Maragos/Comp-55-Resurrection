@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 
 
 public class Player implements ActionListener {
@@ -26,7 +27,8 @@ public class Player implements ActionListener {
 	private int gravity;
 	private double posX;
 	private double posY;
-	private double playerScore;
+	private int playerScore;
+	private GLabel scoreLabel;
 	private Timer gravityTimer;
 	private boolean continueGame;
 	
@@ -38,6 +40,7 @@ public class Player implements ActionListener {
 		playerScore = 0;
 		jumpPower = 200;
 		gravity = 20;
+		scoreLabel = new GLabel("Score: " + playerScore);		//Made by Vesasna
 		
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
@@ -50,8 +53,11 @@ public class Player implements ActionListener {
 			i++;
 			i = playerScore;
 		}
-//		g = new Graphics()
-//		paint();
+		
+//		scoreLabel.setFont(new Font("Serif", Font.BOLD, 18));
+		scoreLabel.setLabel("Score: " + playerScore);
+		program.add(scoreLabel);
+		scoreLabel.setLocation(200, 200);
 		
 	}
 		
@@ -62,6 +68,17 @@ public class Player implements ActionListener {
 	public void jump() {
 		posY = posY - jumpPower;
 		tigerImage.move(0, -jumpPower);
+
+		
+//		Trying to make jump smoother instead of teleport tiger to top
+//		for (int i = 0; i < 20; i++) 
+//		{
+//			posY = posY - 200;
+//			tigerImage.move(0, -i);
+//			System.out.println(posY + " " + jumpPower+ " " + i);
+//			posY = posY - i;		//tigers y = tigers y - jumppower(200)
+//			tigerImage.move(0, -i);
+//		}
 	}
 	
 	public void land() {
@@ -117,17 +134,6 @@ public class Player implements ActionListener {
 	public void delete() {
 		program.remove(tigerImage);
 	}
-	
-	public void paint(Graphics g) {
-		
-	Graphics2D g2D = (Graphics2D) g;
-	g2D.drawString(Double.toString(playerScore), 300, 100);		
-//	super.paint(g);
-//	g.setFont(new Font("Courier New", Font.BOLD, 25));
-//	g.drawString(Integer.toString(score), getWidth()/2 - 5, 100);
-//	ground.create(g);
-//	dino.create(g);
-//	obstacles.create(g);
-}
+
 	
 }
