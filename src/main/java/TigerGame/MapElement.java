@@ -120,5 +120,9 @@ public class MapElement implements ActionListener {
 	public void move(int distance) {
 		elementImage.move(-distance, 0);
 	}
-
+	
+	public Timer getObsMoveTimer() {
+		return obsMoveTimer;
+	}
+	
 }

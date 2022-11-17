@@ -73,22 +73,35 @@ public class Player implements ActionListener {
 	public boolean isCollided(Obstacle obstacle) {
 		double tx = tigerImage.getX();
 		double ty = tigerImage.getY();
-		double tw = TIGER_WIDTH;
-		double th = TIGER_HEIGHT;
+		double tw = tigerImage.getWidth();
+		double th = tigerImage.getHeight();
 ;		double x = obstacle.getX();
 		double y = obstacle.getY(); 
 		double w = obstacle.getWidth();
 		double h = obstacle.getHeight();
-		
 		// check collision in x
-		if((tx < x && (tx + tw > x) && (tx + tw < x + w)) || (tx > x && tx < x + w)) {
+		System.out.println("x: " + x + " , y: " + y  + " , w :" + w + ", h: " + h);
+		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
+		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+			System.out.println("Player has collided");
+			
 			return true;
+		}
+		/*
+			System.out.println("Player has collided in x");
+			System.out.println("tx: " + tx + " , ty: " + ty + " , tw :" + tw + ", th: " + th);
+			System.out.println("x: " + x + " , y: " + y  + " , w :" + w + ", h: " + h);
+			return true;
+			
 		}
 		// check collision in y
 		if((ty < y && (ty + th > y) && (ty + th < (h + y)) || (ty > y && ty < y + h))) {
+			System.out.println("Player has collided in y");
+			System.out.println("tx: " + tx + " , ty: " + ty + " , tw :" + tw + ", th: " + th);
+			System.out.println("x: " + x + " , y: " + y  + " , w :" + w + ", h: " + h);
 			return true;
 		}
-		
+		*/
 		return false;
 		
 	}

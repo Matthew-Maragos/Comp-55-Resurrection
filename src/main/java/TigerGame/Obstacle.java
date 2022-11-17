@@ -11,7 +11,7 @@ public class Obstacle implements ActionListener  {
 	
 	public static final int OBSTACLE_WIDTH = 50;
 	public static final int OBSTACLE_HEIGHT = 90;
-	public static final int START_X = 600;
+	public static final int START_X = 450;
 	public static final int START_Y = 280;
 	//public static final int BORDER_X;
 	
@@ -50,11 +50,11 @@ public class Obstacle implements ActionListener  {
 	}
 	
 	public double getX() {
-		return posX;
+		return obsImage.getX();
 	}
 	
 	public double getY() {
-		return posY;
+		return obsImage.getY();
 	}
 	
 	public double getWidth() {
@@ -69,6 +69,9 @@ public class Obstacle implements ActionListener  {
 		obsImage.move(-distance, 0);
 	}
 	
+	public Timer getObsMoveTimer() {
+		return obsMoveTimer;
+	}
 
 
 	
