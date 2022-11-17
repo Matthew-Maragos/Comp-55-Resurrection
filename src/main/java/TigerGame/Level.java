@@ -18,9 +18,11 @@ public class Level implements ActionListener {
 	private MainApplication program;
 	public Player player;
 	private Timer NewObstacleTimer;
+	private Timer collisionCheckTimer;
 	private MapElement bush1;
 	private MapElement bush2;
 	private ArrayList<MapElement> clouds;
+	private Obstacle currentObstacle;
 	
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
 	
@@ -31,7 +33,7 @@ public class Level implements ActionListener {
 		
 		// Add clouds
 		clouds = new ArrayList<MapElement>();
-		for(int i = 1; i <= 3; i++) {
+		for(int i = 0; i <= 2; i++) {
 			clouds.add(new MapElement(program, MapElementType.CLOUD, i * 200));
 		}
 		
@@ -43,17 +45,25 @@ public class Level implements ActionListener {
 		player = new Player(program);
 		NewObstacleTimer = new Timer(5000, this);
 		NewObstacleTimer.start();
-		
+		collisionCheckTimer = new Timer(100, this);
+		collisionCheckTimer.start();
 		
 	}
 	
 
 	public void actionPerformed(ActionEvent e) {
-		Obstacle obstacle = new Obstacle(program);
-		if(player.isCollided(obstacle)) {
+		if (e.getSource() == NewObstacleTimer) {
+			currentObstacle = new Obstacle(program);
+		} else if( currentObstacle != null && player.isCollided(currentObstacle)) {
 			NewObstacleTimer.stop();
-			
-			System.out.println("Player has collided");
+			collisionCheckTimer.stop();
+			bush1.getObsMoveTimer().stop();
+			bush2.getObsMoveTimer().stop();
+			currentObstacle.getObsMoveTimer().stop();
+			player.getGravityTimer().stop();
+			for(int i = 0; i <= 2; i ++) {
+				clouds.get(i).getObsMoveTimer().stop();
+			}
 		}
 	}
 	
