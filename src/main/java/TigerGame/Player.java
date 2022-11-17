@@ -1,7 +1,6 @@
 package TigerGame;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,7 +39,7 @@ public class Player implements ActionListener {
 		playerScore = 0;
 		jumpPower = 200;
 		gravity = 20;
-		scoreLabel = new GLabel("Score: " + playerScore);		//Made by Vesasna
+		scoreLabel = new GLabel("Score is 0");		
 		
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
@@ -49,21 +48,22 @@ public class Player implements ActionListener {
 		gravityTimer = new Timer(100, this);
 		gravityTimer.start();
 		
-		for (double i = 0; continueGame == false; i++) {
-			i++;
-			i = playerScore;
-		}
 		
-//		scoreLabel.setFont(new Font("Serif", Font.BOLD, 18));
-		scoreLabel.setLabel("Score: " + playerScore);
+		//adds font, sets location, and sets font/size		//Supported by Vesasna
 		program.add(scoreLabel);
-		scoreLabel.setLocation(200, 200);
-		
+		scoreLabel.setLocation(520, 50);
+		scoreLabel.setFont(new Font("Serif", Font.BOLD, 36));	
+
 		
 	}
 		
 	public void actionPerformed(ActionEvent e) {
 		land();
+		
+		
+		playerScore++;
+		scoreLabel.setLabel(" " + playerScore);
+		
 	}
 	
 	public void jump() {
@@ -104,6 +104,7 @@ public class Player implements ActionListener {
 			System.out.println("Player has collided");
 			
 			return true;
+			
 		}
 		return false;
 		
