@@ -60,6 +60,7 @@ public class Level implements ActionListener {
 			bush1.getObsMoveTimer().stop();
 			bush2.getObsMoveTimer().stop();
 			currentObstacle.getObsMoveTimer().stop();
+			player.getGravityTimer().stop();
 			for(int i = 0; i <= 2; i ++) {
 				clouds.get(i).getObsMoveTimer().stop();
 			}
