@@ -3,6 +3,7 @@ import acm.graphics.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import acm.util.RandomGenerator;
 
 
 public class Obstacle implements ActionListener  {
@@ -11,7 +12,7 @@ public class Obstacle implements ActionListener  {
 	
 	public static final int OBSTACLE_WIDTH = 50;
 	public static final int OBSTACLE_HEIGHT = 90;
-	public static final int START_X = 450;
+	public static final int START_X = 600;
 	public static final int START_Y = 280;
 	//public static final int BORDER_X;
 	
@@ -24,13 +25,16 @@ public class Obstacle implements ActionListener  {
 	private GImage obsImage;
 	private Timer obsMoveTimer;
 	public SinglePlayerModePane gameWindow;
+	public RandomGenerator rgen;
 	
 	
 	public Obstacle(MainApplication app) {
-		obsImage = new GImage("sounds/trashcan.png");
+		rgen = RandomGenerator.getInstance();
+		//obsImage = new GImage("sounds/trashcan.png");
+		obsImage = randomizeObstacleImage();
 		program = app;
 		moveSpeed = 5;
-		posX = START_X;
+		posX = rgen.nextInt(600, 800);
 		posY = START_Y;
 		obsImage.move(posX, posY);
 		program.add(obsImage);
@@ -42,7 +46,22 @@ public class Obstacle implements ActionListener  {
 	
 	public void actionPerformed(ActionEvent e) {
 		obsImage.move(-moveSpeed, 0);
-		//System.out.print("test print");
+	}
+	
+	public GImage randomizeObstacleImage() {
+		int randNum = rgen.nextInt(1,4);
+		if(randNum == 1) {
+			return new GImage("sounds/trashcan.png");
+		}
+		if(randNum == 2) {
+			return new GImage("sounds/acorn.png");
+		}
+		if(randNum == 3) {
+			return new GImage("sounds/bench.png");
+		}
+		else {
+			return new GImage("sounds/rock.png");
+		}
 	}
 	
 	public ObstacleType getObstacleType() {
@@ -72,8 +91,5 @@ public class Obstacle implements ActionListener  {
 	public Timer getObsMoveTimer() {
 		return obsMoveTimer;
 	}
-
-
-	
 	
 }

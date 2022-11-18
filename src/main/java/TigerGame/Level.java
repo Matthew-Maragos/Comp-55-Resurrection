@@ -3,7 +3,7 @@ import acm.graphics.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+import acm.util.RandomGenerator;
 import javax.swing.*;
 
 
@@ -23,11 +23,13 @@ public class Level implements ActionListener {
 	private MapElement bush2;
 	private ArrayList<MapElement> clouds;
 	private Obstacle currentObstacle;
+	private RandomGenerator rgen;
 	
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
 	
 	public Level(MainApplication app) {
 		
+		rgen = RandomGenerator.getInstance();
 		program = app;
 		program.add(backgroundImg);
 		
@@ -43,7 +45,7 @@ public class Level implements ActionListener {
 		
 		// Add player
 		player = new Player(program);
-		NewObstacleTimer = new Timer(5000, this);
+		NewObstacleTimer = new Timer(rgen.nextInt(2000,5000), this);
 		NewObstacleTimer.start();
 		collisionCheckTimer = new Timer(100, this);
 		collisionCheckTimer.start();
@@ -54,7 +56,8 @@ public class Level implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == NewObstacleTimer) {
 			currentObstacle = new Obstacle(program);
-		} else if( currentObstacle != null && player.isCollided(currentObstacle)) {
+		}
+		else if( currentObstacle != null && player.isCollided(currentObstacle)) {
 			NewObstacleTimer.stop();
 			collisionCheckTimer.stop();
 			bush1.getObsMoveTimer().stop();
