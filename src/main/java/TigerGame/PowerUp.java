@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import acm.graphics.*;
+import acm.util.RandomGenerator;
 
 
 public class PowerUp implements ActionListener {
@@ -19,6 +20,8 @@ public class PowerUp implements ActionListener {
 	private int Pwr_Start_X;
 	private int Pwr_Start_Y;
 	private Timer pwrTimer;
+	public RandomGenerator rgen;
+
 	
 	//default constructor
 	public PowerUp(PowerUpType type, double posX, double posY, double moveSpeed, GImage PowerImage) {
@@ -133,6 +136,21 @@ public class PowerUp implements ActionListener {
 		powerImage.move(-moveSpeed, 0);	
 	}
 
+	public GImage randomizeObstacleImage() {
+		int randNum = rgen.nextInt(1,4);
+		if(randNum == 1) {
+			return new GImage("sounds/invincibilty.png");
+		}
+		if(randNum == 2) {
+			return new GImage("sounds/jeopardy.png");
+		}
+		if(randNum == 3) {
+			return new GImage("sounds/doublejump.png");
+		}
+		else {
+			return new GImage("sounds/oneup.png");
+		}
+	}
 	
 	
 	//need an activate PowerUp class(or function i do not know)
