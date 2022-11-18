@@ -49,7 +49,6 @@ public class Level implements ActionListener {
 		NewObstacleTimer.start();
 		collisionCheckTimer = new Timer(100, this);
 		collisionCheckTimer.start();
-		
 	}
 	
 
@@ -57,7 +56,7 @@ public class Level implements ActionListener {
 		if (e.getSource() == NewObstacleTimer) {
 			currentObstacle = new Obstacle(program);
 		}
-		else if( currentObstacle != null && player.isCollided(currentObstacle)) {
+		else if(currentObstacle != null && player.isCollided(currentObstacle)) {
 			NewObstacleTimer.stop();
 			collisionCheckTimer.stop();
 			bush1.getObsMoveTimer().stop();

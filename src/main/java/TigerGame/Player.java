@@ -29,7 +29,7 @@ public class Player implements ActionListener {
 	private int playerScore;
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
-	private boolean continueGame = false;
+	private boolean continueGame;
 	
 
 	//	private double posX;
@@ -43,7 +43,7 @@ public class Player implements ActionListener {
 		playerScore = 0;
 		jumpPower = 200;
 		gravity = 20;
-		scoreLabel = new GLabel("Score is 0");		
+		scoreLabel = new GLabel("Score is 0");
 		
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
@@ -51,7 +51,6 @@ public class Player implements ActionListener {
 		program.add(tigerImage);
 		gravityTimer = new Timer(100, this);
 		gravityTimer.start();
-		
 		
 		//adds font, sets location, and sets font/size		//Supported by Vesasna
 		program.add(scoreLabel);
@@ -70,7 +69,8 @@ public class Player implements ActionListener {
 	
 	public void jump() {
 //		Only allows jump when on ground
-		if (tigerImage.getY() >= GROUND_Y && continueGame == true) {
+		if (tigerImage.getY() == GROUND_Y) {
+			//posY = posY - jumpPower;
 			tigerImage.move(0, -jumpPower);
 		}
 		
@@ -120,7 +120,7 @@ public class Player implements ActionListener {
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 			System.out.println("Player has collided");
 			
-			continueGame = false;
+			//continueGame = false;
 			
 			return true;
 			
