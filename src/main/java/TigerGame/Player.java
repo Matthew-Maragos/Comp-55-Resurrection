@@ -58,20 +58,28 @@ public class Player implements ActionListener {
 	}
 		
 	public void actionPerformed(ActionEvent e) {
-		land();
-		
-		
+		land();			
 		playerScore++;
 		scoreLabel.setLabel(" " + playerScore);
 		
 	}
 	
 	public void jump() {
-		posY = posY - jumpPower;
-		tigerImage.move(0, -jumpPower);
+		System.out.println(tigerImage.getY());
+		System.out.println(GROUND_Y);
+
+//		Only allows jump when on ground
+//		if (tigerImage.getY() == GROUND_Y) {
+			posY = posY - jumpPower;
+			tigerImage.move(0, -jumpPower);
+//			powerup will allow two jumps
+//			Jump when on ground and jump
+//		}
+		
 
 		
 //		Trying to make jump smoother instead of teleport tiger to top
+// 		look at land function and action performed to smooth out motion		
 //		for (int i = 0; i < 20; i++) 
 //		{
 //			posY = posY - 200;
@@ -98,7 +106,7 @@ public class Player implements ActionListener {
 		double w = obstacle.getWidth();
 		double h = obstacle.getHeight();
 		// check collision in x and y
-		System.out.println("x: " + x + " , y: " + y  + " , w :" + w + ", h: " + h);
+//		System.out.println("x: " + x + " , y: " + y  + " , w :" + w + ", h: " + h);
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 			System.out.println("Player has collided");
