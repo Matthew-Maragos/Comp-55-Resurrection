@@ -26,12 +26,14 @@ public class Player implements ActionListener {
 	
 	private int jumpPower;
 	private int gravity;
-	private double posX;
-	private double posY;
 	private int playerScore;
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
-	private boolean continueGame;
+	private boolean continueGame = false;
+	
+
+	//	private double posX;
+	//	private double posY;
 	
 	GImage tigerImage;
 
@@ -68,10 +70,13 @@ public class Player implements ActionListener {
 	
 	public void jump() {
 //		Only allows jump when on ground
-		if (tigerImage.getY() >= GROUND_Y) {
-			posY = posY - jumpPower;
+		if (tigerImage.getY() >= GROUND_Y && continueGame == true) {
 			tigerImage.move(0, -jumpPower);
 		}
+		
+//		posY = posY - jumpPower;
+//		System.out.println(continueGame);
+
 			
 ////		IMPLEMENT(UNCOMMENT) ONCE POWERUPS ARE DONE 
 		
@@ -114,6 +119,8 @@ public class Player implements ActionListener {
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 			System.out.println("Player has collided");
+			
+			continueGame = false;
 			
 			return true;
 			
