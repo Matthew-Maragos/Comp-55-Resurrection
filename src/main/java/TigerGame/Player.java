@@ -29,6 +29,7 @@ public class Player implements ActionListener {
 	private int playerScore;
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
+	private Timer jumpTimer;
 	private boolean continueGame = false;
 	
 
@@ -62,20 +63,22 @@ public class Player implements ActionListener {
 	}
 		
 	public void actionPerformed(ActionEvent e) {
-		if (tigerImage.getY() >= GROUND_Y && continueGame == true) {
-			tigerImage.move(0, -jumpPower);
-		}
 		land();			
 		playerScore++;
 		scoreLabel.setLabel(" " + playerScore);
 		
-	}
+//		if (jumpTimer && e.getKeyCode() == 3) {
+//		jump();
+//	}
+//	else {}
+		}
+
 	
 	public void jump() {
 //		Only allows jump when on ground
 		if (tigerImage.getY() >= GROUND_Y && continueGame == true) {
 			
-			tigerImage.move(0, -jumpPower);
+			tigerImage.move(0, -);
 		}
 		
 //		System.out.println(continueGame);
