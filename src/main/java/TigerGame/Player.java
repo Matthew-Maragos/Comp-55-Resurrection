@@ -62,6 +62,9 @@ public class Player implements ActionListener {
 	}
 		
 	public void actionPerformed(ActionEvent e) {
+		if (tigerImage.getY() >= GROUND_Y && continueGame == true) {
+			tigerImage.move(0, -jumpPower);
+		}
 		land();			
 		playerScore++;
 		scoreLabel.setLabel(" " + playerScore);
@@ -71,15 +74,17 @@ public class Player implements ActionListener {
 	public void jump() {
 //		Only allows jump when on ground
 		if (tigerImage.getY() >= GROUND_Y && continueGame == true) {
+			
 			tigerImage.move(0, -jumpPower);
 		}
 		
-//		posY = posY - jumpPower;
 //		System.out.println(continueGame);
 
 			
-////		IMPLEMENT(UNCOMMENT) ONCE POWERUPS ARE DONE 
 		
+		
+		
+////		IMPLEMENT(UNCOMMENT) ONCE POWERUPS ARE DONE 
 //////////////////////////////////////////////////////////////////////////////////
 //		Only allows jump when on ground
 //		if (DoubleUp == false && tigerImage.getY() == GROUND_Y) {
@@ -96,6 +101,8 @@ public class Player implements ActionListener {
 //		System.out.println(tigerImage.getY());
 //		System.out.println(GROUND_Y);
 //		System.out.println(posY + " " + jumpPower+ " " + i);
+//		posY = posY - jumpPower;
+
 
 	}
 	
