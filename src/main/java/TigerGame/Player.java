@@ -64,6 +64,7 @@ public class Player implements ActionListener {
 		land();			
 		playerScore++;
 		scoreLabel.setLabel(" " + playerScore);
+		// switch between images
 		
 	}
 	
@@ -106,14 +107,14 @@ public class Player implements ActionListener {
 	}
 	
 	public boolean isCollided(Obstacle obstacle) {
-		double tx = tigerImage.getX();
-		double ty = tigerImage.getY();
-		double tw = tigerImage.getWidth();
-		double th = tigerImage.getHeight();
-;		double x = obstacle.getX();
-		double y = obstacle.getY(); 
-		double w = obstacle.getWidth();
-		double h = obstacle.getHeight();
+		double tx = tigerImage.getX() + 10;
+		double ty = tigerImage.getY() + 10;
+		double tw = tigerImage.getWidth() - 10;
+		double th = tigerImage.getHeight() - 10;
+;		double x = obstacle.getX() + 10;
+		double y = obstacle.getY() + 10; 
+		double w = obstacle.getWidth() - 10;
+		double h = obstacle.getHeight() - 10;
 		// check collision in x and y
 //		System.out.println("x: " + x + " , y: " + y  + " , w :" + w + ", h: " + h);
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)

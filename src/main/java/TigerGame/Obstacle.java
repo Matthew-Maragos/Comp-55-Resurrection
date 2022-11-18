@@ -28,8 +28,8 @@ public class Obstacle implements ActionListener  {
 	
 	public Obstacle(MainApplication app) {
 		rgen = RandomGenerator.getInstance();
-		obsImage = new GImage("sounds/trashcan.png");
-		//obsImage = randomizeObstacleImage();
+		//obsImage = new GImage("sounds/bench.png");
+		obsImage = randomizeObstacleImage();
 		program = app;
 		moveSpeed = 5;
 		posX = rgen.nextInt(600, 800);
@@ -47,21 +47,23 @@ public class Obstacle implements ActionListener  {
 	}
 	
 	public GImage randomizeObstacleImage() {
-		int randNum = rgen.nextInt(1,3);
+		int randNum = rgen.nextInt(1,4);
 		if(randNum == 1) {
 			return new GImage("sounds/trashcan.png");
 		}
 		if(randNum == 2) {
+			
 			return new GImage("sounds/acorn.png");
 		}
-		else {
+		if(randNum == 3) {
 			return new GImage("sounds/bench.png");
 		}
-		/*
 		else {
+			//GImage temp = new GImage("sounds/rock.png");
+			//temp.setSize(100,100);
 			return new GImage("sounds/rock.png");
 		}
-		*/
+		
 	}
 	
 	public ObstacleType getObstacleType() {

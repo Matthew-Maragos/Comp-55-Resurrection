@@ -8,8 +8,6 @@ import acm.util.RandomGenerator;
 
 public class PowerUp implements ActionListener {
 
-	
-	
 	private MainApplication program;
 	
 	private PowerUpType powerType;

@@ -45,7 +45,7 @@ public class Level implements ActionListener {
 		
 		// Add player
 		player = new Player(program);
-		NewObstacleTimer = new Timer(rgen.nextInt(2000,5000), this);
+		NewObstacleTimer = new Timer(rgen.nextInt(4000,5000), this);
 		NewObstacleTimer.start();
 		collisionCheckTimer = new Timer(100, this);
 		collisionCheckTimer.start();
@@ -55,6 +55,9 @@ public class Level implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == NewObstacleTimer) {
 			currentObstacle = new Obstacle(program);
+			NewObstacleTimer.stop();
+			NewObstacleTimer = new Timer(rgen.nextInt(4000,5000), this);
+			NewObstacleTimer.start();
 		}
 		else if(currentObstacle != null && player.isCollided(currentObstacle)) {
 			NewObstacleTimer.stop();
