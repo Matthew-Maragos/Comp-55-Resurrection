@@ -68,7 +68,7 @@ public class Player implements ActionListener {
 	
 	public void jump() {
 //		Only allows jump when on ground
-		if (tigerImage.getY() == GROUND_Y) {
+		if (tigerImage.getY() >= GROUND_Y) {
 			posY = posY - jumpPower;
 			tigerImage.move(0, -jumpPower);
 		}
@@ -81,13 +81,13 @@ public class Player implements ActionListener {
 //			posY = posY - jumpPower;
 //			tigerImage.move(0, -jumpPower);
 //		}
-//		else {
+//		
 ////			Powerup will allow two jumps, jump when on ground and jump on Y: 120 (Y after first jump)
 //
-//			if (tigerImage.getY() == 120 && tigerImage.getY() == GROUND_Y) {
-//				posY = posY - jumpPower;
-//				tigerImage.move(0, -jumpPower);
-//			}
+//		if (tigerImage.getY() == 120 || tigerImage.getY() == GROUND_Y && DOUBLEUP == false) {
+//			posY = posY - jumpPower;
+//			tigerImage.move(0, -jumpPower);
+//		}
 //		System.out.println(tigerImage.getY());
 //		System.out.println(GROUND_Y);
 //		System.out.println(posY + " " + jumpPower+ " " + i);
