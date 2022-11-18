@@ -9,6 +9,8 @@ import javax.swing.Timer;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 
+//	#TODO Make jump action smoother
+
 
 public class Player implements ActionListener {
 
@@ -65,29 +67,31 @@ public class Player implements ActionListener {
 	}
 	
 	public void jump() {
-		System.out.println(tigerImage.getY());
-		System.out.println(GROUND_Y);
-
 //		Only allows jump when on ground
-//		if (tigerImage.getY() == GROUND_Y) {
+		if (tigerImage.getY() == GROUND_Y) {
 			posY = posY - jumpPower;
 			tigerImage.move(0, -jumpPower);
-//			powerup will allow two jumps
-//			Jump when on ground and jump
-//		}
+		}
+			
+////		IMPLEMENT(UNCOMMENT) ONCE POWERUPS ARE DONE 
 		
+//////////////////////////////////////////////////////////////////////////////////
+//		Only allows jump when on ground
+//		if (DoubleUp == false && tigerImage.getY() == GROUND_Y) {
+//			posY = posY - jumpPower;
+//			tigerImage.move(0, -jumpPower);
+//		}
+//		else {
+////			Powerup will allow two jumps, jump when on ground and jump on Y: 120 (Y after first jump)
+//
+//			if (tigerImage.getY() == 120 && tigerImage.getY() == GROUND_Y) {
+//				posY = posY - jumpPower;
+//				tigerImage.move(0, -jumpPower);
+//			}
+//		System.out.println(tigerImage.getY());
+//		System.out.println(GROUND_Y);
+//		System.out.println(posY + " " + jumpPower+ " " + i);
 
-		
-//		Trying to make jump smoother instead of teleport tiger to top
-// 		look at land function and action performed to smooth out motion		
-//		for (int i = 0; i < 20; i++) 
-//		{
-//			posY = posY - 200;
-//			tigerImage.move(0, -i);
-//			System.out.println(posY + " " + jumpPower+ " " + i);
-//			posY = posY - i;		//tigers y = tigers y - jumppower(200)
-//			tigerImage.move(0, -i);
-//		}
 	}
 	
 	public void land() {
