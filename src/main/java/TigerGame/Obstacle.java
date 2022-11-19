@@ -28,11 +28,11 @@ public class Obstacle implements ActionListener  {
 	
 	public Obstacle(MainApplication app) {
 		rgen = RandomGenerator.getInstance();
-		//obsImage = new GImage("sounds/bench.png");
 		obsImage = randomizeObstacleImage();
 		program = app;
 		moveSpeed = 5;
-		posX = rgen.nextInt(600, 800);
+		//posX = rgen.nextInt(600, 800);
+		posX = START_X;
 		posY = START_Y;
 		obsImage.move(posX, posY);
 		program.add(obsImage);
@@ -41,7 +41,6 @@ public class Obstacle implements ActionListener  {
 		obsMoveTimer.start();
 	}
 
-	
 	public void actionPerformed(ActionEvent e) {
 		obsImage.move(-moveSpeed, 0);
 	}

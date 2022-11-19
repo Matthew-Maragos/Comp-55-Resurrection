@@ -65,7 +65,7 @@ public class Level implements ActionListener {
 		if (e.getSource() == NewObstacleTimer) {
 			obstacles.add(new Obstacle(program));
 			NewObstacleTimer.stop();
-			NewObstacleTimer = new Timer(rgen.nextInt(1000,4000), this);
+			NewObstacleTimer = new Timer(rgen.nextInt(1000,3000), this);
 			NewObstacleTimer.start();
 			System.out.println("Number of obstacles: " + obstacles.size());
 		}
