@@ -20,7 +20,7 @@ public class Player implements ActionListener {
 	public static final int START_X = 20;
 	public static final int START_Y = 300;
 	public static final int GROUND_Y = 300;
-	public static final int GRAVITY = 15;
+	public static final int GRAVITY = 10;
 	
 	private MainApplication program;
 	
@@ -42,14 +42,14 @@ public class Player implements ActionListener {
 		program = app;
 		playerScore = 0;
 		jumpPower = 200;
-		gravity = 20;
+		gravity = GRAVITY;
 		scoreLabel = new GLabel("Score is 0");
 		
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
 		tigerImage.setLocation(START_X, START_Y);
 		program.add(tigerImage);
-		gravityTimer = new Timer(100, this);
+		gravityTimer = new Timer(40, this);
 		gravityTimer.start();
 		
 		//adds font, sets location, and sets font/size		//Supported by Vesasna
@@ -115,8 +115,7 @@ public class Player implements ActionListener {
 		double y = obstacle.getY() + 10; 
 		double w = obstacle.getWidth() - 10;
 		double h = obstacle.getHeight() - 10;
-		// check collision in x and y
-//		System.out.println("x: " + x + " , y: " + y  + " , w :" + w + ", h: " + h);
+		
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 			System.out.println("Player has collided");
