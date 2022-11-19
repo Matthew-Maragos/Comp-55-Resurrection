@@ -31,7 +31,6 @@ public class Obstacle implements ActionListener  {
 		obsImage = randomizeObstacleImage();
 		program = app;
 		moveSpeed = 5;
-		//posX = rgen.nextInt(600, 800);
 		posX = START_X;
 		posY = START_Y;
 		obsImage.move(posX, posY);

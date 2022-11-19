@@ -14,7 +14,6 @@ import acm.graphics.GLabel;
 
 public class Player implements ActionListener {
 
-	
 	public static final int TIGER_WIDTH = 100;
 	public static final int TIGER_HEIGHT = 60;
 	public static final int START_X = 20;

@@ -24,6 +24,7 @@ public class Level implements ActionListener {
 	private ArrayList<MapElement> clouds;
 	private ArrayList<MapElement> bushes;
 	private ArrayList<Obstacle> obstacles;
+	private PowerUp currentPowerUp;
 	
 
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
@@ -51,6 +52,9 @@ public class Level implements ActionListener {
 
 		// Add player
 		player = new Player(program);
+		
+		// Add powerUp
+		//currentPowerUp = new PowerUp(program);
 
 		// Add timer
 		NewObstacleTimer = new Timer(rgen.nextInt(4000,5000), this);
@@ -58,7 +62,6 @@ public class Level implements ActionListener {
 		collisionCheckTimer = new Timer(100, this);
 		collisionCheckTimer.start();
 	}
-
 
 	public void actionPerformed(ActionEvent e) {
 		

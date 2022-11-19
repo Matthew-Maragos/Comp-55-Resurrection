@@ -10,10 +10,10 @@ public class PowerUp implements ActionListener {
 
 	private MainApplication program;
 	
-	public static final int POWER_WIDTH = 50;
-	public static final int POWER_HEIGHT = 50;
+	public static final int POWER_WIDTH = 65;
+	public static final int POWER_HEIGHT = 65;
 	public static final int START_X = 600;
-	public static final int START_Y = 280;
+	public static final int START_Y = 290;
 	
 	private PowerUpType powerType;
 	private double posX;
@@ -29,7 +29,8 @@ public class PowerUp implements ActionListener {
 		moveSpeed = 5;
 		posX = START_X;
 		posY = START_Y;
-		powerImage = randomizeObstacleImage();
+		//powerImage = randomizeObstacleImage();
+		powerImage = new GImage("sounds/oneup.png");
 		powerImage.move(posX, posY);
 		program.add(powerImage);
 		powerImage.setSize(POWER_WIDTH, POWER_HEIGHT);
@@ -43,18 +44,18 @@ public class PowerUp implements ActionListener {
 	}
 	
 	public GImage randomizeObstacleImage() {
-		int randNum = rgen.nextInt(1,4);
+		int randNum = rgen.nextInt(1,3);
 		if(randNum == 1) {
-			return new GImage("sounds/invincibilty.png");
+			return new GImage("sounds/invincibility.png");
 		}
 		if(randNum == 2) {
-			return new GImage("sounds/jeopardy.png");
+			return new GImage("sounds/oneup.png");
 		}
 		if(randNum == 3) {
 			return new GImage("sounds/doublejump.png");
 		}
 		else {
-			return new GImage("sounds/oneup.png");
+			return new GImage("sounds/jeopardy.png");
 		}
 	}	
 
