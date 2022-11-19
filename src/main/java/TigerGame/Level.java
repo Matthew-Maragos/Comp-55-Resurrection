@@ -16,15 +16,15 @@ public class Level implements ActionListener {
 
 
 	private MainApplication program;
+	private RandomGenerator rgen;
 	public Player player;
 	private Timer NewObstacleTimer;
 	private Timer collisionCheckTimer;
-	private MapElement bush1;
-	private MapElement bush2;
+	
 	private ArrayList<MapElement> clouds;
-	private Obstacle currentObstacle;
+	private ArrayList<MapElement> bushes;
 	private ArrayList<Obstacle> obstacles;
-	private RandomGenerator rgen;
+	
 
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
 
@@ -41,8 +41,10 @@ public class Level implements ActionListener {
 		}
 
 		// Add bushes
-		bush1 = new MapElement(program, MapElementType.BUSH, 0);
-		bush2 = new MapElement(program, MapElementType.BUSH, 370);
+		bushes = new ArrayList<MapElement>();
+		for(int i = 0; i <= 1; i++) {
+			bushes.add(new MapElement(program, MapElementType.BUSH, i * 370));
+		}
 
 		// Add obstacles
 		obstacles = new ArrayList<Obstacle>();
@@ -50,6 +52,7 @@ public class Level implements ActionListener {
 		// Add player
 		player = new Player(program);
 
+		// Add timer
 		NewObstacleTimer = new Timer(rgen.nextInt(4000,5000), this);
 		NewObstacleTimer.start();
 		collisionCheckTimer = new Timer(100, this);
@@ -90,8 +93,9 @@ public class Level implements ActionListener {
 		for(MapElement cloud: clouds) {
 			cloud.getObsMoveTimer().stop();
 		}
-		bush1.getObsMoveTimer().stop();
-		bush2.getObsMoveTimer().stop();
+		for(MapElement bush: bushes) {
+			bush.getObsMoveTimer().stop();
+		}
 		player.getGravityTimer().stop();
 		NewObstacleTimer.stop();
 		collisionCheckTimer.stop();		

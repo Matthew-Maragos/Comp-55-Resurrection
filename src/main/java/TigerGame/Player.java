@@ -30,8 +30,6 @@ public class Player implements ActionListener {
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
 	private boolean continueGame;
-	
-
 	//	private double posX;
 	//	private double posY;
 	
@@ -52,7 +50,8 @@ public class Player implements ActionListener {
 		gravityTimer = new Timer(40, this);
 		gravityTimer.start();
 		
-		//adds font, sets location, and sets font/size		//Supported by Vesasna
+		// adds font, sets location, and sets font/size
+		// supported by Veasna
 		program.add(scoreLabel);
 		scoreLabel.setLocation(520, 50);
 		scoreLabel.setFont(new Font("Serif", Font.BOLD, 36));	
@@ -69,15 +68,10 @@ public class Player implements ActionListener {
 	}
 	
 	public void jump() {
-//		Only allows jump when on ground
-		if (tigerImage.getY() == GROUND_Y) {
-			//posY = posY - jumpPower;
+		// Only allows jump when on ground
+		if (tigerImage.getY() == GROUND_Y && continueGame == true) {
 			tigerImage.move(0, -jumpPower);
 		}
-		
-//		posY = posY - jumpPower;
-//		System.out.println(continueGame);
-
 			
 ////		IMPLEMENT(UNCOMMENT) ONCE POWERUPS ARE DONE 
 		
@@ -107,23 +101,24 @@ public class Player implements ActionListener {
 	}
 	
 	public boolean isCollided(Obstacle obstacle) {
+		
+		// +10 & -10 to make the obstacle hit box smaller for precision
 		double tx = tigerImage.getX() + 10;
 		double ty = tigerImage.getY() + 10;
 		double tw = tigerImage.getWidth() - 10;
 		double th = tigerImage.getHeight() - 10;
-;		double x = obstacle.getX() + 10;
+		double x = obstacle.getX() + 10;
 		double y = obstacle.getY() + 10; 
 		double w = obstacle.getWidth() - 10;
 		double h = obstacle.getHeight() - 10;
 		
+		// check collision
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+			
 			System.out.println("Player has collided");
-			
-			//continueGame = false;
-			
+			continueGame = false;
 			return true;
-			
 		}
 		return false;
 		
