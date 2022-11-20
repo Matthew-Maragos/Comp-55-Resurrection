@@ -28,7 +28,9 @@ public class Player implements ActionListener {
 	private int playerScore;
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
+	
 	private boolean continueGame;
+	private boolean doubleJump;
 	//	private double posX;
 	//	private double posY;
 	
@@ -36,6 +38,8 @@ public class Player implements ActionListener {
 
 	public Player(MainApplication app) {
 		continueGame = true;
+		doubleJump = false;
+		
 		program = app;
 		playerScore = 0;
 		jumpPower = 200;
@@ -67,10 +71,13 @@ public class Player implements ActionListener {
 	}
 	
 	public void jump() {
+		
 		// Only allows jump when on ground
-		if (tigerImage.getY() == GROUND_Y && continueGame == true) {
+		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == false) {
 			tigerImage.move(0, -jumpPower);
 		}
+		
+		// Allow double jumps
 			
 ////		IMPLEMENT(UNCOMMENT) ONCE POWERUPS ARE DONE 
 		
@@ -99,6 +106,7 @@ public class Player implements ActionListener {
 		}
 	}
 	
+	// Check collision between player and obstacle
 	public boolean isCollided(Obstacle obstacle) {
 		
 		// +10 & -10 to make the obstacle hit box smaller for precision
@@ -115,12 +123,40 @@ public class Player implements ActionListener {
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 			
-			System.out.println("Player has collided");
+			System.out.println("Player has collided with obstacle");
 			continueGame = false;
 			return true;
 		}
 		return false;
 		
+	}
+	
+	// Check collision between player and power up
+	public boolean isCollided(PowerUp powerUp) {
+		
+		double tx = tigerImage.getX();
+		double ty = tigerImage.getY();
+		double tw = tigerImage.getWidth();
+		double th = tigerImage.getHeight();
+		double x = powerUp.getX();
+		double y = powerUp.getY(); 
+		double w = powerUp.getWidth();
+		double h = powerUp.getHeight();
+		
+		// check collision
+		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
+		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+					
+			System.out.println("Player has collided with power-up");
+			
+			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
+				doubleJump = true;
+			}
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public double getPosX() {

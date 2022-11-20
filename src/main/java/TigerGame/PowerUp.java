@@ -30,7 +30,9 @@ public class PowerUp implements ActionListener {
 		posX = START_X;
 		posY = START_Y;
 		//powerImage = randomizeObstacleImage();
-		powerImage = new GImage("sounds/oneup.png");
+		powerImage = new GImage("sounds/doublejump.png");
+		powerType = PowerUpType.DOUBLEJUMP;
+		
 		powerImage.move(posX, posY);
 		program.add(powerImage);
 		powerImage.setSize(POWER_WIDTH, POWER_HEIGHT);
@@ -61,18 +63,30 @@ public class PowerUp implements ActionListener {
 
 	// getters and setters
 	
-	public PowerUpType getPowerType (PowerUpType powerType) {
+	public PowerUpType getPowerType() {
 		return this.powerType;
 	}
 	
 	public double getX() {
-		return posX;
+		return powerImage.getX();
 	}
 
 	public double getY() {
-		return posY;
+		return powerImage.getY();
+	}
+	
+	public double getWidth() {
+		return powerImage.getWidth();
+	}
+	
+	public double getHeight() {
+		return powerImage.getHeight();
 	}
 
+	public GImage getGImage() {
+		return powerImage;
+	}
+	
 	public void setY(double posY) {
 		this.posY = posY;
 	}

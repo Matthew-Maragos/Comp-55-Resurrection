@@ -20,6 +20,7 @@ public class Level implements ActionListener {
 	public Player player;
 	private Timer NewObstacleTimer;
 	private Timer collisionCheckTimer;
+	private Timer powerUpTimer;
 	
 	private ArrayList<MapElement> clouds;
 	private ArrayList<MapElement> bushes;
@@ -54,13 +55,17 @@ public class Level implements ActionListener {
 		player = new Player(program);
 		
 		// Add powerUp
-		//currentPowerUp = new PowerUp(program);
+		currentPowerUp = new PowerUp(program);
 
 		// Add timer
 		NewObstacleTimer = new Timer(rgen.nextInt(4000,5000), this);
 		NewObstacleTimer.start();
+		
 		collisionCheckTimer = new Timer(100, this);
 		collisionCheckTimer.start();
+		
+		powerUpTimer = new Timer(100, this);
+		powerUpTimer.start();
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -87,6 +92,13 @@ public class Level implements ActionListener {
 				}
 			}
 		}
+		
+		if(currentPowerUp != null) {
+			if(player.isCollided(currentPowerUp)) {
+				program.remove(currentPowerUp.getGImage());
+			}
+		}
+		
 	}
 
 	public void stopAllTimersOnce() {
@@ -101,7 +113,8 @@ public class Level implements ActionListener {
 		}
 		player.getGravityTimer().stop();
 		NewObstacleTimer.stop();
-		collisionCheckTimer.stop();		
+		collisionCheckTimer.stop();	
+		powerUpTimer.stop();
 	}
 	
 	public void jump(GObject playerIn) {
