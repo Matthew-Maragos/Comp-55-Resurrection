@@ -14,8 +14,6 @@ public class Obstacle implements ActionListener  {
 	public static final int OBSTACLE_HEIGHT = 90;
 	public static final int START_X = 600;
 	public static final int START_Y = 280;
-	//public static final int BORDER_X;
-	
 	private MainApplication program;
 	
 	private ObstacleType obstacleType;
@@ -30,11 +28,10 @@ public class Obstacle implements ActionListener  {
 	
 	public Obstacle(MainApplication app) {
 		rgen = RandomGenerator.getInstance();
-		//obsImage = new GImage("sounds/trashcan.png");
 		obsImage = randomizeObstacleImage();
 		program = app;
 		moveSpeed = 5;
-		posX = rgen.nextInt(600, 800);
+		posX = START_X;
 		posY = START_Y;
 		obsImage.move(posX, posY);
 		program.add(obsImage);
@@ -43,7 +40,6 @@ public class Obstacle implements ActionListener  {
 		obsMoveTimer.start();
 	}
 
-	
 	public void actionPerformed(ActionEvent e) {
 		obsImage.move(-moveSpeed, 0);
 	}
@@ -54,14 +50,18 @@ public class Obstacle implements ActionListener  {
 			return new GImage("sounds/trashcan.png");
 		}
 		if(randNum == 2) {
+			
 			return new GImage("sounds/acorn.png");
 		}
 		if(randNum == 3) {
 			return new GImage("sounds/bench.png");
 		}
 		else {
+			//GImage temp = new GImage("sounds/rock.png");
+			//temp.setSize(100,100);
 			return new GImage("sounds/rock.png");
 		}
+		
 	}
 	
 	public ObstacleType getObstacleType() {

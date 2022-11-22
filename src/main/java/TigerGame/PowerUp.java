@@ -8,155 +8,103 @@ import acm.util.RandomGenerator;
 
 public class PowerUp implements ActionListener {
 
-	
-	
 	private MainApplication program;
 	
+	public static final int POWER_WIDTH = 65;
+	public static final int POWER_HEIGHT = 65;
+	public static final int START_X = 600;
+	public static final int START_Y = 290;
+	
 	private PowerUpType powerType;
-	private GImage powerImage;
 	private double posX;
 	private double posY;
 	private int moveSpeed;
-	private int Pwr_Start_X;
-	private int Pwr_Start_Y;
-	private Timer pwrTimer;
+	private GImage powerImage;
+	private Timer powerTimer;
 	public RandomGenerator rgen;
 
-	
-	//default constructor
-	public PowerUp(PowerUpType type, double posX, double posY, double moveSpeed, GImage PowerImage) {
-		powerType = type;
-		this.posX = posX;
-		this.posY = posY;
-		this.setMoveSpeed((int) moveSpeed);
-		this.powerImage = PowerImage;
+	public PowerUp(MainApplication app) {
+		rgen = RandomGenerator.getInstance();
+		program = app;
+		moveSpeed = 5;
+		posX = START_X;
+		posY = START_Y;
+		//powerImage = randomizeObstacleImage();
+		powerImage = new GImage("sounds/doublejump.png");
+		powerType = PowerUpType.DOUBLEJUMP;
 		
+		powerImage.move(posX, posY);
+		program.add(powerImage);
+		powerImage.setSize(POWER_WIDTH, POWER_HEIGHT);
+		
+		powerTimer = new Timer (15,this);
+		powerTimer.start();
+	}
+		
+	public void actionPerformed(ActionEvent e) {
+		powerImage.move(-moveSpeed, 0);
 	}
 	
-	public PowerUpType getPowerType (PowerUpType powerType) {
+	public GImage randomizeObstacleImage() {
+		int randNum = rgen.nextInt(1,3);
+		if(randNum == 1) {
+			return new GImage("sounds/invincibility.png");
+		}
+		if(randNum == 2) {
+			return new GImage("sounds/oneup.png");
+		}
+		if(randNum == 3) {
+			return new GImage("sounds/doublejump.png");
+		}
+		else {
+			return new GImage("sounds/jeopardy.png");
+		}
+	}	
+
+	// getters and setters
+	
+	public PowerUpType getPowerType() {
 		return this.powerType;
 	}
 	
+	public double getX() {
+		return powerImage.getX();
+	}
+
+	public double getY() {
+		return powerImage.getY();
+	}
 	
-	public PowerUp(MainApplication app, PowerUpType type, int startX) {
-		program = app;
-		moveSpeed = 5;
-		pwrTimer = new Timer (15,this);
-		pwrTimer.start();
-		
-		//four whole if statements b/c of the 4 Power Up Types
-		if (type == PowerUpType.ONEUP) {
-			Pwr_Start_X= startX;
-			//Pwr_Start_Y =
-			//not sure what value would belong here
-			posX=Pwr_Start_X;
-			posY=Pwr_Start_Y;
-			powerType = type;
-			
-			powerImage = new GImage("sounds/oneupe.png");
-			powerImage.scale(0.2); // will have .2 as a placeholder I don't want too much bigger then the obstacles
-			powerImage.setLocation(startX, Pwr_Start_Y);
-			program.add(powerImage);
-		}
-		if (type == PowerUpType.DOUBLEJUMP) {
-			Pwr_Start_X= startX;
-			//Pwr_Start_Y =
-			posX=Pwr_Start_X;
-			posY=Pwr_Start_Y;
-			powerType = type;
-			
-			powerImage = new GImage("sounds/doublejump.png");
-			powerImage.scale(0.2); 
-			powerImage.setLocation(startX, Pwr_Start_Y);
-			program.add(powerImage);
-		}
-		if (type == PowerUpType.INVINCIBILITY) {
-			Pwr_Start_X= startX;
-			//Pwr_Start_Y =
-			posX=Pwr_Start_X;
-			posY=Pwr_Start_Y;
-			powerType = type;
-			
-			powerImage = new GImage("sounds/invincibility.png");
-			powerImage.scale(0.2); 
-			powerImage.setLocation(startX, Pwr_Start_Y);
-			program.add(powerImage);
-		}
-		if (type == PowerUpType.JEOPARDY) {
-			Pwr_Start_X= startX;
-			//Pwr_Start_Y =
-			posX=Pwr_Start_X;
-			posY=Pwr_Start_Y;
-			powerType = type;
-			
-			powerImage = new GImage("sounds/jeopardy.png");
-			powerImage.scale(0.2); 
-			powerImage.setLocation(startX, Pwr_Start_Y);
-			program.add(powerImage);
-		}
-		
-		
+	public double getWidth() {
+		return powerImage.getWidth();
 	}
-
-	//getters and setters for posX/Y and powerHeight/Width
 	
-	public double getPosX() {
-		return posX;
+	public double getHeight() {
+		return powerImage.getHeight();
 	}
 
-	public void setPosX(double posX) {
-		this.posX = posX;
+	public GImage getGImage() {
+		return powerImage;
 	}
-
-	public double getPosY() {
-		return posY;
-	}
-
-	public void setPosY(double posY) {
+	
+	public void setY(double posY) {
 		this.posY = posY;
+	}
+	
+	public void setX(double posX) {
+		this.posX = posX;
 	}
 
 	public int getMoveSpeed() {
 		return moveSpeed;
 	}
 	
-
 	public void setMoveSpeed(int moveSpeed) {
 		this.moveSpeed = moveSpeed;
 	}
 	
-	//none getters and setters
-	
-	public void move( int distance) {
-		powerImage.move(-distance, 0);
+	public void move(int moveSpeed) {
+		powerImage.move(-moveSpeed, 0);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		powerImage.move(-moveSpeed, 0);	
-	}
-
-	public GImage randomizeObstacleImage() {
-		int randNum = rgen.nextInt(1,4);
-		if(randNum == 1) {
-			return new GImage("sounds/invincibilty.png");
-		}
-		if(randNum == 2) {
-			return new GImage("sounds/jeopardy.png");
-		}
-		if(randNum == 3) {
-			return new GImage("sounds/doublejump.png");
-		}
-		else {
-			return new GImage("sounds/oneup.png");
-		}
-	}
-	
-	
-	//need an activate PowerUp class(or function i do not know)
-	//need a function that will pick a random image 
-	
-	 
-			
 
 }
