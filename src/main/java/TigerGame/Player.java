@@ -26,24 +26,24 @@ public class Player implements ActionListener {
 	private int jumpPower;
 	private int gravity;
 	private int playerScore;
+	private int secondJump;
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
-<<<<<<< HEAD
-	private Timer jumpTimer;
-	private boolean continueGame = false;
-=======
->>>>>>> branch 'main' of https://github.com/COMP55Fall2022/final-project-group-1.git
-	
+
 	private boolean continueGame;
 	private boolean doubleJump;
-	//	private double posX;
-	//	private double posY;
+
+	
+//	private Timer jumpTimer;
+//	private double posX;
+//	private double posY;
 	
 	GImage tigerImage;
 
 	public Player(MainApplication app) {
 		continueGame = true;
 		doubleJump = false;
+		
 		
 		program = app;
 		playerScore = 0;
@@ -67,64 +67,50 @@ public class Player implements ActionListener {
 		
 	}
 		
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) 
+	{
+		//Gravity
 		land();			
+		
+		//Update and Print Player Score
 		playerScore++;
 		scoreLabel.setLabel(" " + playerScore);
-		// switch between images
 		
-//		if (jumpTimer && e.getKeyCode() == 3) {
-//		jump();
-//	}
-//	else {}
+		//resets secondJump counter once player hits ground
+		if (tigerImage.getY() == GROUND_Y && secondJump > 2){
+			secondJump = 0;
+			
 		}
+	}
 
 	
-	public void jump() {
-<<<<<<< HEAD
-//		Only allows jump when on ground
-		if (tigerImage.getY() >= GROUND_Y && continueGame == true) {
-			
-			tigerImage.move(0, -);
-=======
-		
-		// Only allows jump when on ground
-		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == false) {
+	public void jump() 
+	{
+		// Normal Jump
+		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == false) 	{
 			tigerImage.move(0, -jumpPower);
->>>>>>> branch 'main' of https://github.com/COMP55Fall2022/final-project-group-1.git
+			secondJump = 0;
+			System.out.println("SJ " + secondJump);
 		}
 		
-<<<<<<< HEAD
-//		System.out.println(continueGame);
-
-=======
-		// Allow double jumps
->>>>>>> branch 'main' of https://github.com/COMP55Fall2022/final-project-group-1.git
-			
+		// DoubleJump
+		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == true) {
+			tigerImage.move(0, -jumpPower);
+		}
 		
+		//DoubleJump when off ground
+		if (tigerImage.getY() < GROUND_Y && continueGame == true && doubleJump == true){
+				secondJump++;
+				
+				//Only work if up arrow is pressed twice, resets when ground is hit
+				if (tigerImage.getY() < GROUND_Y && secondJump == 2){
+					tigerImage.move(0, -jumpPower);
+					secondJump = 3;
+				}
+		}
 		
-		
-////		IMPLEMENT(UNCOMMENT) ONCE POWERUPS ARE DONE 
-//////////////////////////////////////////////////////////////////////////////////
-//		Only allows jump when on ground
-//		if (DoubleUp == false && tigerImage.getY() == GROUND_Y) {
-//			posY = posY - jumpPower;
-//			tigerImage.move(0, -jumpPower);
-//		}
-//		
-////			Powerup will allow two jumps, jump when on ground and jump on Y: 120 (Y after first jump)
-//
-//		if (tigerImage.getY() == 120 || tigerImage.getY() == GROUND_Y && DOUBLEUP == false) {
-//			posY = posY - jumpPower;
-//			tigerImage.move(0, -jumpPower);
-//		}
-//		System.out.println(tigerImage.getY());
-//		System.out.println(GROUND_Y);
-//		System.out.println(posY + " " + jumpPower+ " " + i);
-//		posY = posY - jumpPower;
-
-
 	}
+	
 	
 	public void land() {
 		if (tigerImage.getY() < GROUND_Y) {
@@ -149,7 +135,7 @@ public class Player implements ActionListener {
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 			
-			System.out.println("Player has collided with obstacle");
+//			System.out.println("Player has collided with obstacle");
 			continueGame = false;
 			return true;
 		}
@@ -173,7 +159,7 @@ public class Player implements ActionListener {
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 					
-			System.out.println("Player has collided with power-up");
+//			System.out.println("Player has collided with power-up");
 			
 			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
 				doubleJump = true;
