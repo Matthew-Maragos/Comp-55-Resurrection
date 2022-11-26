@@ -36,7 +36,7 @@ public class Player implements ActionListener {
 	private boolean continueGame;
 	private boolean doubleJump;
 	private boolean inv;
-	private boolean OneUp;
+	private boolean oneUp;
 
 	
 //	private Timer jumpTimer;
@@ -141,22 +141,33 @@ public class Player implements ActionListener {
 		double h = obstacle.getHeight() - 10;
 		
 		
-		//if invincible iscollided game continues
+		//if invincible iscollided regular calculations ignored
 		if (inv == true) {
-				continueGame = true;
-				return false;
-		}
-		//else acts like normal function
-		if (inv == false) {
-				// check collision
-				if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
-				&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
-					continueGame = false;
-					return true;
-				}
+			continueGame = true;
+			return false;
 		}
 		
-		//return false if both if statements dont pass
+		//if oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
+		else if (oneUp == true) {
+			// check collision
+			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
+			&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+				oneUp = false;
+				continueGame = true;
+				return false;
+			}
+		}
+		
+		//else acts like normal function
+		else {
+			// check collision
+			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
+			&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+				continueGame = false;
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	
@@ -190,7 +201,7 @@ public class Player implements ActionListener {
 			}
 			
 			if(powerUp.getPowerType() == PowerUpType.ONEUP) {
-				OneUp = true;
+				oneUp = true;
 			}
 			
 			return true;
