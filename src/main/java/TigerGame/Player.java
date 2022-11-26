@@ -11,6 +11,9 @@ import acm.graphics.GLabel;
 
 //	#TODO Make jump action smoother
 
+//	#TODO Program thinks all powerups are double jump (test program)
+//	invincibility is theoretically implemented, need to test
+//	LOOK AT LINE 181 FOR MORE INFO
 
 public class Player implements ActionListener {
 
@@ -32,6 +35,8 @@ public class Player implements ActionListener {
 
 	private boolean continueGame;
 	private boolean doubleJump;
+	private boolean inv;
+	private boolean OneUp;
 
 	
 //	private Timer jumpTimer;
@@ -43,6 +48,7 @@ public class Player implements ActionListener {
 	public Player(MainApplication app) {
 		continueGame = true;
 		doubleJump = false;
+		inv = false;
 		
 		
 		program = app;
@@ -81,6 +87,9 @@ public class Player implements ActionListener {
 			secondJump = 0;
 			
 		}
+		
+		System.out.println(inv);
+
 	}
 
 	
@@ -131,16 +140,24 @@ public class Player implements ActionListener {
 		double w = obstacle.getWidth() - 10;
 		double h = obstacle.getHeight() - 10;
 		
-		// check collision
-		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
-		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
-			
-//			System.out.println("Player has collided with obstacle");
-			continueGame = false;
-			return true;
-		}
-		return false;
 		
+		//if invincible iscollided game continues
+		if (inv == true) {
+				continueGame = true;
+				return false;
+		}
+		//else acts like normal function
+		if (inv == false) {
+				// check collision
+				if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
+				&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+					continueGame = false;
+					return true;
+				}
+		}
+		
+		//return false if both if statements dont pass
+		return false;
 	}
 	
 	// Check collision between player and power up
@@ -161,8 +178,19 @@ public class Player implements ActionListener {
 					
 //			System.out.println("Player has collided with power-up");
 			
+			//// when player gets powerup, double jump 				////
+			//// is set to true despite invincibility being there	////
+			//// need to fix later run program to learn more		////
 			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
 				doubleJump = true;
+			}
+			
+			if(powerUp.getPowerType() == PowerUpType.INVINCIBILITY) {
+				inv = true;
+			}
+			
+			if(powerUp.getPowerType() == PowerUpType.ONEUP) {
+				OneUp = true;
 			}
 			
 			return true;

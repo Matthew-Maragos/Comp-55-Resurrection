@@ -30,7 +30,7 @@ public class PowerUp implements ActionListener {
 		posX = START_X;
 		posY = START_Y;
 		//powerImage = randomizeObstacleImage();
-		powerImage = new GImage("sounds/doublejump.png");
+		powerImage = new GImage("sounds/invincibility.png");
 		powerType = PowerUpType.DOUBLEJUMP;
 		
 		powerImage.move(posX, posY);
