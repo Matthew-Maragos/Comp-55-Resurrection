@@ -11,9 +11,11 @@ import acm.graphics.GLabel;
 
 //	#TODO Make jump action smoother
 
-//	#TODO Program thinks all powerups are double jump (test program)
-//	invincibility is theoretically implemented, need to test
-//	LOOK AT LINE 181 FOR MORE INFO
+//	#TODO Program forces one powerup to always be true, double jump 
+// 	was always true until oneUp was added, now oneUp is always true
+//	should only be true if collected by player, fix later
+
+//	#TODO Remove Image of power up (line 94) (forgot function lol)
 
 public class Player implements ActionListener {
 
@@ -30,25 +32,25 @@ public class Player implements ActionListener {
 	private int gravity;
 	private int playerScore;
 	private int secondJump;
+	
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
+	
 
 	private boolean continueGame;
 	private boolean doubleJump;
 	private boolean inv;
 	private boolean oneUp;
-
-	
-//	private Timer jumpTimer;
-//	private double posX;
-//	private double posY;
 	
 	GImage tigerImage;
+	GImage powerImage;
 
 	public Player(MainApplication app) {
 		continueGame = true;
 		doubleJump = false;
 		inv = false;
+		oneUp = false;
+		System.out.println(oneUp);
 		
 		
 		program = app;
@@ -85,10 +87,33 @@ public class Player implements ActionListener {
 		//resets secondJump counter once player hits ground
 		if (tigerImage.getY() == GROUND_Y && secondJump > 2){
 			secondJump = 0;
-			
 		}
 		
-		System.out.println(inv);
+		//Displays image when powerup is collected
+		if (oneUp = true){
+			powerImage = new GImage("sounds/oneup.png");
+			program.add(powerImage);
+			powerImage.setSize(30, 30);
+			powerImage.setLocation(540, 70);
+		}
+		else if (inv = true){
+			powerImage = new GImage("sounds/invincibility.png");
+			program.add(powerImage);
+			powerImage.setSize(30, 30);
+			powerImage.setLocation(540, 70);
+		}
+		else if (doubleJump = true){
+			powerImage = new GImage("sounds/doublejump.png");
+			program.add(powerImage);
+			powerImage.setSize(30, 30);
+			powerImage.setLocation(540, 70);
+		}
+		else {
+			//remove image
+		}
+		
+//		System.out.println("o" + oneUp);
+//		System.out.println(doubleJump);
 
 	}
 
@@ -148,7 +173,7 @@ public class Player implements ActionListener {
 		}
 		
 		//if oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
-		else if (oneUp == true) {
+		if (oneUp == true) {
 			// check collision
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 			&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
