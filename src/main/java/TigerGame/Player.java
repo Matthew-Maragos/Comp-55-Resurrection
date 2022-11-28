@@ -15,7 +15,7 @@ import acm.graphics.GLabel;
 // 	was always true until oneUp was added, now oneUp is always true
 //	should only be true if collected by player, fix later
 
-//	#TODO Remove Image of power up (line 94) (forgot function lol)
+//	#TODO Remove Image of power up (line 94)
 
 public class Player implements ActionListener {
 
@@ -53,8 +53,6 @@ public class Player implements ActionListener {
 		doubleJump = false;
 		inv = false;
 		oneUp = false;
-		System.out.println(oneUp);
-		
 		
 		program = app;
 		playerScore = 0;
@@ -75,7 +73,7 @@ public class Player implements ActionListener {
 		scoreLabel.setLocation(520, 50);
 		scoreLabel.setFont(new Font("Serif", Font.BOLD, 36));	
 
-		doubleJumpTimer = new Timer(5000, this);
+		doubleJumpTimer = new Timer(1000, this);
 		invTimer = new Timer(5000, this);
 		jpTimer = new Timer(5000, this);
 
@@ -114,12 +112,18 @@ public class Player implements ActionListener {
 			powerImage.setSize(30, 30);
 			powerImage.setLocation(540, 70);
 		}
+		else {
+		}
 		
+		
+		//
 		if( e.getSource() == doubleJumpTimer){
+			program.remove(powerImage);
 			doubleJumpTimer.stop();
 			doubleJump = false;
 		}
 		else if (e.getSource()== invTimer) {
+			program.remove(powerImage);
 			invTimer.stop();
 			inv = false;
 		}
