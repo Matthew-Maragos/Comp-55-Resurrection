@@ -109,8 +109,7 @@ public class Player implements ActionListener {
 			powerImage.setLocation(540, 70);
 		}
 		else {
-			//remove image
-			
+			//remove image	
 		}
 		
 //		System.out.println("o" + oneUp);
