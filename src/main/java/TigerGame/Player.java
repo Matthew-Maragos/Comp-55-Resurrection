@@ -44,6 +44,10 @@ public class Player implements ActionListener {
 	
 	GImage tigerImage;
 	GImage powerImage;
+	
+	private Timer doubleJumpTimer;
+	private Timer invTimer;
+	private Timer jpTimer;
 
 	public Player(MainApplication app) {
 		continueGame = true;
@@ -71,6 +75,10 @@ public class Player implements ActionListener {
 		program.add(scoreLabel);
 		scoreLabel.setLocation(520, 50);
 		scoreLabel.setFont(new Font("Serif", Font.BOLD, 36));	
+
+		doubleJumpTimer = new Timer(5000, this);
+		invTimer = new Timer(5000, this);
+		jpTimer = new Timer(5000, this);
 
 		
 	}
@@ -108,9 +116,16 @@ public class Player implements ActionListener {
 			powerImage.setSize(30, 30);
 			powerImage.setLocation(540, 70);
 		}
-		else {
-			//remove image
+		
+		if( e.getSource() == doubleJumpTimer){
+			doubleJumpTimer.stop();
+			doubleJump = false;
 		}
+		else if (e.getSource()== invTimer) {
+			invTimer.stop();
+			inv = false;
+		}
+
 		
 //		System.out.println("o" + oneUp);
 //		System.out.println(doubleJump);
@@ -219,10 +234,12 @@ public class Player implements ActionListener {
 			//// need to fix later run program to learn more		////
 			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
 				doubleJump = true;
+				doubleJumpTimer.start();
 			}
 			
 			if(powerUp.getPowerType() == PowerUpType.INVINCIBILITY) {
 				inv = true;
+				invTimer.start();
 			}
 			
 			if(powerUp.getPowerType() == PowerUpType.ONEUP) {
