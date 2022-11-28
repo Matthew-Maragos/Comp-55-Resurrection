@@ -110,6 +110,7 @@ public class Player implements ActionListener {
 		}
 		else {
 			//remove image
+			
 		}
 		
 //		System.out.println("o" + oneUp);
