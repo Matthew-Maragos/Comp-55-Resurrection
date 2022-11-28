@@ -80,22 +80,26 @@ public class Level implements ActionListener {
 
 		for(Obstacle obstacle: obstacles) {
 			if(obstacle != null) {
+				if(player.isCollided(obstacle)) {
+					System.out.println("Player has collided with obstacle");
+					stopAllTimersOnce();
+				}
 				if(obstacle.getX() + obstacle.getWidth() < 0) {
 					// TODO: look into removing an obstacle from the ArrayList when it goes out of bound
 					// ConcurrentModidicationException
 					
-					//obstacles.remove(obstacle);
-					//System.out.println("Removed. Number of obstacles: " + obstacles.size());
-				}
-				if(player.isCollided(obstacle)) {
-					stopAllTimersOnce();
+					obstacles.remove(obstacle);
+					System.out.println("Removed. Number of obstacles: " + obstacles.size());
+					break;
 				}
 			}
 		}
 		
 		if(currentPowerUp != null) {
 			if(player.isCollided(currentPowerUp)) {
+				System.out.println("Player has collided with powerup");
 				program.remove(currentPowerUp.getGImage());
+				
 			}
 		}
 		

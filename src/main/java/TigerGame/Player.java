@@ -36,7 +36,6 @@ public class Player implements ActionListener {
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
 	
-
 	private boolean continueGame;
 	private boolean doubleJump;
 	private boolean inv;
@@ -44,6 +43,10 @@ public class Player implements ActionListener {
 	
 	GImage tigerImage;
 	GImage powerImage;
+	
+	private Timer doubleJumpTimer;
+	private Timer invTimer;
+	private Timer jpTimer;
 
 	public Player(MainApplication app) {
 		continueGame = true;
@@ -72,11 +75,14 @@ public class Player implements ActionListener {
 		scoreLabel.setLocation(520, 50);
 		scoreLabel.setFont(new Font("Serif", Font.BOLD, 36));	
 
+		doubleJumpTimer = new Timer(5000, this);
+		invTimer = new Timer(5000, this);
+		jpTimer = new Timer(5000, this);
+
 		
 	}
 		
-	public void actionPerformed(ActionEvent e) 
-	{
+	public void actionPerformed(ActionEvent e) {
 		//Gravity
 		land();			
 		
@@ -90,27 +96,33 @@ public class Player implements ActionListener {
 		}
 		
 		//Displays image when powerup is collected
-		if (oneUp = true){
+		if (oneUp == true){
 			powerImage = new GImage("sounds/oneup.png");
 			program.add(powerImage);
 			powerImage.setSize(30, 30);
 			powerImage.setLocation(540, 70);
 		}
-		else if (inv = true){
+		else if (inv == true){
 			powerImage = new GImage("sounds/invincibility.png");
 			program.add(powerImage);
 			powerImage.setSize(30, 30);
 			powerImage.setLocation(540, 70);
 		}
-		else if (doubleJump = true){
+		else if (doubleJump == true){
 			powerImage = new GImage("sounds/doublejump.png");
 			program.add(powerImage);
 			powerImage.setSize(30, 30);
 			powerImage.setLocation(540, 70);
 		}
-		else {
-			//remove image	
+		if( e.getSource() == doubleJumpTimer){
+			doubleJumpTimer.stop();
+			doubleJump = false;
 		}
+		else if (e.getSource()== invTimer) {
+			invTimer.stop();
+			inv = false;
+		}
+
 		
 //		System.out.println("o" + oneUp);
 //		System.out.println(doubleJump);
@@ -118,8 +130,7 @@ public class Player implements ActionListener {
 	}
 
 	
-	public void jump() 
-	{
+	public void jump() {
 		// Normal Jump
 		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == false) 	{
 			tigerImage.move(0, -jumpPower);
@@ -166,7 +177,7 @@ public class Player implements ActionListener {
 		double h = obstacle.getHeight() - 10;
 		
 		
-		//if invincible iscollided regular calculations ignored
+		//if invincible is collided regular calculations ignored
 		if (inv == true) {
 			continueGame = true;
 			return false;
@@ -212,17 +223,17 @@ public class Player implements ActionListener {
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 					
-//			System.out.println("Player has collided with power-up");
-			
 			//// when player gets powerup, double jump 				////
 			//// is set to true despite invincibility being there	////
 			//// need to fix later run program to learn more		////
 			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
 				doubleJump = true;
+				doubleJumpTimer.start();
 			}
 			
 			if(powerUp.getPowerType() == PowerUpType.INVINCIBILITY) {
 				inv = true;
+				invTimer.start();
 			}
 			
 			if(powerUp.getPowerType() == PowerUpType.ONEUP) {
