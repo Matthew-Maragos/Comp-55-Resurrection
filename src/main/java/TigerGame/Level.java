@@ -13,6 +13,7 @@ public class Level implements ActionListener {
 	// or can the movement of obstacle be performed in itself
 	// array of obstacles ? move them all ?
 	// TODO add general speed value which controls: gravity, jump power, obstacle move speed
+	// TODO fix the spacing between Obstacles
 
 
 	private MainApplication program;

@@ -184,12 +184,13 @@ public class Player implements ActionListener {
 		}
 		
 		//if oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
+//		#TODO add a oneUp 'function for program.remove(powerImage);' to be used 
 		if (oneUp == true) {
 			// check collision
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 			&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
-				oneUp = false;
 				continueGame = true;
+				oneUp = false;
 				return false;
 			}
 		}
