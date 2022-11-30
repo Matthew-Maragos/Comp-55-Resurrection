@@ -55,7 +55,6 @@ public class Player implements ActionListener {
 		oneUp = false;
 		System.out.println(oneUp);
 		
-		
 		program = app;
 		playerScore = 0;
 		jumpPower = 200;
@@ -75,10 +74,14 @@ public class Player implements ActionListener {
 		scoreLabel.setLocation(520, 50);
 		scoreLabel.setFont(new Font("Serif", Font.BOLD, 36));	
 
+		powerImage = new GImage("sounds/oneup.png");
+		powerImage.setSize(30, 30);
+		powerImage.setLocation(540, 70);
+		
 		doubleJumpTimer = new Timer(5000, this);
-		invTimer = new Timer(5000, this);
+		invTimer = new Timer(2000, this);
 		jpTimer = new Timer(5000, this);
-
+		
 		
 	}
 		
@@ -96,37 +99,48 @@ public class Player implements ActionListener {
 		}
 		
 		//Displays image when powerup is collected
-		if (oneUp == true){
+		if (oneUp == true) {
 			powerImage = new GImage("sounds/oneup.png");
-			program.add(powerImage);
+			//program.add(powerImage);
+			//powerImage.setSize(30, 30);
+			//powerImage.setLocation(540, 70);
+		}
+//		if (inv == true) {
+//			powerImage = new GImage("sounds/invincibility.png");
+//			System.out.println(powerImage.getLocation());
+//			
+//			program.add(powerImage);
+//			inv = false;
+			/*
 			powerImage.setSize(30, 30);
 			powerImage.setLocation(540, 70);
-		}
-		else if (inv == true){
-			powerImage = new GImage("sounds/invincibility.png");
-			program.add(powerImage);
-			powerImage.setSize(30, 30);
-			powerImage.setLocation(540, 70);
-		}
-		else if (doubleJump == true){
+			*/
+			
+			
+//		}
+		else if (doubleJump == true) {
 			powerImage = new GImage("sounds/doublejump.png");
-			program.add(powerImage);
-			powerImage.setSize(30, 30);
-			powerImage.setLocation(540, 70);
+			//program.add(powerImage);
+			//powerImage.setSize(30, 30);
+			//powerImage.setLocation(540, 70);
 		}
-		
-		if( e.getSource() == doubleJumpTimer){
-			doubleJumpTimer.stop();
+		if( e.getSource() == doubleJumpTimer) {
 			doubleJump = false;
+			program.remove(powerImage);
+			doubleJumpTimer.stop();
 		}
 		else if (e.getSource()== invTimer) {
-			invTimer.stop();
+			
 			inv = false;
-		}
-
+			invTimer.stop();
+			System.out.println("Powerup expires");
+			System.out.println(powerImage.getX());
+			System.out.println(powerImage.getLocation());
+			//program.remove(tigerImage);
+			program.remove(powerImage);
+			
 		
-//		System.out.println("o" + oneUp);
-//		System.out.println(doubleJump);
+		}
 
 	}
 
@@ -179,10 +193,10 @@ public class Player implements ActionListener {
 		
 		
 		//if invincible is collided regular calculations ignored
-		if (inv == true) {
-			continueGame = true;
-			return false;
-		}
+//		if (inv == true) {
+//			continueGame = true;
+//			return false;
+//		}
 		
 		//if oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
 		if (oneUp == true) {
@@ -234,6 +248,13 @@ public class Player implements ActionListener {
 			
 			if(powerUp.getPowerType() == PowerUpType.INVINCIBILITY) {
 				inv = true;
+				powerImage.setImage("sounds/invincibility.png");
+				powerImage.setSize(30, 30);
+				powerImage.setLocation(540, 70);
+				
+				System.out.println("inv collision" + powerImage.getLocation());
+				
+				program.add(powerImage);
 				invTimer.start();
 			}
 			
@@ -246,6 +267,7 @@ public class Player implements ActionListener {
 		
 		return false;
 	}
+	
 	
 	public double getPosX() {
 		return tigerImage.getX();

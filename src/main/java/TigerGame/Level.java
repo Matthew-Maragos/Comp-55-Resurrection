@@ -97,8 +97,15 @@ public class Level implements ActionListener {
 		
 		if(currentPowerUp != null) {
 			if(player.isCollided(currentPowerUp)) {
-				System.out.println("Player has collided with powerup");
+				//System.out.println("Player has collided with powerup");
 				program.remove(currentPowerUp.getGImage());
+				
+				//TODO: 
+				//currentPowerUp = null;
+				
+				//Todo need to move this new powerup somewhere else
+				//currentPowerUp = new PowerUp(program);
+				
 				
 			}
 		}
