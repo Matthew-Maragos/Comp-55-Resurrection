@@ -11,35 +11,38 @@ import acm.graphics.GObject;
 
 import acm.graphics.GObject;
 
-public class MultiPlayerMode 
-{
-	private MainApplication SM;
-	Player PlayerOne;
-	Player PlayerTwo; 
 
-	Level gameLevelOne;
-	Level gameLevelTwo; 
+
+
+public class MultiPlayerMode extends GraphicsPane {
+	//TODO showContents(), hideContents()
+	
+	private MainApplication program;
+	
+	public Level LevelTwo;
+
+
 	ArrayList<String> Player = new ArrayList<String>();
-	
-//	Player.add("Vesena");
-		
-	void startGame()
-	{
-		
+
+	public static final int WINDOW_WIDTH = 600;
+	public static final int WINDOW_HEIGHT = 436;
+
+
+	public MultiPlayerMode(MainApplication app) {
+		super();
+		program = app;
+		LevelTwo = new Level(program);
 	}
 	
-	void endGame()
-	{
+	
+	@Override
+	public void showContents() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void hideContents() {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	public void mousePressed(MouseEvent e) 
-	{
-//		GObject obj = StartMenu.getElementAt(e.getX(), e.getY());
-//		if (obj == singleButton) 
-//		{
-//			SM.startGame();
-//		}
-	}
-// Not cool	
 }

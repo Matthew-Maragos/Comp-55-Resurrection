@@ -30,7 +30,7 @@ public class startMenuPane extends GraphicsPane
         } else if(objIn == but3) {
             program.switchToManual();
         } else if (objIn == but2) {
-        	// program.switchToMultiPlayer();
+        	 program.switchToMultiPlayer();
         }
     }
 

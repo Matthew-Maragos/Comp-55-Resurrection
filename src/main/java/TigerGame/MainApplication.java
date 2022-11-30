@@ -18,6 +18,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private startMenuPane mainMenu;
 	private PlayerManualPane manualMenu;
 	private SinglePlayerModePane singleMenu;
+	private MultiPlayerMode multiMenu;
 	
 	
 	public void init() {
@@ -52,6 +53,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		singleMenu = new SinglePlayerModePane(this);
 		switchToScreen(singleMenu);
 	}
+	
+	public void switchToMultiPlayer() {
+		multiMenu = new MultiPlayerMode(this);
+		switchToScreen(multiMenu);
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -74,6 +80,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			singleMenu.LevelOne.player.jump();		
 			//jump function from player from level one from singlemenu
 		}
+		
+		//37 = left, 39 = right
+		if (e.getKeyCode() == 37) {		
+			multiMenu.LevelTwo.player.jump();		
+			//jump function from player from level one from singlemenu
+		}
+		
+//		System.out.println(e.getKeyCode());
 	}
 	
 	@Override
@@ -89,5 +103,4 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		new MainApplication().start();
 	}
 	
-	//fixing pull error
 }
