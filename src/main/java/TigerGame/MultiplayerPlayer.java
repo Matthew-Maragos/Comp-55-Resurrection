@@ -11,6 +11,7 @@ import acm.graphics.GLabel;
 
 public class MultiplayerPlayer {
 	public class Player implements ActionListener {
+//		#TODO has error when up arrow is pressed in multi
 
 		public static final int TIGER1_WIDTH = 100;
 		public static final int TIGER1_HEIGHT = 60;
