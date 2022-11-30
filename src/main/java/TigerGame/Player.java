@@ -15,7 +15,7 @@ import acm.graphics.GLabel;
 // 	was always true until oneUp was added, now oneUp is always true
 //	should only be true if collected by player, fix later
 
-//	#TODO Remove Image of power up (line 94) (forgot function lol)
+//	#TODO Remove Image of power up (line 94)
 
 public class Player implements ActionListener {
 
@@ -53,8 +53,6 @@ public class Player implements ActionListener {
 		doubleJump = false;
 		inv = false;
 		oneUp = false;
-		System.out.println(oneUp);
-		
 		program = app;
 		playerScore = 0;
 		jumpPower = 200;
@@ -65,7 +63,7 @@ public class Player implements ActionListener {
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
 		tigerImage.setLocation(START_X, START_Y);
 		program.add(tigerImage);
-		gravityTimer = new Timer(40, this);
+		gravityTimer = new Timer(50, this);
 		gravityTimer.start();
 		
 		// adds font, sets location, and sets font/size
@@ -80,9 +78,10 @@ public class Player implements ActionListener {
 		
 		doubleJumpTimer = new Timer(5000, this);
 		invTimer = new Timer(2000, this);
+
+		doubleJumpTimer = new Timer(1000, this);
+		invTimer = new Timer(5000, this);
 		jpTimer = new Timer(5000, this);
-		
-		
 	}
 		
 	public void actionPerformed(ActionEvent e) {
@@ -98,39 +97,12 @@ public class Player implements ActionListener {
 			secondJump = 0;
 		}
 		
-		//Displays image when powerup is collected
-		if (oneUp == true) {
-			powerImage = new GImage("sounds/oneup.png");
-			//program.add(powerImage);
-			//powerImage.setSize(30, 30);
-			//powerImage.setLocation(540, 70);
-		}
-//		if (inv == true) {
-//			powerImage = new GImage("sounds/invincibility.png");
-//			System.out.println(powerImage.getLocation());
-//			
-//			program.add(powerImage);
-//			inv = false;
-			/*
-			powerImage.setSize(30, 30);
-			powerImage.setLocation(540, 70);
-			*/
-			
-			
-//		}
-		else if (doubleJump == true) {
-			powerImage = new GImage("sounds/doublejump.png");
-			//program.add(powerImage);
-			//powerImage.setSize(30, 30);
-			//powerImage.setLocation(540, 70);
-		}
-		if( e.getSource() == doubleJumpTimer) {
+		if( e.getSource() == doubleJumpTimer){
 			doubleJump = false;
-			program.remove(powerImage);
+			//program.remove(powerImage);
 			doubleJumpTimer.stop();
 		}
-		else if (e.getSource()== invTimer) {
-			
+		if (e.getSource()== invTimer) {
 			inv = false;
 			invTimer.stop();
 			System.out.println("Powerup expires");
@@ -138,8 +110,6 @@ public class Player implements ActionListener {
 			System.out.println(powerImage.getLocation());
 			//program.remove(tigerImage);
 			program.remove(powerImage);
-			
-		
 		}
 
 	}
@@ -199,12 +169,13 @@ public class Player implements ActionListener {
 //		}
 		
 		//if oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
+//		#TODO add a oneUp 'function for program.remove(powerImage);' to be used 
 		if (oneUp == true) {
 			// check collision
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 			&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
-				oneUp = false;
 				continueGame = true;
+				oneUp = false;
 				return false;
 			}
 		}

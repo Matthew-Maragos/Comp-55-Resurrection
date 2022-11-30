@@ -13,6 +13,7 @@ public class Level implements ActionListener {
 	// or can the movement of obstacle be performed in itself
 	// array of obstacles ? move them all ?
 	// TODO add general speed value which controls: gravity, jump power, obstacle move speed
+	// TODO fix the spacing between Obstacles
 
 
 	private MainApplication program;
@@ -58,7 +59,7 @@ public class Level implements ActionListener {
 		currentPowerUp = new PowerUp(program);
 
 		// Add timer
-		NewObstacleTimer = new Timer(rgen.nextInt(4000,5000), this);
+		NewObstacleTimer = new Timer(rgen.nextInt(5000,5000), this);
 		NewObstacleTimer.start();
 		
 		collisionCheckTimer = new Timer(100, this);
@@ -99,14 +100,6 @@ public class Level implements ActionListener {
 			if(player.isCollided(currentPowerUp)) {
 				//System.out.println("Player has collided with powerup");
 				program.remove(currentPowerUp.getGImage());
-				
-				//TODO: 
-				//currentPowerUp = null;
-				
-				//Todo need to move this new powerup somewhere else
-				//currentPowerUp = new PowerUp(program);
-				
-				
 			}
 		}
 		
