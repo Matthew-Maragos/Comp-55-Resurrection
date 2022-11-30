@@ -15,8 +15,6 @@ import acm.graphics.GLabel;
 // 	was always true until oneUp was added, now oneUp is always true
 //	should only be true if collected by player, fix later
 
-//	#TODO Remove Image of power up (line 94)
-
 public class Player implements ActionListener {
 
 	public static final int TIGER_WIDTH = 100;
@@ -63,7 +61,7 @@ public class Player implements ActionListener {
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
 		tigerImage.setLocation(START_X, START_Y);
 		program.add(tigerImage);
-		gravityTimer = new Timer(50, this);
+		gravityTimer = new Timer(40, this);
 		gravityTimer.start();
 		
 		// adds font, sets location, and sets font/size
@@ -77,9 +75,6 @@ public class Player implements ActionListener {
 		powerImage.setLocation(540, 70);
 		
 		doubleJumpTimer = new Timer(5000, this);
-		invTimer = new Timer(2000, this);
-
-		doubleJumpTimer = new Timer(1000, this);
 		invTimer = new Timer(5000, this);
 		jpTimer = new Timer(5000, this);
 	}
@@ -99,19 +94,16 @@ public class Player implements ActionListener {
 		
 		if( e.getSource() == doubleJumpTimer){
 			doubleJump = false;
-			//program.remove(powerImage);
 			doubleJumpTimer.stop();
+			System.out.println("Double jump expires");
+			program.remove(powerImage);
 		}
 		if (e.getSource()== invTimer) {
 			inv = false;
 			invTimer.stop();
-			System.out.println("Powerup expires");
-			System.out.println(powerImage.getX());
-			System.out.println(powerImage.getLocation());
-			//program.remove(tigerImage);
+			System.out.println("Invincibility expires");
 			program.remove(powerImage);
 		}
-
 	}
 
 	
@@ -138,7 +130,6 @@ public class Player implements ActionListener {
 					secondJump = 3;
 				}
 		}
-		
 	}
 	
 	
@@ -162,11 +153,11 @@ public class Player implements ActionListener {
 		double h = obstacle.getHeight() - 10;
 		
 		
-		//if invincible is collided regular calculations ignored
-//		if (inv == true) {
-//			continueGame = true;
-//			return false;
-//		}
+		// if invincible is collided regular calculations ignored
+		if (inv == true) {
+			continueGame = true;
+			return false;
+		}
 		
 		//if oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
 //		#TODO add a oneUp 'function for program.remove(powerImage);' to be used 
@@ -209,33 +200,42 @@ public class Player implements ActionListener {
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 					
-			//// when player gets powerup, double jump 				////
+			//// when player gets power-up, double jump 				////
 			//// is set to true despite invincibility being there	////
 			//// need to fix later run program to learn more		////
 			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
 				doubleJump = true;
 				doubleJumpTimer.start();
+				
+				// Adding an icon of the power-up
+				powerImage.setImage("sounds/doublejump.png");
+				powerImage.setSize(30, 30);
+				powerImage.setLocation(540, 70);
 			}
 			
 			if(powerUp.getPowerType() == PowerUpType.INVINCIBILITY) {
 				inv = true;
+				invTimer.start();
+				
+				// Adding an icon of the power-up
 				powerImage.setImage("sounds/invincibility.png");
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);
-				
-				System.out.println("inv collision" + powerImage.getLocation());
-				
 				program.add(powerImage);
-				invTimer.start();
+				
 			}
 			
 			if(powerUp.getPowerType() == PowerUpType.ONEUP) {
 				oneUp = true;
+				
+				// Adding an icon of the power-up
+				powerImage.setImage("sounds/oneup.png");
+				powerImage.setSize(30, 30);
+				powerImage.setLocation(540, 70);
+				program.add(powerImage);
 			}
-			
 			return true;
 		}
-		
 		return false;
 	}
 	

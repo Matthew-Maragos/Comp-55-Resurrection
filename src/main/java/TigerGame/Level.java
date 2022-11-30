@@ -59,7 +59,7 @@ public class Level implements ActionListener {
 		currentPowerUp = new PowerUp(program);
 
 		// Add timer
-		NewObstacleTimer = new Timer(rgen.nextInt(5000,5000), this);
+		NewObstacleTimer = new Timer(rgen.nextInt(3000,5000), this);
 		NewObstacleTimer.start();
 		
 		collisionCheckTimer = new Timer(100, this);
