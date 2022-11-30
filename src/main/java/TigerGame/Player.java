@@ -64,7 +64,7 @@ public class Player implements ActionListener {
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
 		tigerImage.setLocation(START_X, START_Y);
 		program.add(tigerImage);
-		gravityTimer = new Timer(40, this);
+		gravityTimer = new Timer(50, this);
 		gravityTimer.start();
 		
 		// adds font, sets location, and sets font/size

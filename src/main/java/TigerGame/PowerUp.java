@@ -32,6 +32,7 @@ public class PowerUp implements ActionListener {
 		//powerImage = randomizeObstacleImage();
 		powerImage = new GImage("sounds/doublejump.png");
 		powerType = PowerUpType.DOUBLEJUMP;
+	//if either of the above is commented out jumping DOES NOT work
 		
 		powerImage.move(posX, posY);
 		program.add(powerImage);
