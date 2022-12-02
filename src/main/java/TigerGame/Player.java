@@ -76,6 +76,7 @@ public class Player implements ActionListener {
 		doubleJumpTimer = new Timer(1000, this);
 		invTimer = new Timer(5000, this);
 		jpTimer = new Timer(5000, this);
+		
 
 		
 	}
@@ -202,6 +203,8 @@ public class Player implements ActionListener {
 			&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 				continueGame = false;
 				return true;
+				//print gmage
+				
 			}
 		}
 		
