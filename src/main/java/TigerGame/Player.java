@@ -148,7 +148,13 @@ public class Player implements ActionListener {
 			fallingSpeed = fallingSpeed + gravity;
 		
 	}
-
+	
+	public boolean isOnGround() {
+		if (tigerImage.getY() == GROUND_Y) {
+			return true;
+		}
+		return false;
+	}
 	// Check collision between player and obstacle
 	public boolean isCollided(Obstacle obstacle) {
 
