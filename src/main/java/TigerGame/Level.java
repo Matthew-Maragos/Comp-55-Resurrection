@@ -8,13 +8,6 @@ import javax.swing.*;
 
 
 public class Level implements ActionListener {
-	// Obstacles are created here when NewObstacleTimer raises up
-	// The question is if we the Level should control the movement (like with jumping and gravity)
-	// or can the movement of obstacle be performed in itself
-	// array of obstacles ? move them all ?
-	// TODO add general speed value which controls: gravity, jump power, obstacle move speed
-	// TODO fix the spacing between Obstacles
-
 
 	private MainApplication program;
 	private RandomGenerator rgen;
@@ -27,8 +20,6 @@ public class Level implements ActionListener {
 	private ArrayList<MapElement> bushes;
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<PowerUp> powers;
-	private PowerUp currentPowerUp;
-	
 
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
 
@@ -97,7 +88,7 @@ public class Level implements ActionListener {
 		if(e.getSource() == powerUpTimer) {
 			powers.add(new PowerUp(program));
 			powerUpTimer.stop();
-			powerUpTimer = new Timer(rgen.nextInt(6000, 9000), this);
+			powerUpTimer = new Timer(rgen.nextInt(8000, 12000), this);
 			powerUpTimer.start();
 		}
 
