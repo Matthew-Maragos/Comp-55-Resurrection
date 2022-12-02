@@ -82,7 +82,7 @@ public class Level implements ActionListener {
 		for(Obstacle obstacle: obstacles) {
 			if(obstacle != null) {
 				if(player.isCollided(obstacle)) {
-					System.out.println("Player has collided with obstacle");
+					//System.out.println("Player has collided with obstacle");
 					stopAllTimersOnce();
 				}
 				if(obstacle.getX() + obstacle.getWidth() < 0) {

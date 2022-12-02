@@ -44,6 +44,7 @@ public class Player implements ActionListener {
 	
 	private Timer doubleJumpTimer;
 	private Timer invTimer;
+	private Timer oneUpTimer;
 	private Timer jpTimer;
 
 	public Player(MainApplication app) {
@@ -77,6 +78,8 @@ public class Player implements ActionListener {
 		doubleJumpTimer = new Timer(5000, this);
 		invTimer = new Timer(5000, this);
 		jpTimer = new Timer(5000, this);
+		oneUpTimer = new Timer(1000, this);
+		
 	}
 		
 	public void actionPerformed(ActionEvent e) {
@@ -104,6 +107,11 @@ public class Player implements ActionListener {
 			System.out.println("Invincibility expires");
 			program.remove(powerImage);
 		}
+		if (e.getSource() == oneUpTimer) {
+			oneUpTimer.stop();
+			oneUp = false;
+			//take the image of power up down
+		}
 	}
 
 	
@@ -112,7 +120,7 @@ public class Player implements ActionListener {
 		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == false) 	{
 			tigerImage.move(0, -jumpPower);
 			secondJump = 0;
-			System.out.println("SJ " + secondJump);
+			//System.out.println("SJ " + secondJump);
 		}
 		
 		// DoubleJump
@@ -152,7 +160,6 @@ public class Player implements ActionListener {
 		double w = obstacle.getWidth() - 10;
 		double h = obstacle.getHeight() - 10;
 		
-		
 		// if invincible is collided regular calculations ignored
 		if (inv == true) {
 			continueGame = true;
@@ -160,13 +167,13 @@ public class Player implements ActionListener {
 		}
 		
 		//if oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
-//		#TODO add a oneUp 'function for program.remove(powerImage);' to be used 
 		if (oneUp == true) {
 			// check collision
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 			&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 				continueGame = true;
-				oneUp = false;
+				oneUpTimer.start();
+				System.out.println("Player has collided with obstacle");
 				return false;
 			}
 		}
@@ -211,6 +218,7 @@ public class Player implements ActionListener {
 				powerImage.setImage("sounds/doublejump.png");
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);
+				program.add(powerImage);
 			}
 			
 			if(powerUp.getPowerType() == PowerUpType.INVINCIBILITY) {
@@ -233,6 +241,7 @@ public class Player implements ActionListener {
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);
 				program.add(powerImage);
+				//System.out.println(oneUp);
 			}
 			return true;
 		}
