@@ -22,7 +22,7 @@ public class Player implements ActionListener {
 	public static final int START_X = 20;
 	public static final int START_Y = 300;
 	public static final int GROUND_Y = 300;
-	public static final int GRAVITY = 10;
+	public static final int GRAVITY = 5;
 
 	private MainApplication program;
 
@@ -56,7 +56,7 @@ public class Player implements ActionListener {
 		oneUp = false;
 		program = app;
 		playerScore = 0;
-		jumpPower = 200;
+		jumpPower = -40;
 		gravity = GRAVITY;
 		scoreLabel = new GLabel("Score is 0");
 
@@ -126,24 +126,27 @@ public class Player implements ActionListener {
 
 	public void jump() {
 		// Normal Jump
-		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == false) 	{
-			tigerImage.move(0, -jumpPower);
+		if (isOnGround() && continueGame == true && doubleJump == false) 	{
+			fallingSpeed = jumpPower;
+			fall();
 			secondJump = 0;
 			//System.out.println("SJ " + secondJump);
 		}
 
 		// DoubleJump
-		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == true) {
-			tigerImage.move(0, -jumpPower);
+		if (isOnGround() && continueGame == true && doubleJump == true) {
+			fallingSpeed = jumpPower;
+			fall();
 		}
 
 		//DoubleJump when off ground
-		if (tigerImage.getY() < GROUND_Y && continueGame == true && doubleJump == true){
+		if (!isOnGround() && continueGame == true && doubleJump == true){
 			secondJump++;
 
 			//Only work if up arrow is pressed twice, resets when ground is hit
-			if (tigerImage.getY() < GROUND_Y && secondJump == 2){
-				tigerImage.move(0, -jumpPower/2);
+			if (!isOnGround() && secondJump == 2){
+				fallingSpeed = jumpPower;
+				fall();
 				secondJump = 3;
 			}
 		}
