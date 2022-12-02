@@ -26,6 +26,7 @@ public class Level implements ActionListener {
 	private ArrayList<MapElement> clouds;
 	private ArrayList<MapElement> bushes;
 	private ArrayList<Obstacle> obstacles;
+	private ArrayList<PowerUp> powers;
 	private PowerUp currentPowerUp;
 	
 
@@ -56,16 +57,17 @@ public class Level implements ActionListener {
 		player = new Player(program);
 		
 		// Add powerUp
-		currentPowerUp = new PowerUp(program);
-
+		//currentPowerUp = new PowerUp(program);
+		powers = new ArrayList<PowerUp>();
+		
 		// Add timer
-		NewObstacleTimer = new Timer(rgen.nextInt(4000,5000), this);
+		NewObstacleTimer = new Timer(rgen.nextInt(2000,4000), this);
 		NewObstacleTimer.start();
 		
 		collisionCheckTimer = new Timer(100, this);
 		collisionCheckTimer.start();
 		
-		powerUpTimer = new Timer(100, this);
+		powerUpTimer = new Timer(rgen.nextInt(5000,7000), this);
 		powerUpTimer.start();
 	}
 
@@ -76,7 +78,7 @@ public class Level implements ActionListener {
 			NewObstacleTimer.stop();
 			NewObstacleTimer = new Timer(rgen.nextInt(1000,3000), this);
 			NewObstacleTimer.start();
-			System.out.println("Number of obstacles: " + obstacles.size());
+			//System.out.println("Number of obstacles: " + obstacles.size());
 		}
 
 		for(Obstacle obstacle: obstacles) {
@@ -86,21 +88,28 @@ public class Level implements ActionListener {
 					stopAllTimersOnce();
 				}
 				if(obstacle.getX() + obstacle.getWidth() < 0) {
-					// TODO: look into removing an obstacle from the ArrayList when it goes out of bound
-					// ConcurrentModidicationException
-					
 					obstacles.remove(obstacle);
-					System.out.println("Removed. Number of obstacles: " + obstacles.size());
 					break;
 				}
 			}
 		}
 		
-		if(currentPowerUp != null) {
-			if(player.isCollided(currentPowerUp)) {
-				System.out.println("Player has collided with powerup");
-				program.remove(currentPowerUp.getGImage());
-				
+		if(e.getSource() == powerUpTimer) {
+			powers.add(new PowerUp(program));
+			powerUpTimer.stop();
+			powerUpTimer = new Timer(rgen.nextInt(6000, 9000), this);
+			powerUpTimer.start();
+		}
+
+		for(PowerUp power: powers) {
+			if(power != null) {
+				if(player.isCollided(power)) {
+					program.remove(power.getGImage());
+				}
+				if(power.getX() + power.getY() < 0) {
+					powers.remove(power);
+					break;
+				}
 			}
 		}
 		
@@ -115,6 +124,9 @@ public class Level implements ActionListener {
 		}
 		for(MapElement bush: bushes) {
 			bush.getObsMoveTimer().stop();
+		}
+		for(PowerUp power: powers) {
+			power.getPowerTimer().stop();
 		}
 		player.getGravityTimer().stop();
 		NewObstacleTimer.stop();

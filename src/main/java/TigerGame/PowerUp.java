@@ -29,10 +29,8 @@ public class PowerUp implements ActionListener {
 		moveSpeed = 5;
 		posX = START_X;
 		posY = START_Y;
-		//powerImage = randomizeObstacleImage();
-		powerImage = new GImage("sounds/doublejump.png");
-		powerType = PowerUpType.DOUBLEJUMP;
-	//if either of the above is commented out jumping DOES NOT work
+		
+		randomizePowerUp();
 		
 		powerImage.move(posX, posY);
 		program.add(powerImage);
@@ -46,22 +44,29 @@ public class PowerUp implements ActionListener {
 		powerImage.move(-moveSpeed, 0);
 	}
 	
-	public GImage randomizeObstacleImage() {
+	public void randomizePowerUp() {
 		int randNum = rgen.nextInt(1,3);
+		
 		if(randNum == 1) {
-			return new GImage("sounds/invincibility.png");
+			powerImage = new GImage("sounds/invincibility.png");
+			powerType = PowerUpType.INVINCIBILITY;
 		}
 		if(randNum == 2) {
-			return new GImage("sounds/oneup.png");
+			powerImage = new GImage("sounds/oneup.png");
+			powerType = PowerUpType.ONEUP;
 		}
 		if(randNum == 3) {
-			return new GImage("sounds/doublejump.png");
+			powerImage = new GImage("sounds/doublejump.png");
+			powerType = PowerUpType.DOUBLEJUMP;
 		}
+		/*
 		else {
-			return new GImage("sounds/jeopardy.png");
+			powerImage = new GImage("sounds/jeopardy.png");
+			powerType = PowerUpType.JEOPARDY;
 		}
+		*/
 	}	
-
+	
 	// getters and setters
 	
 	public PowerUpType getPowerType() {
@@ -86,6 +91,10 @@ public class PowerUp implements ActionListener {
 
 	public GImage getGImage() {
 		return powerImage;
+	}
+	
+	public Timer getPowerTimer() {
+		return powerTimer;
 	}
 	
 	public void setY(double posY) {
