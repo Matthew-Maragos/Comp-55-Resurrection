@@ -130,7 +130,7 @@ public class Level implements ActionListener {
 	}
 
 	public void gravity(GObject playerIn) {
-		player.land();
+		player.fall();
 	}
 
 }

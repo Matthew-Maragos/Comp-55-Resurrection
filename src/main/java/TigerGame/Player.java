@@ -30,6 +30,7 @@ public class Player implements ActionListener {
 	private int gravity;
 	private int playerScore;
 	private int secondJump;
+	private int fallingSpeed;
 
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
@@ -84,7 +85,7 @@ public class Player implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		//Gravity
-		land();			
+				
 
 		//Update and Print Player Score
 		playerScore++;
@@ -141,10 +142,11 @@ public class Player implements ActionListener {
 	}
 
 
-	public void land() {
-		if (tigerImage.getY() < GROUND_Y) {
-			tigerImage.move(0, gravity);
-		}
+	public void fall() {
+		
+			tigerImage.move(0, fallingSpeed);
+			fallingSpeed = fallingSpeed + gravity;
+		
 	}
 
 	// Check collision between player and obstacle
