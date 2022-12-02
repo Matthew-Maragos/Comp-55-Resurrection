@@ -39,6 +39,7 @@ public class Player implements ActionListener {
 	private boolean doubleJump;
 	private boolean inv;
 	private boolean oneUp;
+	private boolean canJump;
 
 	GImage tigerImage;
 	GImage powerImage;
@@ -85,7 +86,13 @@ public class Player implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		//Gravity
-				
+		if (isOnGround()) {
+			canJump = true;
+		}
+		else {
+			canJump = false;
+			fall();
+		}
 
 		//Update and Print Player Score
 		playerScore++;
