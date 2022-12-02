@@ -99,9 +99,9 @@ public class Player implements ActionListener {
 		scoreLabel.setLabel(" " + playerScore);
 
 		//resets secondJump counter once player hits ground
-		if (tigerImage.getY() == GROUND_Y && secondJump > 2){
-			secondJump = 0;
-		}
+//		if (isOnGround() && secondJump == 3){
+//			secondJump = 0;
+//		}
 
 		if( e.getSource() == doubleJumpTimer){
 			doubleJump = false;
@@ -146,17 +146,20 @@ public class Player implements ActionListener {
 			if (!isOnGround() && secondJump == 2){
 				fallingSpeed = jumpPower;
 				fall();
-				secondJump = 3;
+				secondJump = 0;
 			}
 		}
 	}
 
 
 	public void fall() {
-		
-			tigerImage.move(0, fallingSpeed);
+		if (tigerImage.getY() <= GROUND_Y) {
+			tigerImage.move(0, fallingSpeed); 
 			fallingSpeed = fallingSpeed + gravity;
-		
+		}
+		else {
+			tigerImage.setLocation(0, GROUND_Y);
+		}
 	}
 	
 	public boolean isOnGround() {
