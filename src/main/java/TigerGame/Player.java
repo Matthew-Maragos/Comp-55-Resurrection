@@ -23,25 +23,25 @@ public class Player implements ActionListener {
 	public static final int START_Y = 300;
 	public static final int GROUND_Y = 300;
 	public static final int GRAVITY = 10;
-	
+
 	private MainApplication program;
-	
+
 	private int jumpPower;
 	private int gravity;
 	private int playerScore;
 	private int secondJump;
-	
+
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
-	
+
 	private boolean continueGame;
 	private boolean doubleJump;
 	private boolean inv;
 	private boolean oneUp;
-	
+
 	GImage tigerImage;
 	GImage powerImage;
-	
+
 	private Timer doubleJumpTimer;
 	private Timer invTimer;
 	private Timer oneUpTimer;
@@ -57,14 +57,14 @@ public class Player implements ActionListener {
 		jumpPower = 200;
 		gravity = GRAVITY;
 		scoreLabel = new GLabel("Score is 0");
-		
+
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
 		tigerImage.setLocation(START_X, START_Y);
 		program.add(tigerImage);
 		gravityTimer = new Timer(40, this);
 		gravityTimer.start();
-		
+
 		// adds font, sets location, and sets font/size
 		// supported by Veasna
 		program.add(scoreLabel);
@@ -74,27 +74,27 @@ public class Player implements ActionListener {
 		powerImage = new GImage("sounds/oneup.png");
 		powerImage.setSize(30, 30);
 		powerImage.setLocation(540, 70);
-		
+
 		doubleJumpTimer = new Timer(5000, this);
 		invTimer = new Timer(5000, this);
 		jpTimer = new Timer(5000, this);
 		oneUpTimer = new Timer(1000, this);
-		
+
 	}
-		
+
 	public void actionPerformed(ActionEvent e) {
 		//Gravity
 		land();			
-		
+
 		//Update and Print Player Score
 		playerScore++;
 		scoreLabel.setLabel(" " + playerScore);
-		
+
 		//resets secondJump counter once player hits ground
 		if (tigerImage.getY() == GROUND_Y && secondJump > 2){
 			secondJump = 0;
 		}
-		
+
 		if( e.getSource() == doubleJumpTimer){
 			doubleJump = false;
 			doubleJumpTimer.stop();
@@ -110,11 +110,11 @@ public class Player implements ActionListener {
 		if (e.getSource() == oneUpTimer) {
 			oneUpTimer.stop();
 			oneUp = false;
-			//take the image of power up down
+			program.remove(powerImage);
 		}
 	}
 
-	
+
 	public void jump() {
 		// Normal Jump
 		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == false) 	{
@@ -122,34 +122,34 @@ public class Player implements ActionListener {
 			secondJump = 0;
 			//System.out.println("SJ " + secondJump);
 		}
-		
+
 		// DoubleJump
 		if (tigerImage.getY() == GROUND_Y && continueGame == true && doubleJump == true) {
 			tigerImage.move(0, -jumpPower);
 		}
-		
+
 		//DoubleJump when off ground
 		if (tigerImage.getY() < GROUND_Y && continueGame == true && doubleJump == true){
-				secondJump++;
-				
-				//Only work if up arrow is pressed twice, resets when ground is hit
-				if (tigerImage.getY() < GROUND_Y && secondJump == 2){
-					tigerImage.move(0, -jumpPower);
-					secondJump = 3;
-				}
+			secondJump++;
+
+			//Only work if up arrow is pressed twice, resets when ground is hit
+			if (tigerImage.getY() < GROUND_Y && secondJump == 2){
+				tigerImage.move(0, -jumpPower/2);
+				secondJump = 3;
+			}
 		}
 	}
-	
-	
+
+
 	public void land() {
 		if (tigerImage.getY() < GROUND_Y) {
 			tigerImage.move(0, gravity);
 		}
 	}
-	
+
 	// Check collision between player and obstacle
 	public boolean isCollided(Obstacle obstacle) {
-		
+
 		// +10 & -10 to make the obstacle hit box smaller for precision
 		double tx = tigerImage.getX() + 10;
 		double ty = tigerImage.getY() + 10;
@@ -159,41 +159,40 @@ public class Player implements ActionListener {
 		double y = obstacle.getY() + 10; 
 		double w = obstacle.getWidth() - 10;
 		double h = obstacle.getHeight() - 10;
-		
+
 		// if invincible is collided regular calculations ignored
 		if (inv == true) {
 			continueGame = true;
 			return false;
 		}
-		
+
 		//if oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
 		if (oneUp == true) {
 			// check collision
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
-			&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+					&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 				continueGame = true;
 				oneUpTimer.start();
-				System.out.println("Player has collided with obstacle");
+				//System.out.println("Player has collided with obstacle");
 				return false;
 			}
 		}
-		
+
 		//else acts like normal function
 		else {
 			// check collision
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
-			&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+					&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 				continueGame = false;
 				return true;
 			}
 		}
-		
 		return false;
 	}
-	
+
 	// Check collision between player and power up
 	public boolean isCollided(PowerUp powerUp) {
-		
+
 		double tx = tigerImage.getX();
 		double ty = tigerImage.getY();
 		double tw = tigerImage.getWidth();
@@ -202,53 +201,51 @@ public class Player implements ActionListener {
 		double y = powerUp.getY(); 
 		double w = powerUp.getWidth();
 		double h = powerUp.getHeight();
-		
+
 		// check collision
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
-		&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
-					
+				&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+
 			//// when player gets power-up, double jump 				////
 			//// is set to true despite invincibility being there	////
 			//// need to fix later run program to learn more		////
 			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
 				doubleJump = true;
 				doubleJumpTimer.start();
-				
+
 				// Adding an icon of the power-up
 				powerImage.setImage("sounds/doublejump.png");
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);
 				program.add(powerImage);
 			}
-			
+
 			if(powerUp.getPowerType() == PowerUpType.INVINCIBILITY) {
 				inv = true;
 				invTimer.start();
-				
+
 				// Adding an icon of the power-up
 				powerImage.setImage("sounds/invincibility.png");
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);
 				program.add(powerImage);
-				
 			}
-			
+
 			if(powerUp.getPowerType() == PowerUpType.ONEUP) {
 				oneUp = true;
-				
+
 				// Adding an icon of the power-up
 				powerImage.setImage("sounds/oneup.png");
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);
 				program.add(powerImage);
-				//System.out.println(oneUp);
 			}
 			return true;
 		}
 		return false;
 	}
-	
-	
+
+
 	public double getPosX() {
 		return tigerImage.getX();
 	}
@@ -256,14 +253,14 @@ public class Player implements ActionListener {
 	public double getPosY() {
 		return tigerImage.getY();
 	}
-	
+
 	public Timer getGravityTimer() {
 		return gravityTimer;
 	}
-	
+
 	public void delete() {
 		program.remove(tigerImage);
 	}
 
-	
+
 }
