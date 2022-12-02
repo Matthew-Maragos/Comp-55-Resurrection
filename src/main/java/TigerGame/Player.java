@@ -144,7 +144,8 @@ public class Player implements ActionListener {
 
 			//Only work if up arrow is pressed twice, resets when ground is hit
 			if (!isOnGround() && secondJump == 2){
-				tigerImage.move(0, -jumpPower/2);
+				fallingSpeed = jumpPower;
+				fall();
 				secondJump = 3;
 			}
 		}
