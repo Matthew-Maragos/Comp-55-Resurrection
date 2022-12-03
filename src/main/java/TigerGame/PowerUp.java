@@ -46,6 +46,7 @@ public class PowerUp implements ActionListener {
 	
 	public void randomizePowerUp() {
 		int randNum = rgen.nextInt(1,3);
+		randNum = 3;
 		
 		if(randNum == 1) {
 			powerImage = new GImage("sounds/invincibility.png");
