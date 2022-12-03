@@ -2,6 +2,7 @@ package TigerGame;
 import acm.graphics.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import acm.util.RandomGenerator;
 import javax.swing.*;
@@ -68,6 +69,7 @@ public class Level extends GraphicsPane implements ActionListener  {
 		// Button for game over popup
 		button1.setLineWidth(0);
 		button2.setLineWidth(0);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -75,7 +77,7 @@ public class Level extends GraphicsPane implements ActionListener  {
 		if (e.getSource() == NewObstacleTimer) {
 			obstacles.add(new Obstacle(program));
 			NewObstacleTimer.stop();
-			NewObstacleTimer = new Timer(rgen.nextInt(1000,3000), this);
+			NewObstacleTimer = new Timer(rgen.nextInt(1000,2000), this);
 			NewObstacleTimer.start();
 			//System.out.println("Number of obstacles: " + obstacles.size());
 		}
@@ -135,11 +137,16 @@ public class Level extends GraphicsPane implements ActionListener  {
 		powerUpTimer.stop();
 	}
 	
-	 public void clickedAt(GObject objIn) {
-		 if (objIn == button1) {
-	            program.switchToMainMenu();
-		 }
-	 }
+	@Override
+	public void mousePressed(MouseEvent e) {
+		GObject obj = program.getElementAt(e.getX(), e.getY());
+		if (obj == button1) {
+			program.switchToSinglePlayer();
+		}
+		if (obj == button2) {
+			program.switchToMainMenu();
+		}
+	}
 	
 	public void jump(GObject playerIn) {
 		player.jump();

@@ -56,7 +56,7 @@ public class Player implements ActionListener {
 		oneUp = false;
 		program = app;
 		playerScore = 0;
-		jumpPower = -40;
+		jumpPower = -38;
 		gravity = GRAVITY;
 		scoreLabel = new GLabel("Score is 0");
 
@@ -144,7 +144,7 @@ public class Player implements ActionListener {
 
 			//Only work if up arrow is pressed twice, resets when ground is hit
 			if (!isOnGround() && secondJump == 2){
-				fallingSpeed = jumpPower;
+				fallingSpeed = jumpPower / (23/10);
 				fall();
 				secondJump = 0;
 			}
@@ -153,12 +153,12 @@ public class Player implements ActionListener {
 
 
 	public void fall() {
-		if (tigerImage.getY() <= GROUND_Y) {
+		if (tigerImage.getY() + fallingSpeed <= GROUND_Y) {
 			tigerImage.move(0, fallingSpeed); 
 			fallingSpeed = fallingSpeed + gravity;
 		}
 		else {
-			tigerImage.setLocation(0, GROUND_Y);
+			tigerImage.setLocation(START_X, START_Y);
 		}
 	}
 	
