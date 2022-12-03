@@ -7,7 +7,7 @@ import acm.util.RandomGenerator;
 import javax.swing.*;
 
 
-public class Level implements ActionListener {
+public class Level implements ActionListener  {
 
 	private MainApplication program;
 	private RandomGenerator rgen;
@@ -77,6 +77,7 @@ public class Level implements ActionListener {
 				if(player.isCollided(obstacle)) {
 					System.out.println("Player has collided with obstacle");
 					stopAllTimersOnce();
+					program.add(new GImage("sounds/game-over.png"));
 				}
 				if(obstacle.getX() + obstacle.getWidth() < 0) {
 					obstacles.remove(obstacle);
