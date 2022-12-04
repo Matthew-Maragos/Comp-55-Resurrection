@@ -2,8 +2,7 @@ package TigerGame;
 import acm.graphics.*;
 
 
-public class startMenuPane extends GraphicsPane
-{
+public class startMenuPane extends GraphicsPane {
 	//TODO clickedAt clicked at multiplayer add. RH
 	
     private MainApplication program;

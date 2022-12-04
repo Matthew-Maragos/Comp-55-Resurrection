@@ -2,12 +2,13 @@ package TigerGame;
 import acm.graphics.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import acm.util.RandomGenerator;
 import javax.swing.*;
 
 
-public class Level implements ActionListener {
+public class Level extends GraphicsPane implements ActionListener  {
 
 	private MainApplication program;
 	private RandomGenerator rgen;
@@ -22,9 +23,13 @@ public class Level implements ActionListener {
 	private ArrayList<PowerUp> powers;
 
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
+	GImage gameOver = new GImage("sounds/game-over.png");
+	private GRect button1 = new GRect(174,92,251,54);
+	private GRect button2 = new GRect(174,159,251,54);
 
 	public Level(MainApplication app) {
 
+		super();
 		rgen = RandomGenerator.getInstance();
 		program = app;
 		program.add(backgroundImg);
@@ -60,6 +65,11 @@ public class Level implements ActionListener {
 		
 		powerUpTimer = new Timer(rgen.nextInt(5000,7000), this);
 		powerUpTimer.start();
+		
+		// Button for game over popup
+		button1.setLineWidth(0);
+		button2.setLineWidth(0);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -67,7 +77,7 @@ public class Level implements ActionListener {
 		if (e.getSource() == NewObstacleTimer) {
 			obstacles.add(new Obstacle(program));
 			NewObstacleTimer.stop();
-			NewObstacleTimer = new Timer(rgen.nextInt(1000,3000), this);
+			NewObstacleTimer = new Timer(rgen.nextInt(1000,2000), this);
 			NewObstacleTimer.start();
 			//System.out.println("Number of obstacles: " + obstacles.size());
 		}
@@ -77,6 +87,8 @@ public class Level implements ActionListener {
 				if(player.isCollided(obstacle)) {
 					System.out.println("Player has collided with obstacle");
 					stopAllTimersOnce();
+					showContents();
+					
 				}
 				if(obstacle.getX() + obstacle.getWidth() < 0) {
 					obstacles.remove(obstacle);
@@ -125,6 +137,17 @@ public class Level implements ActionListener {
 		powerUpTimer.stop();
 	}
 	
+	@Override
+	public void mousePressed(MouseEvent e) {
+		GObject obj = program.getElementAt(e.getX(), e.getY());
+		if (obj == button1) {
+			program.switchToSinglePlayer();
+		}
+		if (obj == button2) {
+			program.switchToMainMenu();
+		}
+	}
+	
 	public void jump(GObject playerIn) {
 		player.jump();
 	}
@@ -132,5 +155,18 @@ public class Level implements ActionListener {
 	public void gravity(GObject playerIn) {
 		player.fall();
 	}
+	
+	@Override
+    public void showContents() {
+		program.add(gameOver);
+		program.add(button1);
+		program.add(button2);
+    }
+
+    @Override
+    public void hideContents() {
+    	program.remove(backgroundImg);
+    	program.remove(gameOver);
+    }
 
 }
