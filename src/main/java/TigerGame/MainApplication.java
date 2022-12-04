@@ -15,6 +15,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public static final int WINDOW_HEIGHT = 436;
 	public static final int GRAVITY_TIMER_MS = 200;
 	
+	public int windowWidth = 600;
+	public int windowHeight = 436;
 	private startMenuPane mainMenu;
 	private PlayerManualPane manualMenu;
 	private SinglePlayerModePane singleMenu;
@@ -22,27 +24,25 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private DeathScreenPane gameOverMenu;
 	private Level level;
 	
-	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		//this.requestFocus();
 	}
 	
-	public void run() {		
+	public void run() {
+		//loads main menu pane
 		mainMenu = new startMenuPane(this);		
-		//loads main menu pane | uses startMenuPane.java function  | used in switchToManual line 38
 		
-		manualMenu = new PlayerManualPane(this);	
-		//loads player manual pane | used in switchToManual line 38
+		//loads player manual pane
+		manualMenu = new PlayerManualPane(this);
 		
+		//loads game over menu
 		gameOverMenu = new DeathScreenPane(this);
 		
 		setupInteractions();		
-		//allows for clicking
 		
+		// initially loads to main menu
 		switchToMainMenu();			
-		//switches to main menu screen | reference functions below
-
 	}
 	
 	public void switchToMainMenu() {
@@ -112,7 +112,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		}
 	}
-	
 	
 	public static void main(String[] args) {
 		new MainApplication().start();

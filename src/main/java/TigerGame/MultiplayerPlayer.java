@@ -82,8 +82,6 @@ public class MultiplayerPlayer {
 			invTimer = new Timer(5000, this);
 			jpTimer = new Timer(5000, this);
 			
-
-			
 		}
 			
 		public void actionPerformed(ActionEvent e) {

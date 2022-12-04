@@ -31,6 +31,7 @@ public class MultiPlayerMode extends GraphicsPane {
 	public MultiPlayerMode(MainApplication app) {
 		super();
 		program = app;
+		program.setSize(WINDOW_WIDTH, WINDOW_HEIGHT * 2);
 		LevelTwo = new Level(program);
 	}
 	
