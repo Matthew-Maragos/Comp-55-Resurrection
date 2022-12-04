@@ -137,9 +137,13 @@ public class Level extends GraphicsPane implements ActionListener  {
 		powerUpTimer.stop();
 	}
 	
+	//#TODO fix so button registers
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
+		System.out.println(e.getX()+" "+ e.getY());
+		
+		
 		if (obj == button1) {
 			program.switchToSinglePlayer();
 		}
@@ -147,6 +151,15 @@ public class Level extends GraphicsPane implements ActionListener  {
 			program.switchToMainMenu();
 		}
 	}
+	
+//	public void clickedAt(GObject objIn) {
+//		if (objIn == button1) {
+//			program.switchToSinglePlayer();
+//		}
+//		if (objIn == button2) {
+//			program.switchToMainMenu();
+//		}
+//    }
 	
 	public void jump(GObject playerIn) {
 		player.jump();
@@ -156,6 +169,7 @@ public class Level extends GraphicsPane implements ActionListener  {
 		player.fall();
 	}
 	
+	//adds end screen
 	@Override
     public void showContents() {
 		program.add(gameOver);
