@@ -20,6 +20,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private SinglePlayerModePane singleMenu;
 	private MultiPlayerMode multiMenu;
 	private DeathScreenPane dScreen;
+	private Level level;
 	
 	
 	public void init() {
@@ -78,6 +79,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		else if (curScreen == manualMenu) {
 			manualMenu.clickedAt(button);
 		}
+		
+		
+//		if (curScreen == singleMenu) { 
+//			level.clickedAt(button);	
+//			//uses clickedAt function in startMenuPane.java line 27
+//		} 
+		
+		
 	}
 	
 	@Override
