@@ -19,7 +19,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private PlayerManualPane manualMenu;
 	private SinglePlayerModePane singleMenu;
 	private MultiPlayerMode multiMenu;
-	private DeathScreenPane dScreen;
+	private DeathScreenPane gameOverMenu;
 	private Level level;
 	
 	
@@ -34,6 +34,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		manualMenu = new PlayerManualPane(this);	
 		//loads player manual pane | used in switchToManual line 38
+		
+		gameOverMenu = new DeathScreenPane(this);
 		
 		setupInteractions();		
 		//allows for clicking
@@ -62,8 +64,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToDeathScreenPane() {
-		dScreen = new DeathScreenPane(this);
-		switchToScreen(dScreen);
+		gameOverMenu = new DeathScreenPane(this);
+		switchToScreen(gameOverMenu);
 	}
 
 	@Override
@@ -80,12 +82,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			manualMenu.clickedAt(button);
 		}
 		
-		
-//		if (curScreen == singleMenu) { 
-//			level.clickedAt(button);	
-//			//uses clickedAt function in startMenuPane.java line 27
-//		} 
-		
+		if (curScreen == gameOverMenu) { 
+			gameOverMenu.clickedAt(button);	
+			//uses clickedAt function in startMenuPane.java line 27
+		} 
 		
 	}
 	

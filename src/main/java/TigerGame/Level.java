@@ -87,12 +87,14 @@ public class Level extends GraphicsPane implements ActionListener  {
 				if(player.isCollided(obstacle)) {
 					System.out.println("Player has collided with obstacle");
 					stopAllTimersOnce();
-					showContents();
+					//showContents();
+					program.switchToDeathScreenPane();
 					
 				}
 				if(obstacle.getX() + obstacle.getWidth() < 0) {
 					obstacles.remove(obstacle);
 					break;
+					
 				}
 			}
 		}
@@ -142,7 +144,6 @@ public class Level extends GraphicsPane implements ActionListener  {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		System.out.println(e.getX()+" "+ e.getY());
-		
 		
 		if (obj == button1) {
 			program.switchToSinglePlayer();
