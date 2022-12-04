@@ -19,6 +19,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private PlayerManualPane manualMenu;
 	private SinglePlayerModePane singleMenu;
 	private MultiPlayerMode multiMenu;
+	private DeathScreenPane dScreen;
 	
 	
 	public void init() {
@@ -57,6 +58,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void switchToMultiPlayer() {
 		multiMenu = new MultiPlayerMode(this);
 		switchToScreen(multiMenu);
+	}
+	
+	public void switchToDeathScreenPane() {
+		dScreen = new DeathScreenPane(this);
+		switchToScreen(dScreen);
 	}
 
 	@Override

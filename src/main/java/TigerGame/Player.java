@@ -8,6 +8,7 @@ import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
+import acm.graphics.GRect;
 
 //	#TODO Make jump action smoother
 
@@ -15,7 +16,7 @@ import acm.graphics.GLabel;
 // 	was always true until oneUp was added, now oneUp is always true
 //	should only be true if collected by player, fix later
 
-public class Player implements ActionListener {
+public class Player extends MainApplication implements ActionListener {
 
 	public static final int TIGER_WIDTH = 100;
 	public static final int TIGER_HEIGHT = 60;
@@ -48,6 +49,10 @@ public class Player implements ActionListener {
 	private Timer invTimer;
 	private Timer oneUpTimer;
 	private Timer jpTimer;
+	
+//	GRect but1;
+//	GRect but2;
+
 
 	public Player(MainApplication app) {
 		continueGame = true;
@@ -202,10 +207,18 @@ public class Player implements ActionListener {
 			// check collision
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 					&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
+
+//				switchToDeathScreenPane();
 				continueGame = false;
 				return true;
-				//print gmage
 				
+				
+				///////////////////////////////////////////////
+				///////////////////////////////////////////////
+				///////////////////////////////////////////////
+				///////////////////////////////////////////////
+				//Death screen
+
 			}
 		}
 		return false;
@@ -227,9 +240,6 @@ public class Player implements ActionListener {
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 				&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 
-			//// when player gets power-up, double jump 				////
-			//// is set to true despite invincibility being there	////
-			//// need to fix later run program to learn more		////
 			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
 				doubleJump = true;
 				doubleJumpTimer.start();
