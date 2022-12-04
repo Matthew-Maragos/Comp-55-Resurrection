@@ -8,7 +8,7 @@ import acm.util.RandomGenerator;
 import javax.swing.*;
 
 
-public class Level extends GraphicsPane implements ActionListener  {
+public class Level implements ActionListener  {
 
 	private MainApplication program;
 	private RandomGenerator rgen;
@@ -23,9 +23,6 @@ public class Level extends GraphicsPane implements ActionListener  {
 	private ArrayList<PowerUp> powers;
 
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
-	GImage gameOver = new GImage("sounds/game-over.png");
-	private GRect button1 = new GRect(174,92,251,54);
-	private GRect button2 = new GRect(174,159,251,54);
 
 	public Level(MainApplication app) {
 
@@ -66,9 +63,6 @@ public class Level extends GraphicsPane implements ActionListener  {
 		powerUpTimer = new Timer(rgen.nextInt(5000,7000), this);
 		powerUpTimer.start();
 		
-		// Button for game over popup
-		button1.setLineWidth(0);
-		button2.setLineWidth(0);
 		
 	}
 
@@ -87,7 +81,7 @@ public class Level extends GraphicsPane implements ActionListener  {
 				if(player.isCollided(obstacle)) {
 					System.out.println("Player has collided with obstacle");
 					stopAllTimersOnce();
-					//showContents();
+					// Show game over menu
 					program.switchToDeathScreenPane();
 					
 				}
@@ -139,29 +133,6 @@ public class Level extends GraphicsPane implements ActionListener  {
 		powerUpTimer.stop();
 	}
 	
-	//#TODO fix so button registers
-	@Override
-	public void mousePressed(MouseEvent e) {
-		GObject obj = program.getElementAt(e.getX(), e.getY());
-		System.out.println(e.getX()+" "+ e.getY());
-		
-		if (obj == button1) {
-			program.switchToSinglePlayer();
-		}
-		if (obj == button2) {
-			program.switchToMainMenu();
-		}
-	}
-	
-//	public void clickedAt(GObject objIn) {
-//		if (objIn == button1) {
-//			program.switchToSinglePlayer();
-//		}
-//		if (objIn == button2) {
-//			program.switchToMainMenu();
-//		}
-//    }
-	
 	public void jump(GObject playerIn) {
 		player.jump();
 	}
@@ -169,19 +140,5 @@ public class Level extends GraphicsPane implements ActionListener  {
 	public void gravity(GObject playerIn) {
 		player.fall();
 	}
-	
-	//adds end screen
-	@Override
-    public void showContents() {
-		program.add(gameOver);
-		program.add(button1);
-		program.add(button2);
-    }
-
-    @Override
-    public void hideContents() {
-    	program.remove(backgroundImg);
-    	program.remove(gameOver);
-    }
 
 }
