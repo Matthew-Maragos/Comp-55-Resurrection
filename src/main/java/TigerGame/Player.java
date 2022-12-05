@@ -37,9 +37,10 @@ public class Player extends MainApplication implements ActionListener {
 	private int tigerY;
 
 	private GLabel scoreLabel;
+	private GLabel playerLabel;
 	private Timer gravityTimer;
 
-	private boolean continueGame;
+	public boolean continueGame;
 	private boolean doubleJump;
 	private boolean inv;
 	private boolean oneUp;
@@ -65,6 +66,18 @@ public class Player extends MainApplication implements ActionListener {
 		gravity = GRAVITY;
 		scoreLabel = new GLabel("Score is 0");
 		levelToAdd = level;
+		if (level.isTwoPlayers() == false) {
+			playerLabel = new GLabel("Player 1");
+		}else {
+			playerLabel = new GLabel("Player 2");
+		}
+		program.add(playerLabel);
+		playerLabel.setFont(new Font("Serif", Font.BOLD, 26));
+		if (level.isTwoPlayers() == false) {
+			playerLabel.setLocation(10, 50);
+		}else {
+			playerLabel.setLocation(10, 340 + 100);
+		}
 
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);

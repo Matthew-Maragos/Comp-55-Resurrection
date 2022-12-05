@@ -114,7 +114,6 @@ public class Level implements ActionListener  {
 		for(PowerUp power: powers) {
 			if(power != null) {
 				if(player.isCollided(power)) {
-					stopAllTimersOnce();
 					program.remove(power.getGImage());
 				}
 				if(power.getX() + power.getWidth() < 0) {
