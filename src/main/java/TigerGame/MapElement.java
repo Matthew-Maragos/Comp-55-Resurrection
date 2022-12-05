@@ -21,19 +21,21 @@ public class MapElement implements ActionListener {
 	GImage elementImage;
 	private Timer obsMoveTimer;
 	private RandomGenerator rgen;
+	private int scaleY;
 	
-	public MapElement(MainApplication app, MapElementType type, int startX) {
+	public MapElement(MainApplication app, MapElementType type, int startX, int scaleY) {
 
 		rgen = RandomGenerator.getInstance();
 		program = app;
 		moveSpeed = 5;
+		this.scaleY = scaleY;
 		
 		obsMoveTimer = new Timer(15, this);
 		obsMoveTimer.start();
 		
  		if(type == MapElementType.BUSH) {
 			BUSH_START_X = startX;
-	    	BUSH_START_Y = 182;
+	    	BUSH_START_Y = 182 + scaleY;
 			posX = BUSH_START_X;
 			posY = BUSH_START_Y;
 			mapEleType = type;
@@ -46,7 +48,7 @@ public class MapElement implements ActionListener {
 		
 		if(type == MapElementType.CLOUD) {
 			CLOUD_START_X = startX;
-	    	CLOUD_START_Y = rgen.nextInt(0, 100);
+	    	CLOUD_START_Y = rgen.nextInt(0, 100) + scaleY;
 			posX = CLOUD_START_X;
 			posY = CLOUD_START_Y;
 			mapEleType = type;
@@ -65,7 +67,7 @@ public class MapElement implements ActionListener {
 		if(elementImage.getX() + elementImage.getWidth() < 0) {
 			// if type is BUSH
 			if(mapEleType == MapElementType.BUSH) {
-				randomizeBushImage(elementImage, BUSH_START_X);
+				randomizeBushImage(elementImage, BUSH_START_X, scaleY);
 				elementImage.setLocation(600, BUSH_START_Y);
 			}
 			// if type is CLOUD
@@ -77,19 +79,19 @@ public class MapElement implements ActionListener {
 	
 	// create random MapElement images
     
-    public void randomizeBushImage(GImage image, int startX) {
+    public void randomizeBushImage(GImage image, int startX, int scaleY) {
         int randNum = rgen.nextInt(1,3);
         if(randNum == 1) {
         	image.setImage("sounds/bush_1.png");
-        	BUSH_START_Y = 182;
+        	BUSH_START_Y = 182 + scaleY;
         }
         if(randNum == 2) {
         	image.setImage("sounds/bush_2.png");
-        	BUSH_START_Y = 182;
+        	BUSH_START_Y = 182 + scaleY;
         }
         else {
         	image.setImage("sounds/bush_3.png");
-    		BUSH_START_Y = 120;
+    		BUSH_START_Y = 120 + scaleY;
         }
     }
     

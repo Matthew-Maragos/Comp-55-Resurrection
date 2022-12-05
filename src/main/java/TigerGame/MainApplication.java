@@ -96,13 +96,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			//jump function from player from level one from singlemenu
 		}
 		
-		//37 = left, 39 = right
-		if (e.getKeyCode() == 37) {		
-			multiMenu.LevelTwo.player.jump();		
-			//jump function from player from level one from singlemenu
+		//keycode 87: W
+		if (e.getKeyCode() == 87) {		
+			multiMenu.LevelTwo.player.jump();
 		}
 		
-//		System.out.println(e.getKeyCode());
 	}
 	
 	@Override

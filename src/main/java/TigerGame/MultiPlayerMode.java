@@ -12,14 +12,13 @@ import acm.graphics.GObject;
 import acm.graphics.GObject;
 
 
-
-
 public class MultiPlayerMode extends GraphicsPane {
 	//TODO showContents(), hideContents()
 	
 	private MainApplication program;
 	
 	public Level LevelTwo;
+	public Level LevelOne;
 
 
 	ArrayList<String> Player = new ArrayList<String>();
@@ -32,7 +31,8 @@ public class MultiPlayerMode extends GraphicsPane {
 		super();
 		program = app;
 		program.setSize(WINDOW_WIDTH, WINDOW_HEIGHT * 2);
-		LevelTwo = new Level(program);
+		LevelOne = new Level(program, false);
+		LevelTwo = new Level(program, true);
 	}
 	
 	

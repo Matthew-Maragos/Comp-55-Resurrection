@@ -10,7 +10,6 @@ public class SinglePlayerModePane extends GraphicsPane {
 	
 	public Level LevelOne;
 
-
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
 
@@ -18,11 +17,8 @@ public class SinglePlayerModePane extends GraphicsPane {
 	public SinglePlayerModePane(MainApplication app) {
 		super();
 		program = app;
-		LevelOne = new Level(program);
+		LevelOne = new Level(program, false);
 	}
-	
-	
-	
 	
 	
 	@Override

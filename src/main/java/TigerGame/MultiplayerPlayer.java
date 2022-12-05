@@ -132,10 +132,6 @@ public class MultiplayerPlayer {
 				inv = false;
 			}
 
-			
-//			System.out.println("o" + oneUp);
-//			System.out.println(doubleJump);
-
 		}
 
 		

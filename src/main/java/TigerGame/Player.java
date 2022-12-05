@@ -49,10 +49,6 @@ public class Player extends MainApplication implements ActionListener {
 	private Timer invTimer;
 	private Timer oneUpTimer;
 	private Timer jpTimer;
-	
-//	GRect but1;
-//	GRect but2;
-
 
 	public Player(MainApplication app) {
 		continueGame = true;
@@ -211,17 +207,8 @@ public class Player extends MainApplication implements ActionListener {
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 					&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 
-//				switchToDeathScreenPane();
 				continueGame = false;
 				return true;
-				
-				
-				///////////////////////////////////////////////
-				///////////////////////////////////////////////
-				///////////////////////////////////////////////
-				///////////////////////////////////////////////
-				//Death screen
-
 			}
 		}
 		return false;

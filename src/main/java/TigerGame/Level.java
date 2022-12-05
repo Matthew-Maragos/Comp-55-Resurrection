@@ -24,23 +24,28 @@ public class Level implements ActionListener  {
 
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
 
-	public Level(MainApplication app) {
-
+	public Level(MainApplication app, boolean secondPlayer) {
 		super();
+		
+		int scaleY = 0;
+		if(secondPlayer == true) {
+			scaleY = 400;
+		}
+		
 		rgen = RandomGenerator.getInstance();
 		program = app;
-		program.add(backgroundImg);
+		program.add(backgroundImg, 0, 0 + scaleY);
 
 		// Add clouds
 		clouds = new ArrayList<MapElement>();
 		for(int i = 0; i <= 2; i++) {
-			clouds.add(new MapElement(program, MapElementType.CLOUD, i * 200));
+			clouds.add(new MapElement(program, MapElementType.CLOUD, i * 200, 0 + scaleY));
 		}
 
 		// Add bushes
 		bushes = new ArrayList<MapElement>();
 		for(int i = 0; i <= 1; i++) {
-			bushes.add(new MapElement(program, MapElementType.BUSH, i * 370));
+			bushes.add(new MapElement(program, MapElementType.BUSH, i * 370, 0 + + scaleY));
 		}
 
 		// Add obstacles
