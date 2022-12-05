@@ -36,16 +36,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void run() {
 		//loads main menu pane
 		mainMenu = new startMenuPane(this);		
-		
 		//loads player manual pane
 		manualMenu = new PlayerManualPane(this);
-		
 		//loads game over menu
 		gameOverMenu = new DeathScreenPane(this);
-		
-		
 		setupInteractions();		
-		
 		// initially loads to main menu
 		switchToMainMenu();			
 	}
@@ -74,8 +69,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	private void playRandomSound() {
-		
-		audio.playSound(MUSIC_FOLDER, SOUND_FILES[2]);
+		audio.playSound(MUSIC_FOLDER, SOUND_FILES[1]);
 	}
 	
 	@Override
@@ -87,16 +81,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			mainMenu.clickedAt(button);		
 			//uses clickedAt function in startMenuPane.java line 27
 		} 
-		
 		else if (curScreen == manualMenu) {
 			manualMenu.clickedAt(button);
 		}
-		
 		if (curScreen == gameOverMenu) { 
 			gameOverMenu.clickedAt(button);	
 			//uses clickedAt function in startMenuPane.java line 27
 		} 
-		
 	}
 	
 	@Override
@@ -106,24 +97,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			playRandomSound();
 			//jump function from player from level one from singlemenu
 		}
-		
 		//keycode 87: W
 		if (e.getKeyCode() == 87) {		
 			multiMenu.LevelTwo.player.jump();
 		}
-		
 	}
-	
-	@Override
-	public void keyReleased(KeyEvent e) {
-		//keyCode 38 == up arrow
-		if (e.getKeyCode() == 38) { 
-		
-		}
-	}
-	
+
 	public static void main(String[] args) {
 		new MainApplication().start();
 	}
-	
 }
