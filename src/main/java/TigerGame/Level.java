@@ -62,11 +62,11 @@ public class Level implements ActionListener  {
 		NewObstacleTimer = new Timer(rgen.nextInt(2000,4000), this);
 		NewObstacleTimer.start();
 		
-		collisionCheckTimer = new Timer(100, this);
-		collisionCheckTimer.start();
-		
 		powerUpTimer = new Timer(rgen.nextInt(5000,7000), this);
 		powerUpTimer.start();
+		
+		collisionCheckTimer = new Timer(100, this);
+		collisionCheckTimer.start();
 		
 		
 	}
@@ -110,7 +110,7 @@ public class Level implements ActionListener  {
 				if(player.isCollided(power)) {
 					program.remove(power.getGImage());
 				}
-				if(power.getX() + power.getY() < 0) {
+				if(power.getX() + power.getWidth() < 0) {
 					powers.remove(power);
 					break;
 				}

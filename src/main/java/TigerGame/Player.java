@@ -1,5 +1,6 @@
 package TigerGame;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -99,6 +100,11 @@ public class Player extends MainApplication implements ActionListener {
 		//Update and Print Player Score
 		playerScore++;
 		scoreLabel.setLabel(" " + playerScore);
+		if (playerScore % 100 == 0) {
+			scoreLabel.setColor(Color.red);
+		}else{
+			scoreLabel.setColor(Color.black);
+		}
 
 		//resets secondJump counter once player hits ground
 //		if (isOnGround() && secondJump == 3){
