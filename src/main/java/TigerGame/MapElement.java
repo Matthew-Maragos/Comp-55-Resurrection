@@ -22,8 +22,9 @@ public class MapElement implements ActionListener {
 	private Timer obsMoveTimer;
 	private RandomGenerator rgen;
 	private int scaleY;
+	private Level levelToAdd;
 	
-	public MapElement(MainApplication app, MapElementType type, int startX, int scaleY) {
+	public MapElement(MainApplication app, MapElementType type, int startX, int scaleY, Level level) {
 
 		rgen = RandomGenerator.getInstance();
 		program = app;
@@ -32,6 +33,7 @@ public class MapElement implements ActionListener {
 		
 		obsMoveTimer = new Timer(15, this);
 		obsMoveTimer.start();
+		levelToAdd = level;
 		
  		if(type == MapElementType.BUSH) {
 			BUSH_START_X = startX;
@@ -48,11 +50,15 @@ public class MapElement implements ActionListener {
 		
 		if(type == MapElementType.CLOUD) {
 			CLOUD_START_X = startX;
-	    	CLOUD_START_Y = rgen.nextInt(0, 100) + scaleY;
+			if (levelToAdd.isTwoPlayers() == false) {
+				CLOUD_START_Y = rgen.nextInt(0, 100) + scaleY;
+			}else {
+				CLOUD_START_Y = 400;
+			}
+	    		
 			posX = CLOUD_START_X;
 			posY = CLOUD_START_Y;
 			mapEleType = type;
-			
 			elementImage = new GImage("sounds/cloud.png");
 			elementImage.scale(0.2);
 			elementImage.setLocation(startX, CLOUD_START_Y);
@@ -72,7 +78,11 @@ public class MapElement implements ActionListener {
 			}
 			// if type is CLOUD
 			if(mapEleType == MapElementType.CLOUD) {
-				elementImage.setLocation(600, rgen.nextInt(0, 100));
+				if (levelToAdd.isTwoPlayers() == false) {
+					elementImage.setLocation(600, rgen.nextInt(0, 100));
+				}else {
+					elementImage.setLocation(600, 400 + rgen.nextInt(0, 100));
+				}
 			}
 		}
 	}

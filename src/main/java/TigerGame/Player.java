@@ -42,6 +42,7 @@ public class Player extends MainApplication implements ActionListener {
 	private boolean inv;
 	private boolean oneUp;
 	private boolean canJump;
+	private Level levelToAdd;
 
 	GImage tigerImage;
 	GImage powerImage;
@@ -51,7 +52,7 @@ public class Player extends MainApplication implements ActionListener {
 	private Timer oneUpTimer;
 	private Timer jpTimer;
 
-	public Player(MainApplication app) {
+	public Player(MainApplication app, Level level) {
 		continueGame = true;
 		doubleJump = false;
 		inv = false;
@@ -61,10 +62,11 @@ public class Player extends MainApplication implements ActionListener {
 		jumpPower = -38;
 		gravity = GRAVITY;
 		scoreLabel = new GLabel("Score is 0");
+		levelToAdd = level;
 
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
-		tigerImage.setLocation(START_X, START_Y);
+
 		program.add(tigerImage);
 		gravityTimer = new Timer(40, this);
 		gravityTimer.start();
@@ -72,7 +74,12 @@ public class Player extends MainApplication implements ActionListener {
 		// adds font, sets location, and sets font/size
 		// supported by Veasna
 		program.add(scoreLabel);
-		scoreLabel.setLocation(520, 50);
+		if (level.isTwoPlayers() == false) {
+			scoreLabel.setLocation(520, 50);
+		}else {
+			scoreLabel.setLocation(520, 340 + 100);
+		}
+
 		scoreLabel.setFont(new Font("Serif", Font.BOLD, 36));	
 
 		powerImage = new GImage("sounds/oneup.png");

@@ -24,20 +24,27 @@ public class Obstacle implements ActionListener  {
 	private Timer obsMoveTimer;
 	public SinglePlayerModePane gameWindow;
 	public RandomGenerator rgen;
+	private Level levelToAdd;
 	
 	
-	public Obstacle(MainApplication app) {
+	public Obstacle(MainApplication app, Level level) {
 		rgen = RandomGenerator.getInstance();
 		obsImage = randomizeObstacleImage();
 		program = app;
 		moveSpeed = 5;
 		posX = START_X;
-		posY = START_Y;
+		if (level.isTwoPlayers() == false) {
+			posY = START_Y;
+		}else {
+			posY = 320 + START_Y;
+		}
+
 		obsImage.move(posX, posY);
 		program.add(obsImage);
 		obsImage.setSize(OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
 		obsMoveTimer = new Timer(15, this);
 		obsMoveTimer.start();
+		levelToAdd = level;
 	}
 
 	public void actionPerformed(ActionEvent e) {

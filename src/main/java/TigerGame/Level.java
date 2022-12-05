@@ -16,6 +16,8 @@ public class Level implements ActionListener  {
 	private Timer NewObstacleTimer;
 	private Timer collisionCheckTimer;
 	private Timer powerUpTimer;
+	private boolean isSecond;
+	private int scaleY;
 	
 	private ArrayList<MapElement> clouds;
 	private ArrayList<MapElement> bushes;
@@ -28,8 +30,12 @@ public class Level implements ActionListener  {
 		super();
 		
 		int scaleY = 0;
-		if(secondPlayer == true) {
+		if (secondPlayer == true) {
+			isSecond = true;
 			scaleY = 400;
+		}else {
+			isSecond = false;
+			scaleY = 0;
 		}
 		
 		rgen = RandomGenerator.getInstance();
@@ -39,20 +45,20 @@ public class Level implements ActionListener  {
 		// Add clouds
 		clouds = new ArrayList<MapElement>();
 		for(int i = 0; i <= 2; i++) {
-			clouds.add(new MapElement(program, MapElementType.CLOUD, i * 200, 0 + scaleY));
+			clouds.add(new MapElement(program, MapElementType.CLOUD, i * 200, 0 + scaleY,this));
 		}
 
 		// Add bushes
 		bushes = new ArrayList<MapElement>();
 		for(int i = 0; i <= 1; i++) {
-			bushes.add(new MapElement(program, MapElementType.BUSH, i * 370, 0 + + scaleY));
+			bushes.add(new MapElement(program, MapElementType.BUSH, i * 370, 0 + scaleY,this));
 		}
 
 		// Add obstacles
 		obstacles = new ArrayList<Obstacle>();
 
 		// Add player
-		player = new Player(program);
+		player = new Player(program, this);
 		
 		// Add powerUp
 		//currentPowerUp = new PowerUp(program);
@@ -74,7 +80,7 @@ public class Level implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource() == NewObstacleTimer) {
-			obstacles.add(new Obstacle(program));
+			obstacles.add(new Obstacle(program, this));
 			NewObstacleTimer.stop();
 			NewObstacleTimer = new Timer(rgen.nextInt(1000,2000), this);
 			NewObstacleTimer.start();
@@ -108,6 +114,7 @@ public class Level implements ActionListener  {
 		for(PowerUp power: powers) {
 			if(power != null) {
 				if(player.isCollided(power)) {
+					stopAllTimersOnce();
 					program.remove(power.getGImage());
 				}
 				if(power.getX() + power.getWidth() < 0) {
@@ -144,6 +151,10 @@ public class Level implements ActionListener  {
 
 	public void gravity(GObject playerIn) {
 		player.fall();
+	}
+	
+	public boolean isTwoPlayers() {
+		return 	isSecond;
 	}
 
 }
