@@ -105,7 +105,7 @@ public class Level implements ActionListener  {
 		}
 		
 		if(e.getSource() == powerUpTimer) {
-			powers.add(new PowerUp(program));
+			powers.add(new PowerUp(program,this));
 			powerUpTimer.stop();
 			powerUpTimer = new Timer(rgen.nextInt(8000, 12000), this);
 			powerUpTimer.start();

@@ -7,6 +7,7 @@ import acm.graphics.GRect;
 public class DeathScreenPane extends GraphicsPane {
 	
     private MainApplication program;
+    boolean isTwoPlayer;
     
     GImage gameOver = new GImage("sounds/game-over.png");
    
@@ -15,18 +16,22 @@ public class DeathScreenPane extends GraphicsPane {
     public GRect but2 = new GRect(174,159,251,54);
 
 
-    public DeathScreenPane(MainApplication app) {
+    public DeathScreenPane(MainApplication app, boolean isTwoPlayers) {
         super();
         program = app;
         program.add(gameOver);
         but1.setLineWidth(0);
         but2.setLineWidth(0);
+        isTwoPlayer = isTwoPlayers;
     }
 
     public void clickedAt(GObject objIn) {
-        if (objIn == but1) {
+        if (objIn == but1 && isTwoPlayer == false) {
             program.switchToSinglePlayer();
-        } else if(objIn == but2) {
+        }else if(objIn == but1 && isTwoPlayer == true) {
+        	program.switchToMultiPlayer();
+        }
+        else if(objIn == but2) {
             program.switchToMainMenu();
         } 
     }

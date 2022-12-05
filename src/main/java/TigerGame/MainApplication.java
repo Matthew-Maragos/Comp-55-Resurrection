@@ -27,7 +27,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private DeathScreenPane gameOverMenu;
 	private Level level;
 	private AudioPlayer audio = AudioPlayer.getInstance();
-	private boolean isTwoPlayers;
+	public boolean isTwoPlayers;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -40,7 +40,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//loads player manual pane
 		manualMenu = new PlayerManualPane(this);
 		//loads game over menu
-		gameOverMenu = new DeathScreenPane(this);
+		gameOverMenu = new DeathScreenPane(this, isTwoPlayers);
 		setupInteractions();		
 		// initially loads to main menu
 		switchToMainMenu();			
@@ -67,7 +67,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToDeathScreenPane() {
-		gameOverMenu = new DeathScreenPane(this);
+		gameOverMenu = new DeathScreenPane(this, isTwoPlayers);
 		switchToScreen(gameOverMenu);
 	}
 	
