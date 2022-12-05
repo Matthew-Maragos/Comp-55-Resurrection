@@ -33,6 +33,8 @@ public class Player extends MainApplication implements ActionListener {
 	private int playerScore;
 	private int secondJump;
 	private int fallingSpeed;
+	private int tigerX;
+	private int tigerY;
 
 	private GLabel scoreLabel;
 	private Timer gravityTimer;
@@ -66,6 +68,11 @@ public class Player extends MainApplication implements ActionListener {
 
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
+		if (level.isTwoPlayers() == false) {
+			tigerImage.setLocation(START_X, START_Y);
+		}else {
+			tigerImage.setLocation(START_X, 320 + START_Y);
+		}
 
 		program.add(tigerImage);
 		gravityTimer = new Timer(40, this);
@@ -168,20 +175,38 @@ public class Player extends MainApplication implements ActionListener {
 
 
 	public void fall() {
-		if (tigerImage.getY() + fallingSpeed <= GROUND_Y) {
-			tigerImage.move(0, fallingSpeed); 
-			fallingSpeed = fallingSpeed + gravity;
+		if (levelToAdd.isTwoPlayers() == false) {
+			if (tigerImage.getY() + fallingSpeed <= GROUND_Y) {
+				tigerImage.move(0, fallingSpeed); 
+				fallingSpeed = fallingSpeed + gravity;
+			}
+			else {
+				tigerImage.setLocation(START_X, START_Y);
+			}
+		}else {
+			if (tigerImage.getY() + fallingSpeed <= 320 + GROUND_Y) {
+				tigerImage.move(0, fallingSpeed); 
+				fallingSpeed = fallingSpeed + gravity;
+			}
+			else {
+				tigerImage.setLocation(START_X, 320 + START_Y);
+			}
 		}
-		else {
-			tigerImage.setLocation(START_X, START_Y);
-		}
+		
 	}
 	
 	public boolean isOnGround() {
-		if (tigerImage.getY() == GROUND_Y) {
-			return true;
+		if (levelToAdd.isTwoPlayers() == false) {
+			if (tigerImage.getY() == GROUND_Y) {
+				return true;
+			}
+			return false;
+		}else {
+			if (tigerImage.getY() == 320 + GROUND_Y) {
+				return true;
+			}
+			return false;
 		}
-		return false;
 	}
 	// Check collision between player and obstacle
 	public boolean isCollided(Obstacle obstacle) {

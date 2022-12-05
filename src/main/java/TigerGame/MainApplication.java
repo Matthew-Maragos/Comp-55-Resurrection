@@ -27,6 +27,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private DeathScreenPane gameOverMenu;
 	private Level level;
 	private AudioPlayer audio = AudioPlayer.getInstance();
+	private boolean isTwoPlayers;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -55,11 +56,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToSinglePlayer() {
 		singleMenu = new SinglePlayerModePane(this);
+		isTwoPlayers = false;
 		switchToScreen(singleMenu);
 	}
 	
 	public void switchToMultiPlayer() {
 		multiMenu = new MultiPlayerMode(this);
+		isTwoPlayers = true;
 		switchToScreen(multiMenu);
 	}
 	
@@ -92,15 +95,21 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == 38) {		
-			singleMenu.LevelOne.player.jump();
-			playRandomSound();
-			//jump function from player from level one from singlemenu
+		if (isTwoPlayers == false) {
+			if (e.getKeyCode() == 38) {		
+				singleMenu.LevelOne.player.jump();
+				playRandomSound();
+				//jump function from player from level one from singlemenu
+			}
+		}else {
+			if (e.getKeyCode() == 38) {		
+				multiMenu.LevelOne.player.jump();
+				playRandomSound();
+			}else if (e.getKeyCode() == 87) {		
+				multiMenu.LevelTwo.player.jump();
+			}
 		}
-		//keycode 87: W
-		if (e.getKeyCode() == 87) {		
-			multiMenu.LevelTwo.player.jump();
-		}
+
 	}
 
 	public static void main(String[] args) {
