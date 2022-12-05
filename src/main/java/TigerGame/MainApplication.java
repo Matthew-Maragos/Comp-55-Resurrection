@@ -6,14 +6,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
-import acm.graphics.*;	
+import acm.graphics.*;
 
 public class MainApplication extends GraphicsApplication implements ActionListener {
-	//TODO is obstacle should be controller from here ? RH
+	// TODO fix the sound problem. Add other sounds to the game
 	
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
 	public static final int GRAVITY_TIMER_MS = 200;
+	public static final String MUSIC_FOLDER = "sounds";
+	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3", "jump.mp3" };
+
 	
 	public int windowWidth = 600;
 	public int windowHeight = 436;
@@ -23,6 +26,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private MultiPlayerMode multiMenu;
 	private DeathScreenPane gameOverMenu;
 	private Level level;
+	private AudioPlayer audio = AudioPlayer.getInstance();
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -38,6 +42,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		//loads game over menu
 		gameOverMenu = new DeathScreenPane(this);
+		
 		
 		setupInteractions();		
 		
@@ -67,7 +72,12 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		gameOverMenu = new DeathScreenPane(this);
 		switchToScreen(gameOverMenu);
 	}
-
+	
+	private void playRandomSound() {
+		
+		audio.playSound(MUSIC_FOLDER, SOUND_FILES[2]);
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject button = getElementAt(e.getX(), e.getY());		
@@ -92,7 +102,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == 38) {		
-			singleMenu.LevelOne.player.jump();		
+			singleMenu.LevelOne.player.jump();
+			playRandomSound();
 			//jump function from player from level one from singlemenu
 		}
 		
