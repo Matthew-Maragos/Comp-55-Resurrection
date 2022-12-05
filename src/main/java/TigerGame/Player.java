@@ -30,7 +30,7 @@ public class Player extends MainApplication implements ActionListener {
 
 	private int jumpPower;
 	private int gravity;
-	private int playerScore;
+	public int playerScore;
 	private int secondJump;
 	private int fallingSpeed;
 	private int tigerX;

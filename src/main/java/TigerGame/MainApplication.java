@@ -20,11 +20,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public int windowWidth = 600;
 	public int windowHeight = 436;
-	private startMenuPane mainMenu;
-	private PlayerManualPane manualMenu;
-	private SinglePlayerModePane singleMenu;
-	private MultiPlayerMode multiMenu;
-	private DeathScreenPane gameOverMenu;
+	public startMenuPane mainMenu;
+	public PlayerManualPane manualMenu;
+	public SinglePlayerModePane singleMenu;
+	public MultiPlayerMode multiMenu;
+	public DeathScreenPane gameOverMenu;
 	private Level level;
 	private AudioPlayer audio = AudioPlayer.getInstance();
 	public boolean isTwoPlayers;
@@ -88,7 +88,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			manualMenu.clickedAt(button);
 		}
 		if (curScreen == gameOverMenu) { 
-			gameOverMenu.clickedAt(button);	
+			gameOverMenu.clickedAt(button);
+			if (isTwoPlayers == true) {
+				this.remove(multiMenu.winLabel);
+			}
 			//uses clickedAt function in startMenuPane.java line 27
 		} 
 	}
@@ -109,7 +112,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 				multiMenu.LevelTwo.player.jump();
 			}
 		}
-
 	}
 
 	public static void main(String[] args) {

@@ -1,8 +1,12 @@
 package TigerGame;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import acm.graphics.GLabel;
 
 public class DeathScreenPane extends GraphicsPane {
 	
@@ -23,6 +27,7 @@ public class DeathScreenPane extends GraphicsPane {
         but1.setLineWidth(0);
         but2.setLineWidth(0);
         isTwoPlayer = isTwoPlayers;
+        
     }
 
     public void clickedAt(GObject objIn) {

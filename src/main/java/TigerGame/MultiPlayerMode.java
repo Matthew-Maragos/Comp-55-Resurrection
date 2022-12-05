@@ -1,5 +1,7 @@
 package TigerGame;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -9,12 +11,12 @@ import javax.swing.Timer;
 
 import acm.graphics.GRect;
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 import acm.graphics.GObject;
 //
 //	DO NOT PUSH SETTINGS, ONLY ADDED/MODIFIED
 //
 
-import acm.graphics.GObject;
 
 
 public class MultiPlayerMode extends GraphicsPane implements ActionListener {
@@ -26,6 +28,8 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 	
 	public Level LevelTwo;
 	public Level LevelOne;
+	GLabel winLabel;
+	
 
 
 	ArrayList<String> Player = new ArrayList<String>();
@@ -62,6 +66,15 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (LevelOne.player.continueGame == false || LevelTwo.player.continueGame == false) {
+			if (LevelOne.player.continueGame == false) {
+				winLabel = new GLabel("Player 2 WON!");
+			}else if (LevelTwo.player.continueGame == false) {
+				winLabel = new GLabel("Player 1 WON!");
+			}
+			program.add(winLabel);
+			winLabel.setFont(new Font("Serif", Font.BOLD, 26));
+			winLabel.setLocation(210, 300);
+			winLabel.setColor(Color.red);
 			LevelOne.stopAllTimersOnce();
 			LevelTwo.stopAllTimersOnce();
 		}
