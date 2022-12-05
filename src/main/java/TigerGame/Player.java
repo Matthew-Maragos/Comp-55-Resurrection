@@ -68,29 +68,22 @@ public class Player extends MainApplication implements ActionListener {
 		
 		if (level.isTwoPlayers() == false) {
 			playerLabel = new GLabel("Player 1");
+			playerLabel.setLocation(10, 50);
+			tigerImage = new GImage("sounds/tiger_orange.png");
+			tigerImage.setLocation(START_X, START_Y);
 		} else {
 			playerLabel = new GLabel("Player 2");
+			playerLabel.setLocation(10, 340 + 100);
+			tigerImage = new GImage("sounds/tiger_yellow.png");
+			tigerImage.setLocation(START_X, 400 + START_Y);
 		}
 		
 		program.add(playerLabel);
 		playerLabel.setFont(new Font("Serif", Font.BOLD, 26));
 		
-		if (level.isTwoPlayers() == false) {
-			playerLabel.setLocation(10, 50);
-		} else {
-			playerLabel.setLocation(10, 340 + 100);
-		}
-		
-		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
-		
-		if (level.isTwoPlayers() == false) {
-			tigerImage.setLocation(START_X, START_Y);
-		} else {
-			tigerImage.setLocation(START_X, 400 + START_Y);
-		}
-
 		program.add(tigerImage);
+		
 		gravityTimer = new Timer(40, this);
 		gravityTimer.start();
 
