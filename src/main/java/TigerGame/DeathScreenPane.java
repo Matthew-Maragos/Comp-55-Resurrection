@@ -28,16 +28,19 @@ public class DeathScreenPane extends GraphicsPane {
         but2.setLineWidth(0);
         isTwoPlayer = isTwoPlayers;
         
+        
     }
 
     public void clickedAt(GObject objIn) {
         if (objIn == but1 && isTwoPlayer == false) {
             program.switchToSinglePlayer();
+            program.setSize(MainApplication.WINDOW_WIDTH, MainApplication.WINDOW_HEIGHT);
         }else if(objIn == but1 && isTwoPlayer == true) {
         	program.switchToMultiPlayer();
         }
         else if(objIn == but2) {
             program.switchToMainMenu();
+            program.setSize(MainApplication.WINDOW_WIDTH, MainApplication.WINDOW_HEIGHT);
         } 
     }
 
@@ -51,6 +54,7 @@ public class DeathScreenPane extends GraphicsPane {
     public void hideContents() {
         program.remove(but1);
         program.remove(but2);
+
     }
 
 }

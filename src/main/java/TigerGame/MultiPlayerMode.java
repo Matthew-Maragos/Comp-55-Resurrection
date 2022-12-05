@@ -27,7 +27,6 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 	public GLabel winLabel;
 	
 
-
 	ArrayList<String> Player = new ArrayList<String>();
 
 	public static final int WINDOW_WIDTH = 600;
@@ -58,7 +57,6 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 	@Override
 	public void hideContents() {
 		// TODO Auto-generated method stub
-		
 	}
 
 
@@ -66,6 +64,7 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (LevelOne.player.continueGame == false || LevelTwo.player.continueGame == false) {
+			collisionCheckTimer.stop();
 			if (LevelOne.player.continueGame == false) {
 				winLabel = new GLabel("Player 2 WON!");
 			}else if (LevelTwo.player.continueGame == false) {
