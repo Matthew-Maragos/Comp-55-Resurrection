@@ -87,12 +87,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		}
 		if (curScreen == gameOverMenu) { 
 			gameOverMenu.clickedAt(button);
-			
-			if (isTwoPlayers == true) {
-				this.remove(multiMenu.winLabel);
-			}
-			 
-			//uses clickedAt function in startMenuPane.java line 27
 		} 
 	}
 

@@ -56,7 +56,7 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void hideContents() {
-		// TODO Auto-generated method stub
+		program.remove(winLabel);
 	}
 
 

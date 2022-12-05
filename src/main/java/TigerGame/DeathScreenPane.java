@@ -18,6 +18,8 @@ public class DeathScreenPane extends GraphicsPane {
     //Try Again = but 1, Main Menu = but2
     public GRect but1 = new GRect(174,92,251,54);
     public GRect but2 = new GRect(174,159,251,54);
+    
+    public boolean minimizeScreen;
 
 
     public DeathScreenPane(MainApplication app, boolean isTwoPlayers) {
@@ -33,12 +35,16 @@ public class DeathScreenPane extends GraphicsPane {
 
     public void clickedAt(GObject objIn) {
         if (objIn == but1 && isTwoPlayer == false) {
+        	minimizeScreen = true;
             program.switchToSinglePlayer();
             program.setSize(MainApplication.WINDOW_WIDTH, MainApplication.WINDOW_HEIGHT);
-        }else if(objIn == but1 && isTwoPlayer == true) {
+        }
+        else if(objIn == but1 && isTwoPlayer == true) {
+        	minimizeScreen = false;
         	program.switchToMultiPlayer();
         }
         else if(objIn == but2) {
+        	minimizeScreen = true;
             program.switchToMainMenu();
             program.setSize(MainApplication.WINDOW_WIDTH, MainApplication.WINDOW_HEIGHT);
         } 
@@ -54,7 +60,6 @@ public class DeathScreenPane extends GraphicsPane {
     public void hideContents() {
         program.remove(but1);
         program.remove(but2);
-
     }
 
 }
