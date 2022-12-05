@@ -24,7 +24,7 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 	
 	public Level LevelTwo;
 	public Level LevelOne;
-	GLabel winLabel;
+	public GLabel winLabel;
 	
 
 
@@ -38,11 +38,15 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 		super();
 		program = app;
 		program.setSize(WINDOW_WIDTH, WINDOW_HEIGHT * 2);
+
+		
 		LevelOne = new Level(program, false);
 		LevelTwo = new Level(program, true);
 		
 		collisionCheckTimer = new Timer(100, this);
 		collisionCheckTimer.start();
+		
+		winLabel = new GLabel("");
 	}
 	
 	

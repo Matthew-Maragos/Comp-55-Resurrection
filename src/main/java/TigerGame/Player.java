@@ -65,25 +65,29 @@ public class Player extends MainApplication implements ActionListener {
 		gravity = GRAVITY;
 		scoreLabel = new GLabel("Score is 0");
 		levelToAdd = level;
+		
 		if (level.isTwoPlayers() == false) {
 			playerLabel = new GLabel("Player 1");
-		}else {
+		} else {
 			playerLabel = new GLabel("Player 2");
 		}
+		
 		program.add(playerLabel);
 		playerLabel.setFont(new Font("Serif", Font.BOLD, 26));
+		
 		if (level.isTwoPlayers() == false) {
 			playerLabel.setLocation(10, 50);
-		}else {
+		} else {
 			playerLabel.setLocation(10, 340 + 100);
 		}
-
+		
 		tigerImage = new GImage("sounds/tiger_orange.png");
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
+		
 		if (level.isTwoPlayers() == false) {
 			tigerImage.setLocation(START_X, START_Y);
-		}else {
-			tigerImage.setLocation(START_X, 320 + START_Y);
+		} else {
+			tigerImage.setLocation(START_X, 400 + START_Y);
 		}
 
 		program.add(tigerImage);
@@ -195,13 +199,13 @@ public class Player extends MainApplication implements ActionListener {
 			else {
 				tigerImage.setLocation(START_X, START_Y);
 			}
-		}else {
-			if (tigerImage.getY() + fallingSpeed <= 320 + GROUND_Y) {
+		} else {
+			if (tigerImage.getY() + fallingSpeed <= 400 + GROUND_Y) {
 				tigerImage.move(0, fallingSpeed); 
 				fallingSpeed = fallingSpeed + gravity;
 			}
 			else {
-				tigerImage.setLocation(START_X, 320 + START_Y);
+				tigerImage.setLocation(START_X, 400 + START_Y);
 			}
 		}
 		
@@ -214,7 +218,7 @@ public class Player extends MainApplication implements ActionListener {
 			}
 			return false;
 		}else {
-			if (tigerImage.getY() == 320 + GROUND_Y) {
+			if (tigerImage.getY() == 400 + GROUND_Y) {
 				return true;
 			}
 			return false;

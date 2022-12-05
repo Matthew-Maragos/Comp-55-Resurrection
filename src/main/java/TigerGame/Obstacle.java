@@ -34,10 +34,9 @@ public class Obstacle implements ActionListener  {
 		posX = START_X;
 		if (level.isTwoPlayers() == false) {
 			posY = START_Y;
-		}else {
-			posY = 320 + START_Y;
+		} else {
+			posY = 400 + START_Y;
 		}
-
 		obsImage.move(posX, posY);
 		program.add(obsImage);
 		obsImage.setSize(OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
