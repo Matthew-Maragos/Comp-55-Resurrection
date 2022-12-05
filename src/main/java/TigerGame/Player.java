@@ -12,6 +12,7 @@ import acm.graphics.GLabel;
 import acm.graphics.GRect;
 
 //	#TODO Make jump action smoother
+//  #TODO Fix issues with colliding
 
 //	#TODO Program forces one powerup to always be true, double jump 
 // 	was always true until oneUp was added, now oneUp is always true
@@ -33,8 +34,6 @@ public class Player extends MainApplication implements ActionListener {
 	public int playerScore;
 	private int secondJump;
 	private int fallingSpeed;
-	private int tigerX;
-	private int tigerY;
 
 	private GLabel scoreLabel;
 	private GLabel playerLabel;

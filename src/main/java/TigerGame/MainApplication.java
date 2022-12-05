@@ -1,10 +1,8 @@
 package TigerGame;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
 
 import acm.graphics.*;
 
@@ -25,7 +23,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public SinglePlayerModePane singleMenu;
 	public MultiPlayerMode multiMenu;
 	public DeathScreenPane gameOverMenu;
-	private Level level;
 	private AudioPlayer audio = AudioPlayer.getInstance();
 	public boolean isTwoPlayers;
 	

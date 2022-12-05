@@ -1,6 +1,5 @@
 package TigerGame;
 
-import acm.graphics.*;
 
 
 public class SinglePlayerModePane extends GraphicsPane {

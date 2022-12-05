@@ -24,7 +24,6 @@ public class Obstacle implements ActionListener  {
 	private Timer obsMoveTimer;
 	public SinglePlayerModePane gameWindow;
 	public RandomGenerator rgen;
-	private Level levelToAdd;
 	
 	
 	public Obstacle(MainApplication app, Level level) {
@@ -44,7 +43,6 @@ public class Obstacle implements ActionListener  {
 		obsImage.setSize(OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
 		obsMoveTimer = new Timer(15, this);
 		obsMoveTimer.start();
-		levelToAdd = level;
 	}
 
 	public void actionPerformed(ActionEvent e) {

@@ -22,13 +22,11 @@ public class PowerUp implements ActionListener {
 	private GImage powerImage;
 	private Timer powerTimer;
 	public RandomGenerator rgen;
-	private Level levelToAdd;
 
 	public PowerUp(MainApplication app, Level level) {
 		rgen = RandomGenerator.getInstance();
 		program = app;
 		moveSpeed = 5;
-		levelToAdd = level;
 		posX = START_X;
 		if (level.isTwoPlayers() == false) {
 			posY = START_Y;
