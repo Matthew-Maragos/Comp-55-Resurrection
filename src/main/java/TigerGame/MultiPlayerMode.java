@@ -71,9 +71,9 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 				winLabel = new GLabel("Player 1 WON!");
 			}
 			program.add(winLabel);
-			winLabel.setFont(new Font("Serif", Font.BOLD, 26));
-			winLabel.setLocation(210, 300);
-			winLabel.setColor(Color.red);
+			winLabel.setFont(new Font("Serif", Font.BOLD, 30));
+			winLabel.setLocation(200, 500);
+			winLabel.setColor(Color.black);
 			LevelOne.stopAllTimersOnce();
 			LevelTwo.stopAllTimersOnce();
 		}

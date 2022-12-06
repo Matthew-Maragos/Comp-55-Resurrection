@@ -80,10 +80,8 @@ public class Player extends MainApplication implements ActionListener {
 		
 		program.add(playerLabel);
 		playerLabel.setFont(new Font("Serif", Font.BOLD, 26));
-		
 		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
 		program.add(tigerImage);
-		
 		gravityTimer = new Timer(40, this);
 		gravityTimer.start();
 
@@ -284,7 +282,7 @@ public class Player extends MainApplication implements ActionListener {
 				// Adding an icon of the power-up
 				powerImage.setImage("sounds/doublejump.png");
 				powerImage.setSize(30, 30);
-				powerImage.setLocation(540, 70);
+				powerImage.setLocation(540, 70);	
 				program.add(powerImage);
 			}
 

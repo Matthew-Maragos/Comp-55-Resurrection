@@ -33,7 +33,7 @@ public class Level implements ActionListener  {
 		if (secondPlayer == true) {
 			isSecond = true;
 			scaleY = 400;
-		}else {
+		} else {
 			isSecond = false;
 			scaleY = 0;
 		}
