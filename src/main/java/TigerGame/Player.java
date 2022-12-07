@@ -158,19 +158,21 @@ public class Player extends MainApplication implements ActionListener {
 		////////////////WORK ON AUDIO ////////////////
 		//Jump Audio
 		audio = AudioPlayer.getInstance();
-		audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 		
-		// Normal Jump
+		
+		// Normal Jump with sound effect
 		if (isOnGround() && continueGame == true && doubleJump == false) 	{
 			fallingSpeed = jumpPower;
+			audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 			fall();
 			secondJump = 0;
 			//System.out.println("SJ " + secondJump);
 		}
 
-		// DoubleJump
+		// DoubleJump with sound effect
 		if (isOnGround() && continueGame == true && doubleJump == true) {
 			fallingSpeed = jumpPower;
+			audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 			fall();
 		}
 
@@ -181,6 +183,7 @@ public class Player extends MainApplication implements ActionListener {
 			//Only work if up arrow is pressed twice, resets when ground is hit
 			if (!isOnGround() && secondJump == 2){
 				fallingSpeed = jumpPower / (23/10);
+				audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 				fall();
 				secondJump = 0;
 			}
