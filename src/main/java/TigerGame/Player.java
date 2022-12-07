@@ -28,6 +28,7 @@ public class Player extends MainApplication implements ActionListener {
 	public static final int GRAVITY = 5;
 
 	private MainApplication program;
+	private AudioPlayer audio;
 
 	private int jumpPower;
 	private int gravity;
@@ -65,6 +66,7 @@ public class Player extends MainApplication implements ActionListener {
 		gravity = GRAVITY;
 		scoreLabel = new GLabel("Score is 0");
 		levelToAdd = level;
+		
 		
 		if (level.isTwoPlayers() == false) {
 			playerLabel = new GLabel("Player 1");
@@ -153,6 +155,11 @@ public class Player extends MainApplication implements ActionListener {
 
 
 	public void jump() {
+		////////////////WORK ON AUDIO ////////////////
+		//Jump Audio
+		audio = AudioPlayer.getInstance();
+		audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
+		
 		// Normal Jump
 		if (isOnGround() && continueGame == true && doubleJump == false) 	{
 			fallingSpeed = jumpPower;

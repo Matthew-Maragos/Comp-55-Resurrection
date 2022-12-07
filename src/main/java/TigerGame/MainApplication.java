@@ -12,8 +12,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
 	public static final int GRAVITY_TIMER_MS = 200;
-	public static final String MUSIC_FOLDER = "sounds";
+	public static final String MFolder = "sounds";
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3", "jump.mp3" };
+	public static final String MUSIC_FOLDER = "sounds";	//duplicate for testing
 
 	public int windowWidth = 600;
 	public int windowHeight = 436;
@@ -31,6 +32,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void run() {
+
 		//loads main menu pane
 		mainMenu = new startMenuPane(this);		
 		//loads player manual pane
@@ -44,6 +46,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToMainMenu() {
+		audio.playSound(MUSIC_FOLDER, "MMenu.mp3");
 		switchToScreen(mainMenu);
 	}
 
@@ -74,17 +77,21 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		GObject button = getElementAt(e.getX(), e.getY());		
+		GObject button = getElementAt(e.getX(), e.getY());	
+//		audio.playSound(MUSIC_FOLDER, "MMenu.mp3");
 		//Where the mouse cursor is when clicked
 
 		if (curScreen == mainMenu) { 
-			mainMenu.clickedAt(button);		
+			mainMenu.clickedAt(button);
+			audio.stopSound(MUSIC_FOLDER, "MMenu.mp3");
 			//uses clickedAt function in startMenuPane.java line 27
 		} 
 		else if (curScreen == manualMenu) {
+			audio.stopSound(MUSIC_FOLDER, "MMenu.mp3");
 			manualMenu.clickedAt(button);
 		}
 		if (curScreen == gameOverMenu) { 
+			audio.stopSound(MUSIC_FOLDER, "MMenu.mp3");
 			gameOverMenu.clickedAt(button);
 		} 
 	}
@@ -95,7 +102,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		if (isTwoPlayers == false) {
 			if (e.getKeyCode() == 38) {		
 				singleMenu.LevelOne.player.jump();
-				playRandomSound();
+//				playRandomSound();
 				//jump function from player from level one from singlemenu
 			}
 		} else {
