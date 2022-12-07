@@ -15,7 +15,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3", "jump.mp3" };
 
-
 	public int windowWidth = 600;
 	public int windowHeight = 436;
 	public startMenuPane mainMenu;

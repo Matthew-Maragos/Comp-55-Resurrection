@@ -30,11 +30,11 @@ public class PowerUp implements ActionListener {
 		posX = START_X;
 		if (level.isTwoPlayers() == false) {
 			posY = START_Y;
-		}else {
-			posY = 320 + START_Y;
+		} else {
+			posY = 400 + START_Y;
 		}
 		
-		randomizePowerUp();
+		randomizePowerUp(level);
 		
 		powerImage.move(posX, posY);
 		program.add(powerImage);
@@ -48,10 +48,11 @@ public class PowerUp implements ActionListener {
 		powerImage.move(-moveSpeed, 0);
 	}
 	
-	public void randomizePowerUp() {
+	public void randomizePowerUp(Level level) {
 		int randNum = rgen.nextInt(1,3);
-		//randNum = 3;
-		
+		if(level.isSecond == true) {
+			randNum = rgen.nextInt(1,4);
+		}
 		if(randNum == 1) {
 			powerImage = new GImage("sounds/invincibility.png");
 			powerType = PowerUpType.INVINCIBILITY;
@@ -64,12 +65,10 @@ public class PowerUp implements ActionListener {
 			powerImage = new GImage("sounds/doublejump.png");
 			powerType = PowerUpType.DOUBLEJUMP;
 		}
-		/*
-		else {
+		if(randNum == 4) {
 			powerImage = new GImage("sounds/jeopardy.png");
 			powerType = PowerUpType.JEOPARDY;
 		}
-		*/
 	}	
 	
 	// getters and setters

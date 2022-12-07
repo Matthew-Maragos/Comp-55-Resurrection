@@ -16,7 +16,7 @@ public class Level implements ActionListener  {
 	private Timer NewObstacleTimer;
 	private Timer collisionCheckTimer;
 	private Timer powerUpTimer;
-	private boolean isSecond;
+	public boolean isSecond;
 	private int scaleY;
 	
 	private ArrayList<MapElement> clouds;
@@ -61,14 +61,13 @@ public class Level implements ActionListener  {
 		player = new Player(program, this);
 		
 		// Add powerUp
-		//currentPowerUp = new PowerUp(program);
 		powers = new ArrayList<PowerUp>();
 		
 		// Add timer
 		NewObstacleTimer = new Timer(rgen.nextInt(2000,4000), this);
 		NewObstacleTimer.start();
-		
-		powerUpTimer = new Timer(rgen.nextInt(5000,7000), this);
+		// 5000, 7000
+		powerUpTimer = new Timer(rgen.nextInt(100,200), this);
 		powerUpTimer.start();
 		
 		collisionCheckTimer = new Timer(100, this);
