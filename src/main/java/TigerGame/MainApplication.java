@@ -7,14 +7,12 @@ import java.awt.event.MouseEvent;
 import acm.graphics.*;
 
 public class MainApplication extends GraphicsApplication implements ActionListener {
-	// TODO fix the sound problem. Add other sounds to the game
+
 
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
 	public static final int GRAVITY_TIMER_MS = 200;
-	public static final String MFolder = "sounds";
-	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3", "jump.mp3" };
-	public static final String MUSIC_FOLDER = "sounds";	//duplicate for testing
+	public static final String MUSIC_FOLDER = "sounds";	
 
 	public int windowWidth = 600;
 	public int windowHeight = 436;
@@ -52,6 +50,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	public void switchToManual() {
 		switchToScreen(manualMenu);
+		audio.playSound(MUSIC_FOLDER, "MMenu.mp3");
+
 	}
 
 	public void switchToSinglePlayer() {
@@ -71,27 +71,25 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(gameOverMenu);
 	}
 
-	private void playRandomSound() {
-		audio.playSound(MUSIC_FOLDER, SOUND_FILES[1]);
-	}
+
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		GObject button = getElementAt(e.getX(), e.getY());	
-//		audio.playSound(MUSIC_FOLDER, "MMenu.mp3");
 		//Where the mouse cursor is when clicked
+		GObject button = getElementAt(e.getX(), e.getY());	
+		
 
 		if (curScreen == mainMenu) { 
 			mainMenu.clickedAt(button);
-			audio.stopSound(MUSIC_FOLDER, "MMenu.mp3");
+//			audio.pauseSound(MUSIC_FOLDER, "MMenu.mp3");
 			//uses clickedAt function in startMenuPane.java line 27
 		} 
 		else if (curScreen == manualMenu) {
-			audio.stopSound(MUSIC_FOLDER, "MMenu.mp3");
+			audio.playSound(MUSIC_FOLDER, "MMenu.mp3");
 			manualMenu.clickedAt(button);
 		}
 		if (curScreen == gameOverMenu) { 
-			audio.stopSound(MUSIC_FOLDER, "MMenu.mp3");
+			audio.pauseSound(MUSIC_FOLDER, "MMenu.mp3");
 			gameOverMenu.clickedAt(button);
 		} 
 	}
@@ -101,14 +99,12 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		if (isTwoPlayers == false) {
 			if (e.getKeyCode() == 38) {		
-				singleMenu.LevelOne.player.jump();
-//				playRandomSound();
 				//jump function from player from level one from singlemenu
+				singleMenu.LevelOne.player.jump();
 			}
 		} else {
 			if (e.getKeyCode() == 38) {		
 				multiMenu.LevelOne.player.jump();
-				playRandomSound();
 			}else if (e.getKeyCode() == 87) {		
 				multiMenu.LevelTwo.player.jump();
 			}

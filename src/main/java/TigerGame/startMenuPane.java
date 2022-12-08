@@ -7,6 +7,9 @@ public class startMenuPane extends GraphicsPane {
 	
     private MainApplication program;
 
+	private AudioPlayer audio = AudioPlayer.getInstance();
+	public static final String MUSIC_FOLDER = "sounds";
+	
     GImage background = new GImage("sounds/start_menu.png");
     GImage manualPage = new GImage("sounds/manual_menu.png");
     public GRect but1 = new GRect(172,136,255,54);
@@ -25,11 +28,20 @@ public class startMenuPane extends GraphicsPane {
 
     public void clickedAt(GObject objIn) {
         if (objIn == but1) {
+//        	Stop audio when playing single
             program.switchToSinglePlayer();
-        } else if(objIn == but3) {
+            audio.stopSound(MUSIC_FOLDER, "MMenu.mp3");
+        } 
+        
+        else if(objIn == but3) {
             program.switchToManual();
-        } else if (objIn == but2) {
-        	 program.switchToMultiPlayer();
+            
+        } 
+        
+        else if (objIn == but2) {
+//        	Stop audio when playing multi
+    		audio.pauseSound(MUSIC_FOLDER, "MMenu.mp3");
+        	program.switchToMultiPlayer();
         }
     }
 

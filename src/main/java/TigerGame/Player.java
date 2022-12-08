@@ -28,7 +28,7 @@ public class Player extends MainApplication implements ActionListener {
 	public static final int GRAVITY = 5;
 
 	private MainApplication program;
-	private AudioPlayer audio;
+	private AudioPlayer audio = AudioPlayer.getInstance();
 
 	private int jumpPower;
 	private int gravity;
@@ -67,6 +67,8 @@ public class Player extends MainApplication implements ActionListener {
 		scoreLabel = new GLabel("Score is 0");
 		levelToAdd = level;
 		
+		//Game Background Audio
+		audio.playSound(MUSIC_FOLDER, "GMusic.mp3");
 		
 		if (level.isTwoPlayers() == false) {
 			playerLabel = new GLabel("Player 1");
@@ -125,14 +127,10 @@ public class Player extends MainApplication implements ActionListener {
 		scoreLabel.setLabel(" " + playerScore);
 		if (playerScore % 100 == 0) {
 			scoreLabel.setColor(Color.red);
-		}else{
+		}
+		else{
 			scoreLabel.setColor(Color.black);
 		}
-
-		//resets secondJump counter once player hits ground
-//		if (isOnGround() && secondJump == 3){
-//			secondJump = 0;
-//		}
 
 		if( e.getSource() == doubleJumpTimer){
 			doubleJump = false;
@@ -155,9 +153,8 @@ public class Player extends MainApplication implements ActionListener {
 
 
 	public void jump() {
-		////////////////WORK ON AUDIO ////////////////
+		
 		//Jump Audio
-		audio = AudioPlayer.getInstance();
 		audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 		
 		// Normal Jump
@@ -277,11 +274,14 @@ public class Player extends MainApplication implements ActionListener {
 		double y = powerUp.getY(); 
 		double w = powerUp.getWidth();
 		double h = powerUp.getHeight();
-
+		
 		// check collision
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 				&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 
+			//powerUp Audio
+			audio.playSound(MUSIC_FOLDER, "PowerUp.mp3");
+			
 			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
 				doubleJump = true;
 				doubleJumpTimer.start();

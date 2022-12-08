@@ -13,6 +13,9 @@ public class DeathScreenPane extends GraphicsPane {
     private MainApplication program;
     boolean isTwoPlayer;
     
+    private AudioPlayer audio = AudioPlayer.getInstance();
+    public static final String MUSIC_FOLDER = "sounds";	
+    
     GImage gameOver = new GImage("sounds/game-over.png");
    
     //Try Again = but 1, Main Menu = but2
@@ -36,15 +39,18 @@ public class DeathScreenPane extends GraphicsPane {
     public void clickedAt(GObject objIn) {
         if (objIn == but1 && isTwoPlayer == false) {
         	minimizeScreen = true;
+        	audio.stopSound(MUSIC_FOLDER, "GMusic.mp3");
             program.switchToSinglePlayer();
             program.setSize(MainApplication.WINDOW_WIDTH, MainApplication.WINDOW_HEIGHT);
         }
         else if(objIn == but1 && isTwoPlayer == true) {
         	minimizeScreen = false;
+        	audio.stopSound(MUSIC_FOLDER, "GMusic.mp3");
         	program.switchToMultiPlayer();
         }
         else if(objIn == but2) {
         	minimizeScreen = true;
+        	audio.stopSound(MUSIC_FOLDER, "GMusic.mp3");
             program.switchToMainMenu();
             program.setSize(MainApplication.WINDOW_WIDTH, MainApplication.WINDOW_HEIGHT);
         } 

@@ -6,6 +6,10 @@ import acm.graphics.*;
 public class PlayerManualPane extends GraphicsPane {
 
     private MainApplication program;
+
+	private AudioPlayer audio = AudioPlayer.getInstance();
+	public static final String MUSIC_FOLDER = "sounds";
+    
     GImage manualPage = new GImage("sounds/manual_menu.png");
     public GRect backButton = new GRect(25,22,86,34);
 
@@ -13,6 +17,8 @@ public class PlayerManualPane extends GraphicsPane {
         super();
         program = app;
         backButton.setLineWidth(0);
+		audio.playSound(MUSIC_FOLDER, "MMenu.mp3");
+
     }
 
     public void clickedAt(GObject objIn) {
