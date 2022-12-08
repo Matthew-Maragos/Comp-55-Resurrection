@@ -11,13 +11,6 @@ import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
 
-//	#TODO Make jump action smoother
-//  #TODO Fix issues with colliding
-
-//	#TODO Program forces one powerup to always be true, double jump 
-// 	was always true until oneUp was added, now oneUp is always true
-//	should only be true if collected by player, fix later
-
 public class Player extends MainApplication implements ActionListener {
 
 	public static final int TIGER_WIDTH = 100;
@@ -157,17 +150,20 @@ public class Player extends MainApplication implements ActionListener {
 		//Jump Audio
 		audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 		
-		// Normal Jump
+		
+		// Normal Jump with sound effect
 		if (isOnGround() && continueGame == true && doubleJump == false) 	{
 			fallingSpeed = jumpPower;
+			audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 			fall();
 			secondJump = 0;
 			//System.out.println("SJ " + secondJump);
 		}
 
-		// DoubleJump
+		// DoubleJump with sound effect
 		if (isOnGround() && continueGame == true && doubleJump == true) {
 			fallingSpeed = jumpPower;
+			audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 			fall();
 		}
 
@@ -178,6 +174,7 @@ public class Player extends MainApplication implements ActionListener {
 			//Only work if up arrow is pressed twice, resets when ground is hit
 			if (!isOnGround() && secondJump == 2){
 				fallingSpeed = jumpPower / (23/10);
+				audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 				fall();
 				secondJump = 0;
 			}
