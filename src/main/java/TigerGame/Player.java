@@ -106,10 +106,14 @@ public class Player extends MainApplication implements ActionListener {
 		//Gravity
 		if (isOnGround()) {
 			canJump = true;
+			if (secondJump > 2) {
+				secondJump = 0;
+			}
 		}
 		else {
 			canJump = false;
 			fall();
+			
 		}
 
 		//Update and Print Player Score
@@ -172,7 +176,7 @@ public class Player extends MainApplication implements ActionListener {
 				fallingSpeed = jumpPower / (23/10);
 				audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 				fall();
-				secondJump = 0;
+				secondJump = 3;
 			}
 		}
 	}
