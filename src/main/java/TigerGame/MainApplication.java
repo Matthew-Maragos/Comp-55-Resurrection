@@ -56,20 +56,20 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		singleMenu = new SinglePlayerModePane(this);
 		isTwoPlayers = false;
 		switchToScreen(singleMenu);
+		audio.playSound(MUSIC_FOLDER, "GMusic.mp3", true);
 	}
 
 	public void switchToMultiPlayer() {
 		multiMenu = new MultiPlayerMode(this);
 		isTwoPlayers = true;
 		switchToScreen(multiMenu);
+		audio.playSound(MUSIC_FOLDER, "GMusic.mp3", true);
 	}
 
 	public void switchToDeathScreenPane() {
 		gameOverMenu = new DeathScreenPane(this, isTwoPlayers);
 		switchToScreen(gameOverMenu);
 	}
-
-
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -78,6 +78,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		if (curScreen == mainMenu) { 
 			mainMenu.clickedAt(button);
+			
 //			audio.pauseSound(MUSIC_FOLDER, "MMenu.mp3");
 			//uses clickedAt function in startMenuPane.java line 27
 		} 

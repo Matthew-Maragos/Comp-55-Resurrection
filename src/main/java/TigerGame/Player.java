@@ -58,8 +58,8 @@ public class Player extends MainApplication implements ActionListener {
 		scoreLabel = new GLabel("Score is 0");
 		levelToAdd = level;
 		
-		//Game Background Audio
-		audio.playSound(MUSIC_FOLDER, "GMusic.mp3");
+		// Game Background Audio
+		//audio.playSound(MUSIC_FOLDER, "GMusic.mp3");
 		
 		if (level.isTwoPlayers() == false) {
 			playerLabel = new GLabel("Player 1");
@@ -102,6 +102,7 @@ public class Player extends MainApplication implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+				
 		//Gravity
 		if (isOnGround()) {
 			canJump = true;
@@ -146,7 +147,6 @@ public class Player extends MainApplication implements ActionListener {
 		//Jump Audio
 		audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 		
-		
 		// Normal Jump with sound effect
 		if (isOnGround() && continueGame == true && doubleJump == false) 	{
 			fallingSpeed = jumpPower;
@@ -163,7 +163,7 @@ public class Player extends MainApplication implements ActionListener {
 			fall();
 		}
 
-		//DoubleJump when off ground
+		// DoubleJump when off ground
 		if (!isOnGround() && continueGame == true && doubleJump == true){
 			secondJump++;
 

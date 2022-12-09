@@ -29,8 +29,9 @@ public class startMenuPane extends GraphicsPane {
     public void clickedAt(GObject objIn) {
         if (objIn == but1) {
 //        	Stop audio when playing single
+        	audio.stopSound(MUSIC_FOLDER, "MMenu.mp3");
             program.switchToSinglePlayer();
-            audio.stopSound(MUSIC_FOLDER, "MMenu.mp3");
+            
         } 
         
         else if(objIn == but3) {

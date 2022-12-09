@@ -51,6 +51,7 @@ public class DeathScreenPane extends GraphicsPane {
         else if(objIn == but2) {
         	minimizeScreen = true;
         	audio.stopSound(MUSIC_FOLDER, "GMusic.mp3");
+        	program.removeAll();
             program.switchToMainMenu();
             program.setSize(MainApplication.WINDOW_WIDTH, MainApplication.WINDOW_HEIGHT);
         } 

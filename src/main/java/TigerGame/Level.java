@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import acm.util.RandomGenerator;
 import javax.swing.*;
 
-
 public class Level implements ActionListener  {
 
 	private MainApplication program;
@@ -17,13 +16,12 @@ public class Level implements ActionListener  {
 	private Timer collisionCheckTimer;
 	private Timer powerUpTimer;
 	public boolean isSecond;
-	private int scaleY;
 	
 	private ArrayList<MapElement> clouds;
 	private ArrayList<MapElement> bushes;
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<PowerUp> powers;
-
+	
 	GImage backgroundImg = new GImage("sounds/blank_background.png");
 
 	public Level(MainApplication app, boolean secondPlayer) {
@@ -41,7 +39,7 @@ public class Level implements ActionListener  {
 		rgen = RandomGenerator.getInstance();
 		program = app;
 		program.add(backgroundImg, 0, 0 + scaleY);
-
+		
 		// Add clouds
 		clouds = new ArrayList<MapElement>();
 		for(int i = 0; i <= 2; i++) {
@@ -81,7 +79,6 @@ public class Level implements ActionListener  {
 			NewObstacleTimer.stop();
 			NewObstacleTimer = new Timer(rgen.nextInt(1000,2000), this);
 			NewObstacleTimer.start();
-			//System.out.println("Number of obstacles: " + obstacles.size());
 		}
 
 		for(Obstacle obstacle: obstacles) {

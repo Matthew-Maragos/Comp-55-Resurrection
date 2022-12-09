@@ -38,7 +38,6 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 		program = app;
 		program.setSize(WINDOW_WIDTH, WINDOW_HEIGHT * 2);
 
-		
 		LevelOne = new Level(program, false);
 		LevelTwo = new Level(program, true);
 		
