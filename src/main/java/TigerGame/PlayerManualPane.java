@@ -10,7 +10,7 @@ public class PlayerManualPane extends GraphicsPane {
 	private AudioPlayer audio = AudioPlayer.getInstance();
 	public static final String MUSIC_FOLDER = "sounds";
     
-    GImage manualPage = new GImage("sounds/manual_menu.png");
+    GImage manualPage = new GImage("sounds/player_manual.png");
     public GRect backButton = new GRect(25,22,86,34);
 
     public PlayerManualPane(MainApplication app) {
