@@ -10,7 +10,6 @@ public enum ObstacleType {
 			case ACORN: return "acorn";
 			case ROCK: return "rock";
 			case BENCH: return "bench";
-			
 		}
 		return "n/a";
 	}

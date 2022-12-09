@@ -33,7 +33,6 @@ public class PowerUp implements ActionListener {
 		} else {
 			posY = 400 + START_Y;
 		}
-		
 		randomizePowerUp(level);
 		
 		powerImage.move(posX, posY);
@@ -50,9 +49,6 @@ public class PowerUp implements ActionListener {
 	
 	public void randomizePowerUp(Level level) {
 		int randNum = rgen.nextInt(1,3);
-		if(level.isSecond == true) {
-			randNum = rgen.nextInt(1,4);
-		}
 		if(randNum == 1) {
 			powerImage = new GImage("sounds/invincibility.png");
 			powerType = PowerUpType.INVINCIBILITY;
@@ -64,10 +60,6 @@ public class PowerUp implements ActionListener {
 		if(randNum == 3) {
 			powerImage = new GImage("sounds/doublejump.png");
 			powerType = PowerUpType.DOUBLEJUMP;
-		}
-		if(randNum == 4) {
-			powerImage = new GImage("sounds/jeopardy.png");
-			powerType = PowerUpType.JEOPARDY;
 		}
 	}	
 	

@@ -7,8 +7,6 @@ import acm.util.RandomGenerator;
 
 
 public class Obstacle implements ActionListener  {
-	// TODO add obstacle movement. add limits of a screen
-	// TODO random obstacletype when created in constructor
 	
 	public static final int OBSTACLE_WIDTH = 50;
 	public static final int OBSTACLE_HEIGHT = 90;
@@ -54,15 +52,12 @@ public class Obstacle implements ActionListener  {
 			return new GImage("sounds/trashcan.png");
 		}
 		if(randNum == 2) {
-			
 			return new GImage("sounds/acorn.png");
 		}
 		if(randNum == 3) {
 			return new GImage("sounds/bench.png");
 		}
 		else {
-			//GImage temp = new GImage("sounds/rock.png");
-			//temp.setSize(100,100);
 			return new GImage("sounds/rock.png");
 		}
 		

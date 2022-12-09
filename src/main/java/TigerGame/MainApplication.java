@@ -30,7 +30,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void run() {
-
 		//loads main menu pane
 		mainMenu = new startMenuPane(this);		
 		//loads player manual pane
@@ -40,7 +39,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		setupInteractions();		
 		// initially loads to main menu
 		switchToMainMenu();		
-
 	}
 
 	public void switchToMainMenu() {
@@ -78,7 +76,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//Where the mouse cursor is when clicked
 		GObject button = getElementAt(e.getX(), e.getY());	
 		
-
 		if (curScreen == mainMenu) { 
 			mainMenu.clickedAt(button);
 //			audio.pauseSound(MUSIC_FOLDER, "MMenu.mp3");
@@ -105,11 +102,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		} else {
 			if (e.getKeyCode() == 38) {		
 				multiMenu.LevelOne.player.jump();
-			}else if (e.getKeyCode() == 87) {		
+			} else if (e.getKeyCode() == 87) {		
 				multiMenu.LevelTwo.player.jump();
 			}
 		}
-		
 
 	}
 

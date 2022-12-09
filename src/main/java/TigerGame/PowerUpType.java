@@ -9,8 +9,6 @@ ONEUP, DOUBLEJUMP, INVINCIBILITY, JEOPARDY;
 			case ONEUP: return "oneup";
 			case DOUBLEJUMP: return "doublejump";
 			case INVINCIBILITY: return "invincibility";
-			case JEOPARDY: return "jeopardy";
-			
 		}
 		return "n/a";
 	}

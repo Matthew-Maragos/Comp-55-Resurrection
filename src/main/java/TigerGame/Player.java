@@ -9,7 +9,6 @@ import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
-import acm.graphics.GRect;
 
 public class Player extends MainApplication implements ActionListener {
 
@@ -46,7 +45,6 @@ public class Player extends MainApplication implements ActionListener {
 	private Timer doubleJumpTimer;
 	private Timer invTimer;
 	private Timer oneUpTimer;
-	private Timer jpTimer;
 
 	public Player(MainApplication app, Level level) {
 		continueGame = true;
@@ -87,7 +85,7 @@ public class Player extends MainApplication implements ActionListener {
 		program.add(scoreLabel);
 		if (level.isTwoPlayers() == false) {
 			scoreLabel.setLocation(520, 50);
-		}else {
+		} else {
 			scoreLabel.setLocation(520, 340 + 100);
 		}
 
@@ -99,8 +97,6 @@ public class Player extends MainApplication implements ActionListener {
 
 		doubleJumpTimer = new Timer(5000, this);
 		invTimer = new Timer(5000, this);
-		jpTimer = new Timer(5000, this);
-
 		oneUpTimer = new Timer(1000, this);
 
 	}
