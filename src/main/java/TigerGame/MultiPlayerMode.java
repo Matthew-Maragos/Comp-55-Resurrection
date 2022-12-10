@@ -9,48 +9,32 @@ import java.util.ArrayList;
 import javax.swing.Timer;
 
 import acm.graphics.GLabel;
-//
-//	DO NOT PUSH SETTINGS, ONLY ADDED/MODIFIED
-//
-
-
 
 public class MultiPlayerMode extends GraphicsPane implements ActionListener {
-	//TODO showContents(), hideContents()
 	
+	public static final int WINDOW_WIDTH = 600;
+	public static final int WINDOW_HEIGHT = 436;
 	private MainApplication program;
-	
 	private Timer collisionCheckTimer;
-	
 	public Level LevelTwo;
 	public Level LevelOne;
 	public GLabel winLabel;
-	
-
-	ArrayList<String> Player = new ArrayList<String>();
-
-	public static final int WINDOW_WIDTH = 600;
-	public static final int WINDOW_HEIGHT = 436;
-
 
 	public MultiPlayerMode(MainApplication app) {
 		super();
 		program = app;
 		program.setSize(WINDOW_WIDTH, WINDOW_HEIGHT * 2);
-
 		LevelOne = new Level(program, false);
 		LevelTwo = new Level(program, true);
-		
 		collisionCheckTimer = new Timer(100, this);
 		collisionCheckTimer.start();
-		
 		winLabel = new GLabel("");
 	}
 	
 	
 	@Override
 	public void showContents() {
-		// TODO Auto-generated method stub
+		program.remove(winLabel);
 	}
 
 	@Override
@@ -58,10 +42,8 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 		program.remove(winLabel);
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 		if (LevelOne.player.continueGame == false || LevelTwo.player.continueGame == false) {
 			collisionCheckTimer.stop();
 			if (LevelOne.player.continueGame == false) {
@@ -76,6 +58,5 @@ public class MultiPlayerMode extends GraphicsPane implements ActionListener {
 			LevelOne.stopAllTimersOnce();
 			LevelTwo.stopAllTimersOnce();
 		}
-		
 	}
 }

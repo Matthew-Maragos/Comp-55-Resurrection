@@ -11,6 +11,4 @@ public enum MapElementType {
 		}
 		return "n/a";
 	}
-	
-	
 }

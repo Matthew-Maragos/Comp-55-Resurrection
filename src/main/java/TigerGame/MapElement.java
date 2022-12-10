@@ -25,7 +25,6 @@ public class MapElement implements ActionListener {
 	private Level levelToAdd;
 	
 	public MapElement(MainApplication app, MapElementType type, int startX, int scaleY, Level level) {
-
 		rgen = RandomGenerator.getInstance();
 		program = app;
 		moveSpeed = 5;
@@ -41,7 +40,6 @@ public class MapElement implements ActionListener {
 			posX = BUSH_START_X;
 			posY = BUSH_START_Y;
 			mapEleType = type;
-			
 			elementImage = new GImage("images/bush_2.png");
 			elementImage.scale(0.3);
 			elementImage.setLocation(startX, BUSH_START_Y);
@@ -63,31 +61,29 @@ public class MapElement implements ActionListener {
 			elementImage.setLocation(startX, CLOUD_START_Y);
 			program.add(elementImage);
 		}
-		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		elementImage.move(-moveSpeed, 0);
-		// loop the bushes if it goes out of bound
+		// Loop the bushes if it goes out of bound
 		if(elementImage.getX() + elementImage.getWidth() < 0) {
-			// if type is BUSH
+			// Reset the location for each bush
 			if(mapEleType == MapElementType.BUSH) {
 				randomizeBushImage(elementImage, BUSH_START_X, scaleY);
 				elementImage.setLocation(600, BUSH_START_Y);
 			}
-			// if type is CLOUD
+			// Reset the location for each cloud
 			if(mapEleType == MapElementType.CLOUD) {
 				if (levelToAdd.isTwoPlayers() == false) {
 					elementImage.setLocation(600, rgen.nextInt(0, 100));
-				}else {
+				} else {
 					elementImage.setLocation(600, 400 + rgen.nextInt(0, 100));
 				}
 			}
 		}
 	}
 	
-	// create random MapElement images
-    
+	// Generate random MapElement images
     public void randomizeBushImage(GImage image, int startX, int scaleY) {
         int randNum = rgen.nextInt(1,3);
         if(randNum == 1) {
@@ -135,5 +131,4 @@ public class MapElement implements ActionListener {
 	public Timer getObsMoveTimer() {
 		return obsMoveTimer;
 	}
-	
 }

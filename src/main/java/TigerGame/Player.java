@@ -58,40 +58,35 @@ public class Player extends MainApplication implements ActionListener {
 		scoreLabel = new GLabel("Score is 0");
 		levelToAdd = level;
 		
+		// Set up playerLabel, tigerImage for each mode
 		if (level.isTwoPlayers() == false) {
 			playerLabel = new GLabel("Player 1");
 			playerLabel.setLocation(10, 50);
 			tigerImage = new GImage("images/tiger_orange.png");
 			tigerImage.setLocation(START_X, START_Y);
+			scoreLabel.setLocation(520, 50);
 		} else {
 			playerLabel = new GLabel("Player 2");
 			playerLabel.setLocation(10, 340 + 100);
 			tigerImage = new GImage("images/tiger_yellow.png");
 			tigerImage.setLocation(START_X, 400 + START_Y);
-		}
-		
-		program.add(playerLabel);
-		playerLabel.setFont(new Font("Serif", Font.BOLD, 26));
-		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
-		program.add(tigerImage);
-		gravityTimer = new Timer(40, this);
-		gravityTimer.start();
-
-		// adds font, sets location, and sets font/size
-		// supported by Veasna
-		program.add(scoreLabel);
-		if (level.isTwoPlayers() == false) {
-			scoreLabel.setLocation(520, 50);
-		} else {
 			scoreLabel.setLocation(520, 340 + 100);
 		}
-
+		program.add(playerLabel);
+		playerLabel.setFont(new Font("Serif", Font.BOLD, 26));
 		scoreLabel.setFont(new Font("Serif", Font.BOLD, 36));	
-
+		tigerImage.setSize(TIGER_WIDTH,TIGER_HEIGHT);
+		program.add(tigerImage);
+		program.add(scoreLabel);
+		
+		// Set up icon for power-up image
 		powerImage = new GImage("images/oneup.png");
 		powerImage.setSize(30, 30);
 		powerImage.setLocation(540, 70);
-
+		
+		// Set up Timer
+		gravityTimer = new Timer(40, this);
+		gravityTimer.start();
 		doubleJumpTimer = new Timer(5000, this);
 		invTimer = new Timer(5000, this);
 		oneUpTimer = new Timer(800, this);
@@ -99,8 +94,7 @@ public class Player extends MainApplication implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-				
-		//Gravity
+		// Gravity
 		if (isOnGround()) {
 			canJump = true;
 			if (secondJump > 2) {
@@ -110,19 +104,17 @@ public class Player extends MainApplication implements ActionListener {
 		else {
 			canJump = false;
 			fall();
-			
 		}
-
-		//Update and Print Player Score
+		// Update and print Player Score
 		playerScore++;
 		scoreLabel.setLabel(" " + playerScore);
 		if (playerScore % 100 == 0) {
 			scoreLabel.setColor(Color.red);
 		}
-		else{
+		else {
 			scoreLabel.setColor(Color.black);
 		}
-
+		// Remove small icon when power-up expires
 		if( e.getSource() == doubleJumpTimer){
 			doubleJump = false;
 			doubleJumpTimer.stop();
@@ -138,13 +130,12 @@ public class Player extends MainApplication implements ActionListener {
 		if (e.getSource() == oneUpTimer) {
 			oneUpTimer.stop();
 			oneUp = false;
+			System.out.println("OneUp expires");
 			program.remove(powerImage);
 		}
 	}
 
-
 	public void jump() {
-		
 		//Jump Audio
 		audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
 		
@@ -168,7 +159,7 @@ public class Player extends MainApplication implements ActionListener {
 		if (!isOnGround() && continueGame == true && doubleJump == true){
 			secondJump++;
 
-			//Only work if up arrow is pressed twice, resets when ground is hit
+			// Only work if up arrow is pressed twice, resets when ground is hit
 			if (!isOnGround() && secondJump == 2){
 				fallingSpeed = jumpPower / (23/10);
 				audio.playSound(MUSIC_FOLDER, "jump-arcade.mp3");
@@ -177,7 +168,6 @@ public class Player extends MainApplication implements ActionListener {
 			}
 		}
 	}
-
 
 	public void fall() {
 		if (levelToAdd.isTwoPlayers() == false) {
@@ -226,13 +216,13 @@ public class Player extends MainApplication implements ActionListener {
 		double w = obstacle.getWidth() - 10;
 		double h = obstacle.getHeight() - 10;
 
-		// if invincible is collided regular calculations ignored
+		// If invincible is collided regular calculations ignored
 		if (inv == true) {
 			continueGame = true;
 			return false;
 		}
 
-		//if oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
+		// If oneUp and obstacle collided, game continues and oneUp is lost (oneUp = false)
 		if (oneUp == true) {
 			// check collision
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
@@ -244,9 +234,9 @@ public class Player extends MainApplication implements ActionListener {
 			}
 		}
 
-		//else acts like normal function
+		// Else acts like normal function
 		else {
-			// check collision
+			// Check collision
 			if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 					&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 
@@ -269,17 +259,15 @@ public class Player extends MainApplication implements ActionListener {
 		double w = powerUp.getWidth();
 		double h = powerUp.getHeight();
 		
-		// check collision
+		// Check collision
 		if((tx < x && tx + tw > x && tx + tw < x + w || tx > x && tx < x + w)
 				&& (ty < y && ty + th > y && ty + th < h + y || ty > y && ty < y + h)) {
 
-			//powerUp Audio
+			// PowerUp Audio
 			audio.playSound(MUSIC_FOLDER, "PowerUp.mp3");
-			
 			if(powerUp.getPowerType() == PowerUpType.DOUBLEJUMP) {
 				doubleJump = true;
 				doubleJumpTimer.start();
-
 				// Adding an icon of the power-up
 				powerImage.setImage("images/doublejump.png");
 				powerImage.setSize(30, 30);

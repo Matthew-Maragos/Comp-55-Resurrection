@@ -5,15 +5,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import acm.util.RandomGenerator;
 
-
 public class Obstacle implements ActionListener  {
-	
 	public static final int OBSTACLE_WIDTH = 50;
 	public static final int OBSTACLE_HEIGHT = 90;
 	public static final int START_X = 600;
 	public static final int START_Y = 280;
 	private MainApplication program;
-	
 	private ObstacleType obstacleType;
 	private double posX;
 	private double posY;
@@ -22,7 +19,6 @@ public class Obstacle implements ActionListener  {
 	private Timer obsMoveTimer;
 	public SinglePlayerModePane gameWindow;
 	public RandomGenerator rgen;
-	
 	
 	public Obstacle(MainApplication app, Level level) {
 		rgen = RandomGenerator.getInstance();
@@ -46,6 +42,7 @@ public class Obstacle implements ActionListener  {
 		obsImage.move(-moveSpeed, 0);
 	}
 	
+	// Generate random image for obstacle
 	public GImage randomizeObstacleImage() {
 		int randNum = rgen.nextInt(1,4);
 		if(randNum == 1) {
@@ -59,8 +56,7 @@ public class Obstacle implements ActionListener  {
 		}
 		else {
 			return new GImage("images/rock.png");
-		}
-		
+		}	
 	}
 	
 	public ObstacleType getObstacleType() {
@@ -90,5 +86,4 @@ public class Obstacle implements ActionListener  {
 	public Timer getObsMoveTimer() {
 		return obsMoveTimer;
 	}
-	
 }

@@ -1,29 +1,21 @@
 package TigerGame;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
-import acm.graphics.GLabel;
 
 public class DeathScreenPane extends GraphicsPane {
 	
     private MainApplication program;
-    boolean isTwoPlayer;
-    
+    public boolean isTwoPlayer;
     private AudioPlayer audio = AudioPlayer.getInstance();
     public static final String MUSIC_FOLDER = "sounds";	
-    
-    GImage gameOver = new GImage("images/game-over.png");
-   
-    //Try Again = but 1, Main Menu = but2
+    private GImage gameOver = new GImage("images/game-over.png");
+    // button 1: try again
     public GRect but1 = new GRect(174,92,251,54);
+    // button 2: main menu
     public GRect but2 = new GRect(174,159,251,54);
-    
     public boolean minimizeScreen;
-
 
     public DeathScreenPane(MainApplication app, boolean isTwoPlayers) {
         super();
@@ -31,25 +23,20 @@ public class DeathScreenPane extends GraphicsPane {
         program.add(gameOver);
         but1.setLineWidth(0);
         but2.setLineWidth(0);
-        isTwoPlayer = isTwoPlayers;
-        
-        
+        isTwoPlayer = isTwoPlayers;   
     }
 
     public void clickedAt(GObject objIn) {
         if (objIn == but1 && isTwoPlayer == false) {
-        	minimizeScreen = true;
         	audio.stopSound(MUSIC_FOLDER, "GMusic.mp3");
             program.switchToSinglePlayer();
             program.setSize(MainApplication.WINDOW_WIDTH, MainApplication.WINDOW_HEIGHT);
         }
         else if(objIn == but1 && isTwoPlayer == true) {
-        	minimizeScreen = false;
         	audio.stopSound(MUSIC_FOLDER, "GMusic.mp3");
         	program.switchToMultiPlayer();
         }
         else if(objIn == but2) {
-        	minimizeScreen = true;
         	audio.stopSound(MUSIC_FOLDER, "GMusic.mp3");
         	program.removeAll();
             program.switchToMainMenu();

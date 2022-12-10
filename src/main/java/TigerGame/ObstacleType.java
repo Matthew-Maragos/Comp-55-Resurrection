@@ -1,7 +1,6 @@
 package TigerGame;
 
 public enum ObstacleType {
- //notes I hope this works
 	TRASHCAN, ACORN, ROCK, BENCH; 
 	
 	public String toString() {

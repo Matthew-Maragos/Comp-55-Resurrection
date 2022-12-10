@@ -8,7 +8,6 @@ import acm.graphics.*;
 
 public class MainApplication extends GraphicsApplication implements ActionListener {
 
-
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 436;
 	public static final int GRAVITY_TIMER_MS = 200;
@@ -16,7 +15,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	public int windowWidth = 600;
 	public int windowHeight = 436;
-	public startMenuPane mainMenu;
+	public StartMenuPane mainMenu;
 	public PlayerManualPane manualMenu;
 	public SinglePlayerModePane singleMenu;
 	public MultiPlayerMode multiMenu;
@@ -26,18 +25,17 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		//this.requestFocus();
 	}
 
 	public void run() {
-		//loads main menu pane
-		mainMenu = new startMenuPane(this);		
-		//loads player manual pane
+		// Loads main menu pane
+		mainMenu = new StartMenuPane(this);		
+		// Loads player manual pane
 		manualMenu = new PlayerManualPane(this);
-		//loads game over menu
+		// Loads game over menu
 		gameOverMenu = new DeathScreenPane(this, isTwoPlayers);
 		setupInteractions();		
-		// initially loads to main menu
+		// Initially loads main menu
 		switchToMainMenu();		
 	}
 
@@ -73,14 +71,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		//Where the mouse cursor is when clicked
+		// Get where the mouse cursor is when clicked
 		GObject button = getElementAt(e.getX(), e.getY());	
 		
 		if (curScreen == mainMenu) { 
 			mainMenu.clickedAt(button);
-			
-//			audio.pauseSound(MUSIC_FOLDER, "MMenu.mp3");
-			//uses clickedAt function in startMenuPane.java line 27
 		} 
 		else if (curScreen == manualMenu) {
 			audio.playSound(MUSIC_FOLDER, "MMenu.mp3");
@@ -97,10 +92,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		if (isTwoPlayers == false) {
 			if (e.getKeyCode() == 38) {		
-				//jump function from player from level one from singlemenu
+				// Jump function from player from level one from SingleMenu
 				singleMenu.LevelOne.player.jump();
 			}
-		} else {
+		}
+		else {
 			if (e.getKeyCode() == 38) {		
 				multiMenu.LevelOne.player.jump();
 			} else if (e.getKeyCode() == 87) {		

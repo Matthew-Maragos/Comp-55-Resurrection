@@ -31,7 +31,7 @@ public final class AudioPlayer {
 	}
 
 	/**
-	 * Think of this like the constructor for getting the audioplayer Usage:
+	 * Think of this like the constructor for getting the AudioPlayer Usage:
 	 * AudioPlayer myPlayer = AudioPlayer.getInstance();
 	 * 
 	 * @return instance of the AudioPlayer

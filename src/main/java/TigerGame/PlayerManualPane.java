@@ -1,15 +1,12 @@
 package TigerGame;
 
-
 import acm.graphics.*;
  
 public class PlayerManualPane extends GraphicsPane {
 
     private MainApplication program;
-
 	private AudioPlayer audio = AudioPlayer.getInstance();
 	public static final String MUSIC_FOLDER = "sounds";
-    
     GImage manualPage = new GImage("images/player_manual.png");
     public GRect backButton = new GRect(25,22,86,34);
 

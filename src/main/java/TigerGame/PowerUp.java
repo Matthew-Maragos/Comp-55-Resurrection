@@ -9,12 +9,10 @@ import acm.util.RandomGenerator;
 public class PowerUp implements ActionListener {
 
 	private MainApplication program;
-	
 	public static final int POWER_WIDTH = 65;
 	public static final int POWER_HEIGHT = 65;
 	public static final int START_X = 600;
 	public static final int START_Y = 290;
-	
 	private PowerUpType powerType;
 	private double posX;
 	private double posY;
@@ -47,6 +45,7 @@ public class PowerUp implements ActionListener {
 		powerImage.move(-moveSpeed, 0);
 	}
 	
+	// Generate random image for power-up
 	public void randomizePowerUp(Level level) {
 		int randNum = rgen.nextInt(1,3);
 		if(randNum == 1) {
@@ -63,8 +62,7 @@ public class PowerUp implements ActionListener {
 		}
 	}	
 	
-	// getters and setters
-	
+	// Getters and setters
 	public PowerUpType getPowerType() {
 		return this.powerType;
 	}
