@@ -22,7 +22,7 @@ public class Level implements ActionListener  {
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<PowerUp> powers;
 	
-	GImage backgroundImg = new GImage("sounds/blank_background.png");
+	GImage backgroundImg = new GImage("images/blank_background.png");
 
 	public Level(MainApplication app, boolean secondPlayer) {
 		super();

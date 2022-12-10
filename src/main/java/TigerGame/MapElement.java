@@ -42,7 +42,7 @@ public class MapElement implements ActionListener {
 			posY = BUSH_START_Y;
 			mapEleType = type;
 			
-			elementImage = new GImage("sounds/bush_2.png");
+			elementImage = new GImage("images/bush_2.png");
 			elementImage.scale(0.3);
 			elementImage.setLocation(startX, BUSH_START_Y);
 			program.add(elementImage);
@@ -52,14 +52,13 @@ public class MapElement implements ActionListener {
 			CLOUD_START_X = startX;
 			if (levelToAdd.isTwoPlayers() == false) {
 				CLOUD_START_Y = rgen.nextInt(0, 100) + scaleY;
-			}else {
+			} else {
 				CLOUD_START_Y = 400;
 			}
-	    		
 			posX = CLOUD_START_X;
 			posY = CLOUD_START_Y;
 			mapEleType = type;
-			elementImage = new GImage("sounds/cloud.png");
+			elementImage = new GImage("images/cloud.png");
 			elementImage.scale(0.2);
 			elementImage.setLocation(startX, CLOUD_START_Y);
 			program.add(elementImage);
@@ -92,15 +91,15 @@ public class MapElement implements ActionListener {
     public void randomizeBushImage(GImage image, int startX, int scaleY) {
         int randNum = rgen.nextInt(1,3);
         if(randNum == 1) {
-        	image.setImage("sounds/bush_1.png");
+        	image.setImage("images/bush_1.png");
         	BUSH_START_Y = 182 + scaleY;
         }
         if(randNum == 2) {
-        	image.setImage("sounds/bush_2.png");
+        	image.setImage("images/bush_2.png");
         	BUSH_START_Y = 182 + scaleY;
         }
         else {
-        	image.setImage("sounds/bush_3.png");
+        	image.setImage("images/bush_3.png");
     		BUSH_START_Y = 120 + scaleY;
         }
     }

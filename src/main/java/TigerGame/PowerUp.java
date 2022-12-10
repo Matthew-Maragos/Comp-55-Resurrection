@@ -50,15 +50,15 @@ public class PowerUp implements ActionListener {
 	public void randomizePowerUp(Level level) {
 		int randNum = rgen.nextInt(1,3);
 		if(randNum == 1) {
-			powerImage = new GImage("sounds/invincibility.png");
+			powerImage = new GImage("images/invincibility.png");
 			powerType = PowerUpType.INVINCIBILITY;
 		}
 		if(randNum == 2) {
-			powerImage = new GImage("sounds/oneup.png");
+			powerImage = new GImage("images/oneup.png");
 			powerType = PowerUpType.ONEUP;
 		}
 		if(randNum == 3) {
-			powerImage = new GImage("sounds/doublejump.png");
+			powerImage = new GImage("images/doublejump.png");
 			powerType = PowerUpType.DOUBLEJUMP;
 		}
 	}	

@@ -58,18 +58,15 @@ public class Player extends MainApplication implements ActionListener {
 		scoreLabel = new GLabel("Score is 0");
 		levelToAdd = level;
 		
-		// Game Background Audio
-		//audio.playSound(MUSIC_FOLDER, "GMusic.mp3");
-		
 		if (level.isTwoPlayers() == false) {
 			playerLabel = new GLabel("Player 1");
 			playerLabel.setLocation(10, 50);
-			tigerImage = new GImage("sounds/tiger_orange.png");
+			tigerImage = new GImage("images/tiger_orange.png");
 			tigerImage.setLocation(START_X, START_Y);
 		} else {
 			playerLabel = new GLabel("Player 2");
 			playerLabel.setLocation(10, 340 + 100);
-			tigerImage = new GImage("sounds/tiger_yellow.png");
+			tigerImage = new GImage("images/tiger_yellow.png");
 			tigerImage.setLocation(START_X, 400 + START_Y);
 		}
 		
@@ -91,13 +88,13 @@ public class Player extends MainApplication implements ActionListener {
 
 		scoreLabel.setFont(new Font("Serif", Font.BOLD, 36));	
 
-		powerImage = new GImage("sounds/oneup.png");
+		powerImage = new GImage("images/oneup.png");
 		powerImage.setSize(30, 30);
 		powerImage.setLocation(540, 70);
 
 		doubleJumpTimer = new Timer(5000, this);
 		invTimer = new Timer(5000, this);
-		oneUpTimer = new Timer(1000, this);
+		oneUpTimer = new Timer(800, this);
 
 	}
 
@@ -284,7 +281,7 @@ public class Player extends MainApplication implements ActionListener {
 				doubleJumpTimer.start();
 
 				// Adding an icon of the power-up
-				powerImage.setImage("sounds/doublejump.png");
+				powerImage.setImage("images/doublejump.png");
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);	
 				program.add(powerImage);
@@ -295,7 +292,7 @@ public class Player extends MainApplication implements ActionListener {
 				invTimer.start();
 
 				// Adding an icon of the power-up
-				powerImage.setImage("sounds/invincibility.png");
+				powerImage.setImage("images/invincibility.png");
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);
 				program.add(powerImage);
@@ -305,7 +302,7 @@ public class Player extends MainApplication implements ActionListener {
 				oneUp = true;
 
 				// Adding an icon of the power-up
-				powerImage.setImage("sounds/oneup.png");
+				powerImage.setImage("images/oneup.png");
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);
 				program.add(powerImage);

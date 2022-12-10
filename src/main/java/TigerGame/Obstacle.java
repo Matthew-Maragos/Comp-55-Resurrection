@@ -49,16 +49,16 @@ public class Obstacle implements ActionListener  {
 	public GImage randomizeObstacleImage() {
 		int randNum = rgen.nextInt(1,4);
 		if(randNum == 1) {
-			return new GImage("sounds/trashcan.png");
+			return new GImage("images/trashcan.png");
 		}
 		if(randNum == 2) {
-			return new GImage("sounds/acorn.png");
+			return new GImage("images/acorn.png");
 		}
 		if(randNum == 3) {
-			return new GImage("sounds/bench.png");
+			return new GImage("images/bench.png");
 		}
 		else {
-			return new GImage("sounds/rock.png");
+			return new GImage("images/rock.png");
 		}
 		
 	}

@@ -16,7 +16,7 @@ public class DeathScreenPane extends GraphicsPane {
     private AudioPlayer audio = AudioPlayer.getInstance();
     public static final String MUSIC_FOLDER = "sounds";	
     
-    GImage gameOver = new GImage("sounds/game-over.png");
+    GImage gameOver = new GImage("images/game-over.png");
    
     //Try Again = but 1, Main Menu = but2
     public GRect but1 = new GRect(174,92,251,54);

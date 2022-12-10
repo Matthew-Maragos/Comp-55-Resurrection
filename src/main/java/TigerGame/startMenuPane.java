@@ -10,8 +10,8 @@ public class startMenuPane extends GraphicsPane {
 	private AudioPlayer audio = AudioPlayer.getInstance();
 	public static final String MUSIC_FOLDER = "sounds";
 	
-    GImage background = new GImage("sounds/start_menu.png");
-    GImage manualPage = new GImage("sounds/manual_menu.png");
+    GImage background = new GImage("images/start_menu.png");
+    GImage manualPage = new GImage("images/player_manual.png");
     public GRect but1 = new GRect(172,136,255,54);
     public GRect but2 = new GRect(172,209,255,54);
     public GRect but3 = new GRect(172,281,255,54);
