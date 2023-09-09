@@ -3,6 +3,12 @@
 ## About
 This is Java-based game inspired by the classic Chrome Dinosaur Game with implemented multiplayer functionality and power-up features to enhance gameplay dynamics and player engagement. We also elevated the visual appeal and gameplay experience by designing custom characters, obstacles, backgrounds and theme music tailored to present the University of the Pacific.
 
+![Tiger Game Menu](media/tiger_game_main.png)
+
+![Tiger Game Manual](media/tiger_game_manual.png)
+
+![Tiger Game Menu](media/tiger_game_start.png)
+
 ## Authors
 - Vy Nguyen
 - Matthew Maragos
@@ -23,9 +29,19 @@ In the **Single-Player** mode, the player attempts to get as far as possible wit
 Similarly, in the **Multiplayer** mode, the game starts with two vertically-stacked screens with two characters. They will compete to get as far as possible without hitting any obstacles by jumping and obtaining power ups. Their scores are tracked in the top right corner, and both of their games will end when either of the players collides with an obstacle while not obtaining Invincibility or One Up. The player with the longest distance is announced as the winner.
 
 ## Interaction Diagrams
+**Single Player**
 
+![Interaction Diagram Singleplayer](media/uml_single1.png)
+
+![Interaction Diagram Singleplayer](media/uml_single2.png) 
+
+**Multiplayer**
+
+![Interaction Diagram Multiplayer](media/uml_multiplayer.png)
 
 ## UML Diagram
+
+![UML Diagram](media/uml_diagram.png)
 
 ## Conclusions and Future Work  
 **Ramis**: First and foremost it was interesting for me to work with  group on Project.  When we encountered some troubles there was a possibility asking for advice and help from other team members. this ensured that the project will be done on time. On the mostly every step of development  we encountered various technical challenges that for example, we spent plenty of time figuring out how to switch between panes.  Also, it was difficult to implement back Collision detection and overall physics of the game. With help of team members and professor and teacher assistant , we were able to  implement our ideas in the project.  Some of the things that I learned in this project is to use the internet as a resource. There is plenty information and resources are available online, which can be helpful in Java development.  Previous knowledge in programming especially C plus plus  & OOP was very helpful in development strategies.  This project can be expanded in different ways.  For example, both single-player and multiplayer can be improved that also, there's a room for improvement in  data storage,  so we could have store the results of the games.  I mean advice for future business is to start work as early as possible to have less waiting time in the end of the semester. Also, it's always a good idea to approach your professor with the questions.
