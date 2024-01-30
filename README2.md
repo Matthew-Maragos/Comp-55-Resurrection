@@ -35,3 +35,5 @@ The Tiger Game currently has three power-ups and each one contirbutes uique game
 ```Java
 #Edit image to show the information on what the new power-up does
 ```
+## Feature Has Been Implemented
+There's really one way to check to see if my new power-up works, and that is to play the game.  Once opened, you can access the player manual by pressing the button that says 'player manual'.  There you can see that the new power-up was added.  Then by pressing the 'back' button, pressing on the 'Singleplayer' button, and playing the game.  You will eventually run into the new power-up (it might take awhile due to the power-ups randomly generate).  The player will collide with the new power-up gain 100 more points and see that 100 points have been added.
