@@ -47,7 +47,7 @@ public class PowerUp implements ActionListener {
 	
 	// Generate random image for power-up
 	public void randomizePowerUp(Level level) {
-		int randNum = rgen.nextInt(1,3);
+		int randNum = rgen.nextInt(1,4);
 		if(randNum == 1) {
 			powerImage = new GImage("images/invincibility.png");
 			powerType = PowerUpType.INVINCIBILITY;
@@ -59,6 +59,10 @@ public class PowerUp implements ActionListener {
 		if(randNum == 3) {
 			powerImage = new GImage("images/doublejump.png");
 			powerType = PowerUpType.DOUBLEJUMP;
+		}
+		if (randNum == 4) {
+			powerImage = new GImage("images/extrapoints.png");
+			powerType = PowerUpType.EXTRAPOINTS;
 		}
 	}	
 	
