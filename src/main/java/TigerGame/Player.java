@@ -45,6 +45,7 @@ public class Player extends MainApplication implements ActionListener {
 	private Timer doubleJumpTimer;
 	private Timer invTimer;
 	private Timer oneUpTimer;
+	private Timer exPointsTimer;
 
 	public Player(MainApplication app, Level level) {
 		continueGame = true;
@@ -90,6 +91,7 @@ public class Player extends MainApplication implements ActionListener {
 		doubleJumpTimer = new Timer(5000, this);
 		invTimer = new Timer(5000, this);
 		oneUpTimer = new Timer(800, this);
+		exPointsTimer = new Timer(1000, this);
 
 	}
 
@@ -131,6 +133,12 @@ public class Player extends MainApplication implements ActionListener {
 			oneUpTimer.stop();
 			oneUp = false;
 			System.out.println("OneUp expires");
+			program.remove(powerImage);
+		}
+		if (e.getSource() == exPointsTimer) {
+			exPointsTimer.stop();
+			playerScore += 100;
+			System.out.println("Added 100 points");
 			program.remove(powerImage);
 		}
 	}
@@ -293,6 +301,14 @@ public class Player extends MainApplication implements ActionListener {
 				powerImage.setImage("images/oneup.png");
 				powerImage.setSize(30, 30);
 				powerImage.setLocation(540, 70);
+				program.add(powerImage);
+			}
+			if (powerUp.getPowerType() == PowerUpType.EXTRAPOINTS) {
+				exPointsTimer.start();
+				//Adding how many extra points earned
+				powerImage.setImage("images/+100.png");
+				powerImage.setSize(60,60);
+				powerImage.setLocation(520, 40);
 				program.add(powerImage);
 			}
 			return true;
